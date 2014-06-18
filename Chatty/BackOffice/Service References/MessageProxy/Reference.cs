@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace BackOffice.MessageService {
+namespace BackOffice.MessageProxy {
     using System.Runtime.Serialization;
     using System;
     
@@ -17,7 +17,7 @@ namespace BackOffice.MessageService {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="BaseEntityOflong", Namespace="http://schemas.datacontract.org/2004/07/Service.Utils")]
     [System.SerializableAttribute()]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(BackOffice.MessageService.Message))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(BackOffice.MessageProxy.Message))]
     public partial class BaseEntityOflong : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
@@ -95,7 +95,7 @@ namespace BackOffice.MessageService {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="Message", Namespace="http://schemas.datacontract.org/2004/07/Service.Models")]
     [System.SerializableAttribute()]
-    public partial class Message : BackOffice.MessageService.BaseEntityOflong {
+    public partial class Message : BackOffice.MessageProxy.BaseEntityOflong {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string ContentField;
@@ -131,20 +131,20 @@ namespace BackOffice.MessageService {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="MessageService.MessageContract")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="MessageProxy.MessageContract")]
     public interface MessageContract {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRepositoryOf_Int64_Message/GetById", ReplyAction="http://tempuri.org/IRepositoryOf_Int64_Message/GetByIdResponse")]
-        BackOffice.MessageService.Message GetById(long id);
+        BackOffice.MessageProxy.Message GetById(long id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRepositoryOf_Int64_Message/GetById", ReplyAction="http://tempuri.org/IRepositoryOf_Int64_Message/GetByIdResponse")]
-        System.Threading.Tasks.Task<BackOffice.MessageService.Message> GetByIdAsync(long id);
+        System.Threading.Tasks.Task<BackOffice.MessageProxy.Message> GetByIdAsync(long id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRepositoryOf_Int64_Message/Insert", ReplyAction="http://tempuri.org/IRepositoryOf_Int64_Message/InsertResponse")]
-        BackOffice.MessageService.Message Insert(BackOffice.MessageService.Message entity);
+        BackOffice.MessageProxy.Message Insert(BackOffice.MessageProxy.Message entity);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRepositoryOf_Int64_Message/Insert", ReplyAction="http://tempuri.org/IRepositoryOf_Int64_Message/InsertResponse")]
-        System.Threading.Tasks.Task<BackOffice.MessageService.Message> InsertAsync(BackOffice.MessageService.Message entity);
+        System.Threading.Tasks.Task<BackOffice.MessageProxy.Message> InsertAsync(BackOffice.MessageProxy.Message entity);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRepositoryOf_Int64_Message/Delete", ReplyAction="http://tempuri.org/IRepositoryOf_Int64_Message/DeleteResponse")]
         bool Delete(long id);
@@ -153,31 +153,31 @@ namespace BackOffice.MessageService {
         System.Threading.Tasks.Task<bool> DeleteAsync(long id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRepositoryOf_Int64_Message/Update", ReplyAction="http://tempuri.org/IRepositoryOf_Int64_Message/UpdateResponse")]
-        BackOffice.MessageService.Message Update(BackOffice.MessageService.Message entity);
+        BackOffice.MessageProxy.Message Update(BackOffice.MessageProxy.Message entity);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRepositoryOf_Int64_Message/Update", ReplyAction="http://tempuri.org/IRepositoryOf_Int64_Message/UpdateResponse")]
-        System.Threading.Tasks.Task<BackOffice.MessageService.Message> UpdateAsync(BackOffice.MessageService.Message entity);
+        System.Threading.Tasks.Task<BackOffice.MessageProxy.Message> UpdateAsync(BackOffice.MessageProxy.Message entity);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRepositoryOf_Int64_Message/SearchFor", ReplyAction="http://tempuri.org/IRepositoryOf_Int64_Message/SearchForResponse")]
-        BackOffice.MessageService.Message[] SearchFor(System.Func<BackOffice.MessageService.Message, bool> predicate);
+        BackOffice.MessageProxy.Message[] SearchFor(System.Func<BackOffice.MessageProxy.Message, bool> predicate);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRepositoryOf_Int64_Message/SearchFor", ReplyAction="http://tempuri.org/IRepositoryOf_Int64_Message/SearchForResponse")]
-        System.Threading.Tasks.Task<BackOffice.MessageService.Message[]> SearchForAsync(System.Func<BackOffice.MessageService.Message, bool> predicate);
+        System.Threading.Tasks.Task<BackOffice.MessageProxy.Message[]> SearchForAsync(System.Func<BackOffice.MessageProxy.Message, bool> predicate);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRepositoryOf_Int64_Message/GetAll", ReplyAction="http://tempuri.org/IRepositoryOf_Int64_Message/GetAllResponse")]
-        BackOffice.MessageService.Message[] GetAll();
+        BackOffice.MessageProxy.Message[] GetAll();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRepositoryOf_Int64_Message/GetAll", ReplyAction="http://tempuri.org/IRepositoryOf_Int64_Message/GetAllResponse")]
-        System.Threading.Tasks.Task<BackOffice.MessageService.Message[]> GetAllAsync();
+        System.Threading.Tasks.Task<BackOffice.MessageProxy.Message[]> GetAllAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface MessageContractChannel : BackOffice.MessageService.MessageContract, System.ServiceModel.IClientChannel {
+    public interface MessageContractChannel : BackOffice.MessageProxy.MessageContract, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class MessageContractClient : System.ServiceModel.ClientBase<BackOffice.MessageService.MessageContract>, BackOffice.MessageService.MessageContract {
+    public partial class MessageContractClient : System.ServiceModel.ClientBase<BackOffice.MessageProxy.MessageContract>, BackOffice.MessageProxy.MessageContract {
         
         public MessageContractClient() {
         }
@@ -198,19 +198,19 @@ namespace BackOffice.MessageService {
                 base(binding, remoteAddress) {
         }
         
-        public BackOffice.MessageService.Message GetById(long id) {
+        public BackOffice.MessageProxy.Message GetById(long id) {
             return base.Channel.GetById(id);
         }
         
-        public System.Threading.Tasks.Task<BackOffice.MessageService.Message> GetByIdAsync(long id) {
+        public System.Threading.Tasks.Task<BackOffice.MessageProxy.Message> GetByIdAsync(long id) {
             return base.Channel.GetByIdAsync(id);
         }
         
-        public BackOffice.MessageService.Message Insert(BackOffice.MessageService.Message entity) {
+        public BackOffice.MessageProxy.Message Insert(BackOffice.MessageProxy.Message entity) {
             return base.Channel.Insert(entity);
         }
         
-        public System.Threading.Tasks.Task<BackOffice.MessageService.Message> InsertAsync(BackOffice.MessageService.Message entity) {
+        public System.Threading.Tasks.Task<BackOffice.MessageProxy.Message> InsertAsync(BackOffice.MessageProxy.Message entity) {
             return base.Channel.InsertAsync(entity);
         }
         
@@ -222,27 +222,27 @@ namespace BackOffice.MessageService {
             return base.Channel.DeleteAsync(id);
         }
         
-        public BackOffice.MessageService.Message Update(BackOffice.MessageService.Message entity) {
+        public BackOffice.MessageProxy.Message Update(BackOffice.MessageProxy.Message entity) {
             return base.Channel.Update(entity);
         }
         
-        public System.Threading.Tasks.Task<BackOffice.MessageService.Message> UpdateAsync(BackOffice.MessageService.Message entity) {
+        public System.Threading.Tasks.Task<BackOffice.MessageProxy.Message> UpdateAsync(BackOffice.MessageProxy.Message entity) {
             return base.Channel.UpdateAsync(entity);
         }
         
-        public BackOffice.MessageService.Message[] SearchFor(System.Func<BackOffice.MessageService.Message, bool> predicate) {
+        public BackOffice.MessageProxy.Message[] SearchFor(System.Func<BackOffice.MessageProxy.Message, bool> predicate) {
             return base.Channel.SearchFor(predicate);
         }
         
-        public System.Threading.Tasks.Task<BackOffice.MessageService.Message[]> SearchForAsync(System.Func<BackOffice.MessageService.Message, bool> predicate) {
+        public System.Threading.Tasks.Task<BackOffice.MessageProxy.Message[]> SearchForAsync(System.Func<BackOffice.MessageProxy.Message, bool> predicate) {
             return base.Channel.SearchForAsync(predicate);
         }
         
-        public BackOffice.MessageService.Message[] GetAll() {
+        public BackOffice.MessageProxy.Message[] GetAll() {
             return base.Channel.GetAll();
         }
         
-        public System.Threading.Tasks.Task<BackOffice.MessageService.Message[]> GetAllAsync() {
+        public System.Threading.Tasks.Task<BackOffice.MessageProxy.Message[]> GetAllAsync() {
             return base.Channel.GetAllAsync();
         }
     }

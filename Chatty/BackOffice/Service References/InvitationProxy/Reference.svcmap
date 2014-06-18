@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="ce88510f-da65-40a4-9507-7dd2e8077c73" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:8733/Design_Time_Addresses/Service/InvitationService/mex" Protocol="mex" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="42596bd6-c27a-4faa-b052-cbeaea181886" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/Service/InvitationService/mex" />
+    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="0119995c-3c11-4849-95d6-1b8dc6acdf6d" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/Service/InvitationService/mex" />
+    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="3d9bd102-8092-4f6d-ae28-5e21ec2e34a5" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/Service/InvitationService/mex" />
+    <MetadataFile FileName="Service.Models.xsd" MetadataType="Schema" ID="323c35ac-10c5-445e-affc-6fa43f553b00" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/Service/InvitationService/mex" />
+    <MetadataFile FileName="Service.Utils.xsd" MetadataType="Schema" ID="142cdee4-1b52-4d82-9fee-8878604be3fb" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/Service/InvitationService/mex" />
+    <MetadataFile FileName="System.xsd" MetadataType="Schema" ID="a5932728-9f63-482a-9275-e104bdfb1fc1" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/Service/InvitationService/mex" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

@@ -183,27 +183,27 @@
     <Compile Include="Models\LiveModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Service References\DepartmentService\Reference.cs">
+    <Compile Include="Service References\DepartmentProxy\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="Service References\GroupService\Reference.cs">
+    <Compile Include="Service References\GroupProxy\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="Service References\InvitationService\Reference.cs">
+    <Compile Include="Service References\InvitationProxy\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="Service References\MessageService\Reference.cs">
+    <Compile Include="Service References\MessageProxy\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="Service References\UserService\Reference.cs">
+    <Compile Include="Service References\UserProxy\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -300,112 +300,48 @@
     <Content Include="Scripts\libs\json2.js" />
     <Content Include="Scripts\model\user.model.class.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Service References\DepartmentService\BackOffice.DepartmentService.Department.datasource">
+    <Content Include="Service References\DepartmentProxy\BackOffice.DepartmentProxy.Department.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <None Include="Service References\DepartmentService\configuration91.svcinfo" />
-    <None Include="Service References\DepartmentService\configuration.svcinfo" />
-    <None Include="Service References\DepartmentService\Reference.svcmap">
+    <None Include="Service References\DepartmentProxy\configuration91.svcinfo" />
+    <None Include="Service References\DepartmentProxy\configuration.svcinfo" />
+    <None Include="Service References\DepartmentProxy\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <Content Include="Service References\GroupService\BackOffice.GroupService.Group.datasource">
+    <Content Include="Service References\GroupProxy\BackOffice.GroupProxy.Group.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <None Include="Service References\GroupService\configuration91.svcinfo" />
-    <None Include="Service References\GroupService\configuration.svcinfo" />
-    <None Include="Service References\GroupService\Reference.svcmap">
+    <None Include="Service References\GroupProxy\configuration91.svcinfo" />
+    <None Include="Service References\GroupProxy\configuration.svcinfo" />
+    <None Include="Service References\GroupProxy\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <Content Include="Service References\InvitationService\BackOffice.InvitationService.Invitation.datasource">
+    <Content Include="Service References\InvitationProxy\BackOffice.InvitationProxy.Invitation.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <None Include="Service References\DepartmentService\Service.Models.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\DepartmentService\Service.Utils.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\DepartmentService\service.wsdl" />
-    <None Include="Service References\DepartmentService\service.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\DepartmentService\service1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\DepartmentService\System.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\GroupService\Service.Models.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\GroupService\Service.Utils.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\GroupService\service.wsdl" />
-    <None Include="Service References\GroupService\service.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\GroupService\service1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\GroupService\System.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\InvitationService\configuration91.svcinfo" />
-    <None Include="Service References\InvitationService\configuration.svcinfo" />
-    <None Include="Service References\InvitationService\Reference.svcmap">
+    <None Include="Service References\InvitationProxy\configuration91.svcinfo" />
+    <None Include="Service References\InvitationProxy\configuration.svcinfo" />
+    <None Include="Service References\InvitationProxy\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <Content Include="Service References\MessageService\BackOffice.MessageService.Message.datasource">
+    <Content Include="Service References\MessageProxy\BackOffice.MessageProxy.Message.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <None Include="Service References\InvitationService\Service.Models.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\InvitationService\Service.Utils.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\InvitationService\service.wsdl" />
-    <None Include="Service References\InvitationService\service.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\InvitationService\service1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\InvitationService\System.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\MessageService\configuration91.svcinfo" />
-    <None Include="Service References\MessageService\configuration.svcinfo" />
-    <None Include="Service References\MessageService\Reference.svcmap">
+    <None Include="Service References\MessageProxy\configuration91.svcinfo" />
+    <None Include="Service References\MessageProxy\configuration.svcinfo" />
+    <None Include="Service References\MessageProxy\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <Content Include="Service References\UserService\BackOffice.UserService.User.datasource">
+    <Content Include="Service References\UserProxy\BackOffice.UserProxy.User.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <None Include="Service References\MessageService\Service.Models.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\MessageService\Service.Utils.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\MessageService\service.wsdl" />
-    <None Include="Service References\MessageService\service.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\MessageService\service1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\MessageService\System.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\UserService\configuration91.svcinfo" />
-    <None Include="Service References\UserService\configuration.svcinfo" />
-    <None Include="Service References\UserService\Reference.svcmap">
+    <None Include="Service References\UserProxy\configuration91.svcinfo" />
+    <None Include="Service References\UserProxy\configuration.svcinfo" />
+    <None Include="Service References\UserProxy\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
@@ -421,6 +357,70 @@
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Auth\Login.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <None Include="Service References\GroupProxy\Service.Models.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\GroupProxy\Service.Utils.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\GroupProxy\service.wsdl" />
+    <None Include="Service References\GroupProxy\service.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\GroupProxy\service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\GroupProxy\System.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\InvitationProxy\Service.Models.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\InvitationProxy\Service.Utils.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\InvitationProxy\service.wsdl" />
+    <None Include="Service References\InvitationProxy\service.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\InvitationProxy\service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\InvitationProxy\System.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\MessageProxy\Service.Models.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\MessageProxy\Service.Utils.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\MessageProxy\service.wsdl" />
+    <None Include="Service References\MessageProxy\service.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\MessageProxy\service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\MessageProxy\System.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\UserProxy\Service.Models.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\UserProxy\Service.Utils.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\UserProxy\service.wsdl" />
+    <None Include="Service References\UserProxy\service.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\UserProxy\service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\UserProxy\System.xsd">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -439,27 +439,27 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadataStorage Include="Service References\DepartmentService\" />
-    <WCFMetadataStorage Include="Service References\GroupService\" />
-    <WCFMetadataStorage Include="Service References\InvitationService\" />
-    <WCFMetadataStorage Include="Service References\MessageService\" />
-    <WCFMetadataStorage Include="Service References\UserService\" />
+    <WCFMetadataStorage Include="Service References\DepartmentProxy\" />
+    <WCFMetadataStorage Include="Service References\GroupProxy\" />
+    <WCFMetadataStorage Include="Service References\InvitationProxy\" />
+    <WCFMetadataStorage Include="Service References\MessageProxy\" />
+    <WCFMetadataStorage Include="Service References\UserProxy\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\UserService\Service.Models.xsd">
+    <None Include="Service References\DepartmentProxy\Service.Models.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\UserService\Service.Utils.xsd">
+    <None Include="Service References\DepartmentProxy\Service.Utils.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\UserService\service.wsdl" />
-    <None Include="Service References\UserService\service.xsd">
+    <None Include="Service References\DepartmentProxy\service.wsdl" />
+    <None Include="Service References\DepartmentProxy\service.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\UserService\service1.xsd">
+    <None Include="Service References\DepartmentProxy\service1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\UserService\System.xsd">
+    <None Include="Service References\DepartmentProxy\System.xsd">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>

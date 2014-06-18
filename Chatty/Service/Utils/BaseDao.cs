@@ -2,8 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Service.Utils
 {
@@ -86,7 +84,7 @@ namespace Service.Utils
             try
             {
                 using (ChattyDbContext ctx = new ChattyDbContext())
-                    return ctx.Set<E>().Where(predicate);
+                    return ctx.Set<E>().Where(predicate).ToArray();
             }
             catch
             {
@@ -99,7 +97,7 @@ namespace Service.Utils
             try
             {
                 using (ChattyDbContext ctx = new ChattyDbContext())
-                    return ctx.Set<E>();
+                    return ctx.Set<E>().ToArray();
             }
             catch
             {

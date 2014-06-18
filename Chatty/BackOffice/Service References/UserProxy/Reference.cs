@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace BackOffice.UserService {
+namespace BackOffice.UserProxy {
     using System.Runtime.Serialization;
     using System;
     
@@ -17,7 +17,7 @@ namespace BackOffice.UserService {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="BaseEntityOfint", Namespace="http://schemas.datacontract.org/2004/07/Service.Utils")]
     [System.SerializableAttribute()]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(BackOffice.UserService.User))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(BackOffice.UserProxy.User))]
     public partial class BaseEntityOfint : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
@@ -95,7 +95,7 @@ namespace BackOffice.UserService {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="User", Namespace="http://schemas.datacontract.org/2004/07/Service.Models")]
     [System.SerializableAttribute()]
-    public partial class User : BackOffice.UserService.BaseEntityOfint {
+    public partial class User : BackOffice.UserProxy.BaseEntityOfint {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string EmailField;
@@ -195,20 +195,20 @@ namespace BackOffice.UserService {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="UserService.UserContract")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="UserProxy.UserContract")]
     public interface UserContract {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRepositoryOf_Int32_User/GetById", ReplyAction="http://tempuri.org/IRepositoryOf_Int32_User/GetByIdResponse")]
-        BackOffice.UserService.User GetById(int id);
+        BackOffice.UserProxy.User GetById(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRepositoryOf_Int32_User/GetById", ReplyAction="http://tempuri.org/IRepositoryOf_Int32_User/GetByIdResponse")]
-        System.Threading.Tasks.Task<BackOffice.UserService.User> GetByIdAsync(int id);
+        System.Threading.Tasks.Task<BackOffice.UserProxy.User> GetByIdAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRepositoryOf_Int32_User/Insert", ReplyAction="http://tempuri.org/IRepositoryOf_Int32_User/InsertResponse")]
-        BackOffice.UserService.User Insert(BackOffice.UserService.User entity);
+        BackOffice.UserProxy.User Insert(BackOffice.UserProxy.User entity);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRepositoryOf_Int32_User/Insert", ReplyAction="http://tempuri.org/IRepositoryOf_Int32_User/InsertResponse")]
-        System.Threading.Tasks.Task<BackOffice.UserService.User> InsertAsync(BackOffice.UserService.User entity);
+        System.Threading.Tasks.Task<BackOffice.UserProxy.User> InsertAsync(BackOffice.UserProxy.User entity);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRepositoryOf_Int32_User/Delete", ReplyAction="http://tempuri.org/IRepositoryOf_Int32_User/DeleteResponse")]
         bool Delete(int id);
@@ -217,31 +217,31 @@ namespace BackOffice.UserService {
         System.Threading.Tasks.Task<bool> DeleteAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRepositoryOf_Int32_User/Update", ReplyAction="http://tempuri.org/IRepositoryOf_Int32_User/UpdateResponse")]
-        BackOffice.UserService.User Update(BackOffice.UserService.User entity);
+        BackOffice.UserProxy.User Update(BackOffice.UserProxy.User entity);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRepositoryOf_Int32_User/Update", ReplyAction="http://tempuri.org/IRepositoryOf_Int32_User/UpdateResponse")]
-        System.Threading.Tasks.Task<BackOffice.UserService.User> UpdateAsync(BackOffice.UserService.User entity);
+        System.Threading.Tasks.Task<BackOffice.UserProxy.User> UpdateAsync(BackOffice.UserProxy.User entity);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRepositoryOf_Int32_User/SearchFor", ReplyAction="http://tempuri.org/IRepositoryOf_Int32_User/SearchForResponse")]
-        BackOffice.UserService.User[] SearchFor(System.Func<BackOffice.UserService.User, bool> predicate);
+        BackOffice.UserProxy.User[] SearchFor(System.Func<BackOffice.UserProxy.User, bool> predicate);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRepositoryOf_Int32_User/SearchFor", ReplyAction="http://tempuri.org/IRepositoryOf_Int32_User/SearchForResponse")]
-        System.Threading.Tasks.Task<BackOffice.UserService.User[]> SearchForAsync(System.Func<BackOffice.UserService.User, bool> predicate);
+        System.Threading.Tasks.Task<BackOffice.UserProxy.User[]> SearchForAsync(System.Func<BackOffice.UserProxy.User, bool> predicate);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRepositoryOf_Int32_User/GetAll", ReplyAction="http://tempuri.org/IRepositoryOf_Int32_User/GetAllResponse")]
-        BackOffice.UserService.User[] GetAll();
+        BackOffice.UserProxy.User[] GetAll();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRepositoryOf_Int32_User/GetAll", ReplyAction="http://tempuri.org/IRepositoryOf_Int32_User/GetAllResponse")]
-        System.Threading.Tasks.Task<BackOffice.UserService.User[]> GetAllAsync();
+        System.Threading.Tasks.Task<BackOffice.UserProxy.User[]> GetAllAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface UserContractChannel : BackOffice.UserService.UserContract, System.ServiceModel.IClientChannel {
+    public interface UserContractChannel : BackOffice.UserProxy.UserContract, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class UserContractClient : System.ServiceModel.ClientBase<BackOffice.UserService.UserContract>, BackOffice.UserService.UserContract {
+    public partial class UserContractClient : System.ServiceModel.ClientBase<BackOffice.UserProxy.UserContract>, BackOffice.UserProxy.UserContract {
         
         public UserContractClient() {
         }
@@ -262,19 +262,19 @@ namespace BackOffice.UserService {
                 base(binding, remoteAddress) {
         }
         
-        public BackOffice.UserService.User GetById(int id) {
+        public BackOffice.UserProxy.User GetById(int id) {
             return base.Channel.GetById(id);
         }
         
-        public System.Threading.Tasks.Task<BackOffice.UserService.User> GetByIdAsync(int id) {
+        public System.Threading.Tasks.Task<BackOffice.UserProxy.User> GetByIdAsync(int id) {
             return base.Channel.GetByIdAsync(id);
         }
         
-        public BackOffice.UserService.User Insert(BackOffice.UserService.User entity) {
+        public BackOffice.UserProxy.User Insert(BackOffice.UserProxy.User entity) {
             return base.Channel.Insert(entity);
         }
         
-        public System.Threading.Tasks.Task<BackOffice.UserService.User> InsertAsync(BackOffice.UserService.User entity) {
+        public System.Threading.Tasks.Task<BackOffice.UserProxy.User> InsertAsync(BackOffice.UserProxy.User entity) {
             return base.Channel.InsertAsync(entity);
         }
         
@@ -286,27 +286,27 @@ namespace BackOffice.UserService {
             return base.Channel.DeleteAsync(id);
         }
         
-        public BackOffice.UserService.User Update(BackOffice.UserService.User entity) {
+        public BackOffice.UserProxy.User Update(BackOffice.UserProxy.User entity) {
             return base.Channel.Update(entity);
         }
         
-        public System.Threading.Tasks.Task<BackOffice.UserService.User> UpdateAsync(BackOffice.UserService.User entity) {
+        public System.Threading.Tasks.Task<BackOffice.UserProxy.User> UpdateAsync(BackOffice.UserProxy.User entity) {
             return base.Channel.UpdateAsync(entity);
         }
         
-        public BackOffice.UserService.User[] SearchFor(System.Func<BackOffice.UserService.User, bool> predicate) {
+        public BackOffice.UserProxy.User[] SearchFor(System.Func<BackOffice.UserProxy.User, bool> predicate) {
             return base.Channel.SearchFor(predicate);
         }
         
-        public System.Threading.Tasks.Task<BackOffice.UserService.User[]> SearchForAsync(System.Func<BackOffice.UserService.User, bool> predicate) {
+        public System.Threading.Tasks.Task<BackOffice.UserProxy.User[]> SearchForAsync(System.Func<BackOffice.UserProxy.User, bool> predicate) {
             return base.Channel.SearchForAsync(predicate);
         }
         
-        public BackOffice.UserService.User[] GetAll() {
+        public BackOffice.UserProxy.User[] GetAll() {
             return base.Channel.GetAll();
         }
         
-        public System.Threading.Tasks.Task<BackOffice.UserService.User[]> GetAllAsync() {
+        public System.Threading.Tasks.Task<BackOffice.UserProxy.User[]> GetAllAsync() {
             return base.Channel.GetAllAsync();
         }
     }

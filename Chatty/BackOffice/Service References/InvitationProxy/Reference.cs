@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace BackOffice.InvitationService {
+namespace BackOffice.InvitationProxy {
     using System.Runtime.Serialization;
     using System;
     
@@ -17,7 +17,7 @@ namespace BackOffice.InvitationService {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="BaseEntityOfint", Namespace="http://schemas.datacontract.org/2004/07/Service.Utils")]
     [System.SerializableAttribute()]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(BackOffice.InvitationService.Invitation))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(BackOffice.InvitationProxy.Invitation))]
     public partial class BaseEntityOfint : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
@@ -95,7 +95,7 @@ namespace BackOffice.InvitationService {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="Invitation", Namespace="http://schemas.datacontract.org/2004/07/Service.Models")]
     [System.SerializableAttribute()]
-    public partial class Invitation : BackOffice.InvitationService.BaseEntityOfint {
+    public partial class Invitation : BackOffice.InvitationProxy.BaseEntityOfint {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string ContentField;
@@ -147,20 +147,20 @@ namespace BackOffice.InvitationService {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="InvitationService.InvitationContract")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="InvitationProxy.InvitationContract")]
     public interface InvitationContract {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRepositoryOf_Int32_Invitation/GetById", ReplyAction="http://tempuri.org/IRepositoryOf_Int32_Invitation/GetByIdResponse")]
-        BackOffice.InvitationService.Invitation GetById(int id);
+        BackOffice.InvitationProxy.Invitation GetById(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRepositoryOf_Int32_Invitation/GetById", ReplyAction="http://tempuri.org/IRepositoryOf_Int32_Invitation/GetByIdResponse")]
-        System.Threading.Tasks.Task<BackOffice.InvitationService.Invitation> GetByIdAsync(int id);
+        System.Threading.Tasks.Task<BackOffice.InvitationProxy.Invitation> GetByIdAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRepositoryOf_Int32_Invitation/Insert", ReplyAction="http://tempuri.org/IRepositoryOf_Int32_Invitation/InsertResponse")]
-        BackOffice.InvitationService.Invitation Insert(BackOffice.InvitationService.Invitation entity);
+        BackOffice.InvitationProxy.Invitation Insert(BackOffice.InvitationProxy.Invitation entity);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRepositoryOf_Int32_Invitation/Insert", ReplyAction="http://tempuri.org/IRepositoryOf_Int32_Invitation/InsertResponse")]
-        System.Threading.Tasks.Task<BackOffice.InvitationService.Invitation> InsertAsync(BackOffice.InvitationService.Invitation entity);
+        System.Threading.Tasks.Task<BackOffice.InvitationProxy.Invitation> InsertAsync(BackOffice.InvitationProxy.Invitation entity);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRepositoryOf_Int32_Invitation/Delete", ReplyAction="http://tempuri.org/IRepositoryOf_Int32_Invitation/DeleteResponse")]
         bool Delete(int id);
@@ -169,31 +169,31 @@ namespace BackOffice.InvitationService {
         System.Threading.Tasks.Task<bool> DeleteAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRepositoryOf_Int32_Invitation/Update", ReplyAction="http://tempuri.org/IRepositoryOf_Int32_Invitation/UpdateResponse")]
-        BackOffice.InvitationService.Invitation Update(BackOffice.InvitationService.Invitation entity);
+        BackOffice.InvitationProxy.Invitation Update(BackOffice.InvitationProxy.Invitation entity);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRepositoryOf_Int32_Invitation/Update", ReplyAction="http://tempuri.org/IRepositoryOf_Int32_Invitation/UpdateResponse")]
-        System.Threading.Tasks.Task<BackOffice.InvitationService.Invitation> UpdateAsync(BackOffice.InvitationService.Invitation entity);
+        System.Threading.Tasks.Task<BackOffice.InvitationProxy.Invitation> UpdateAsync(BackOffice.InvitationProxy.Invitation entity);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRepositoryOf_Int32_Invitation/SearchFor", ReplyAction="http://tempuri.org/IRepositoryOf_Int32_Invitation/SearchForResponse")]
-        BackOffice.InvitationService.Invitation[] SearchFor(System.Func<BackOffice.InvitationService.Invitation, bool> predicate);
+        BackOffice.InvitationProxy.Invitation[] SearchFor(System.Func<BackOffice.InvitationProxy.Invitation, bool> predicate);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRepositoryOf_Int32_Invitation/SearchFor", ReplyAction="http://tempuri.org/IRepositoryOf_Int32_Invitation/SearchForResponse")]
-        System.Threading.Tasks.Task<BackOffice.InvitationService.Invitation[]> SearchForAsync(System.Func<BackOffice.InvitationService.Invitation, bool> predicate);
+        System.Threading.Tasks.Task<BackOffice.InvitationProxy.Invitation[]> SearchForAsync(System.Func<BackOffice.InvitationProxy.Invitation, bool> predicate);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRepositoryOf_Int32_Invitation/GetAll", ReplyAction="http://tempuri.org/IRepositoryOf_Int32_Invitation/GetAllResponse")]
-        BackOffice.InvitationService.Invitation[] GetAll();
+        BackOffice.InvitationProxy.Invitation[] GetAll();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRepositoryOf_Int32_Invitation/GetAll", ReplyAction="http://tempuri.org/IRepositoryOf_Int32_Invitation/GetAllResponse")]
-        System.Threading.Tasks.Task<BackOffice.InvitationService.Invitation[]> GetAllAsync();
+        System.Threading.Tasks.Task<BackOffice.InvitationProxy.Invitation[]> GetAllAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface InvitationContractChannel : BackOffice.InvitationService.InvitationContract, System.ServiceModel.IClientChannel {
+    public interface InvitationContractChannel : BackOffice.InvitationProxy.InvitationContract, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class InvitationContractClient : System.ServiceModel.ClientBase<BackOffice.InvitationService.InvitationContract>, BackOffice.InvitationService.InvitationContract {
+    public partial class InvitationContractClient : System.ServiceModel.ClientBase<BackOffice.InvitationProxy.InvitationContract>, BackOffice.InvitationProxy.InvitationContract {
         
         public InvitationContractClient() {
         }
@@ -214,19 +214,19 @@ namespace BackOffice.InvitationService {
                 base(binding, remoteAddress) {
         }
         
-        public BackOffice.InvitationService.Invitation GetById(int id) {
+        public BackOffice.InvitationProxy.Invitation GetById(int id) {
             return base.Channel.GetById(id);
         }
         
-        public System.Threading.Tasks.Task<BackOffice.InvitationService.Invitation> GetByIdAsync(int id) {
+        public System.Threading.Tasks.Task<BackOffice.InvitationProxy.Invitation> GetByIdAsync(int id) {
             return base.Channel.GetByIdAsync(id);
         }
         
-        public BackOffice.InvitationService.Invitation Insert(BackOffice.InvitationService.Invitation entity) {
+        public BackOffice.InvitationProxy.Invitation Insert(BackOffice.InvitationProxy.Invitation entity) {
             return base.Channel.Insert(entity);
         }
         
-        public System.Threading.Tasks.Task<BackOffice.InvitationService.Invitation> InsertAsync(BackOffice.InvitationService.Invitation entity) {
+        public System.Threading.Tasks.Task<BackOffice.InvitationProxy.Invitation> InsertAsync(BackOffice.InvitationProxy.Invitation entity) {
             return base.Channel.InsertAsync(entity);
         }
         
@@ -238,27 +238,27 @@ namespace BackOffice.InvitationService {
             return base.Channel.DeleteAsync(id);
         }
         
-        public BackOffice.InvitationService.Invitation Update(BackOffice.InvitationService.Invitation entity) {
+        public BackOffice.InvitationProxy.Invitation Update(BackOffice.InvitationProxy.Invitation entity) {
             return base.Channel.Update(entity);
         }
         
-        public System.Threading.Tasks.Task<BackOffice.InvitationService.Invitation> UpdateAsync(BackOffice.InvitationService.Invitation entity) {
+        public System.Threading.Tasks.Task<BackOffice.InvitationProxy.Invitation> UpdateAsync(BackOffice.InvitationProxy.Invitation entity) {
             return base.Channel.UpdateAsync(entity);
         }
         
-        public BackOffice.InvitationService.Invitation[] SearchFor(System.Func<BackOffice.InvitationService.Invitation, bool> predicate) {
+        public BackOffice.InvitationProxy.Invitation[] SearchFor(System.Func<BackOffice.InvitationProxy.Invitation, bool> predicate) {
             return base.Channel.SearchFor(predicate);
         }
         
-        public System.Threading.Tasks.Task<BackOffice.InvitationService.Invitation[]> SearchForAsync(System.Func<BackOffice.InvitationService.Invitation, bool> predicate) {
+        public System.Threading.Tasks.Task<BackOffice.InvitationProxy.Invitation[]> SearchForAsync(System.Func<BackOffice.InvitationProxy.Invitation, bool> predicate) {
             return base.Channel.SearchForAsync(predicate);
         }
         
-        public BackOffice.InvitationService.Invitation[] GetAll() {
+        public BackOffice.InvitationProxy.Invitation[] GetAll() {
             return base.Channel.GetAll();
         }
         
-        public System.Threading.Tasks.Task<BackOffice.InvitationService.Invitation[]> GetAllAsync() {
+        public System.Threading.Tasks.Task<BackOffice.InvitationProxy.Invitation[]> GetAllAsync() {
             return base.Channel.GetAllAsync();
         }
     }

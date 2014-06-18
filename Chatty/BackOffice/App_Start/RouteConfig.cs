@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -11,6 +12,8 @@ namespace BackOffice
     {
         public static void RegisterRoutes(RouteCollection routes)
         {
+            test();
+
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
@@ -19,5 +22,14 @@ namespace BackOffice
                 defaults: new { controller = "Auth", action = "Login", id = UrlParameter.Optional }
             );
         }
+
+        static void test()
+        {
+            using (var service = new DepartmentProxy.DepartmentContractClient())
+            {
+                var all = service.GetAll();
+            }
+        }
+
     }
 }

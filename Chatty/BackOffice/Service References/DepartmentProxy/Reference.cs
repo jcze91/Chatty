@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace BackOffice.DepartmentService {
+namespace BackOffice.DepartmentProxy {
     using System.Runtime.Serialization;
     using System;
     
@@ -17,7 +17,7 @@ namespace BackOffice.DepartmentService {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="BaseEntityOfint", Namespace="http://schemas.datacontract.org/2004/07/Service.Utils")]
     [System.SerializableAttribute()]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(BackOffice.DepartmentService.Department))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(BackOffice.DepartmentProxy.Department))]
     public partial class BaseEntityOfint : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
@@ -95,7 +95,7 @@ namespace BackOffice.DepartmentService {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="Department", Namespace="http://schemas.datacontract.org/2004/07/Service.Models")]
     [System.SerializableAttribute()]
-    public partial class Department : BackOffice.DepartmentService.BaseEntityOfint {
+    public partial class Department : BackOffice.DepartmentProxy.BaseEntityOfint {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string NameField;
@@ -115,20 +115,20 @@ namespace BackOffice.DepartmentService {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="DepartmentService.DepartmentContract")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="DepartmentProxy.DepartmentContract")]
     public interface DepartmentContract {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRepositoryOf_Int32_Department/GetById", ReplyAction="http://tempuri.org/IRepositoryOf_Int32_Department/GetByIdResponse")]
-        BackOffice.DepartmentService.Department GetById(int id);
+        BackOffice.DepartmentProxy.Department GetById(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRepositoryOf_Int32_Department/GetById", ReplyAction="http://tempuri.org/IRepositoryOf_Int32_Department/GetByIdResponse")]
-        System.Threading.Tasks.Task<BackOffice.DepartmentService.Department> GetByIdAsync(int id);
+        System.Threading.Tasks.Task<BackOffice.DepartmentProxy.Department> GetByIdAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRepositoryOf_Int32_Department/Insert", ReplyAction="http://tempuri.org/IRepositoryOf_Int32_Department/InsertResponse")]
-        BackOffice.DepartmentService.Department Insert(BackOffice.DepartmentService.Department entity);
+        BackOffice.DepartmentProxy.Department Insert(BackOffice.DepartmentProxy.Department entity);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRepositoryOf_Int32_Department/Insert", ReplyAction="http://tempuri.org/IRepositoryOf_Int32_Department/InsertResponse")]
-        System.Threading.Tasks.Task<BackOffice.DepartmentService.Department> InsertAsync(BackOffice.DepartmentService.Department entity);
+        System.Threading.Tasks.Task<BackOffice.DepartmentProxy.Department> InsertAsync(BackOffice.DepartmentProxy.Department entity);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRepositoryOf_Int32_Department/Delete", ReplyAction="http://tempuri.org/IRepositoryOf_Int32_Department/DeleteResponse")]
         bool Delete(int id);
@@ -137,31 +137,31 @@ namespace BackOffice.DepartmentService {
         System.Threading.Tasks.Task<bool> DeleteAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRepositoryOf_Int32_Department/Update", ReplyAction="http://tempuri.org/IRepositoryOf_Int32_Department/UpdateResponse")]
-        BackOffice.DepartmentService.Department Update(BackOffice.DepartmentService.Department entity);
+        BackOffice.DepartmentProxy.Department Update(BackOffice.DepartmentProxy.Department entity);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRepositoryOf_Int32_Department/Update", ReplyAction="http://tempuri.org/IRepositoryOf_Int32_Department/UpdateResponse")]
-        System.Threading.Tasks.Task<BackOffice.DepartmentService.Department> UpdateAsync(BackOffice.DepartmentService.Department entity);
+        System.Threading.Tasks.Task<BackOffice.DepartmentProxy.Department> UpdateAsync(BackOffice.DepartmentProxy.Department entity);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRepositoryOf_Int32_Department/SearchFor", ReplyAction="http://tempuri.org/IRepositoryOf_Int32_Department/SearchForResponse")]
-        BackOffice.DepartmentService.Department[] SearchFor(System.Func<BackOffice.DepartmentService.Department, bool> predicate);
+        BackOffice.DepartmentProxy.Department[] SearchFor(System.Func<BackOffice.DepartmentProxy.Department, bool> predicate);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRepositoryOf_Int32_Department/SearchFor", ReplyAction="http://tempuri.org/IRepositoryOf_Int32_Department/SearchForResponse")]
-        System.Threading.Tasks.Task<BackOffice.DepartmentService.Department[]> SearchForAsync(System.Func<BackOffice.DepartmentService.Department, bool> predicate);
+        System.Threading.Tasks.Task<BackOffice.DepartmentProxy.Department[]> SearchForAsync(System.Func<BackOffice.DepartmentProxy.Department, bool> predicate);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRepositoryOf_Int32_Department/GetAll", ReplyAction="http://tempuri.org/IRepositoryOf_Int32_Department/GetAllResponse")]
-        BackOffice.DepartmentService.Department[] GetAll();
+        BackOffice.DepartmentProxy.Department[] GetAll();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRepositoryOf_Int32_Department/GetAll", ReplyAction="http://tempuri.org/IRepositoryOf_Int32_Department/GetAllResponse")]
-        System.Threading.Tasks.Task<BackOffice.DepartmentService.Department[]> GetAllAsync();
+        System.Threading.Tasks.Task<BackOffice.DepartmentProxy.Department[]> GetAllAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface DepartmentContractChannel : BackOffice.DepartmentService.DepartmentContract, System.ServiceModel.IClientChannel {
+    public interface DepartmentContractChannel : BackOffice.DepartmentProxy.DepartmentContract, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class DepartmentContractClient : System.ServiceModel.ClientBase<BackOffice.DepartmentService.DepartmentContract>, BackOffice.DepartmentService.DepartmentContract {
+    public partial class DepartmentContractClient : System.ServiceModel.ClientBase<BackOffice.DepartmentProxy.DepartmentContract>, BackOffice.DepartmentProxy.DepartmentContract {
         
         public DepartmentContractClient() {
         }
@@ -182,19 +182,19 @@ namespace BackOffice.DepartmentService {
                 base(binding, remoteAddress) {
         }
         
-        public BackOffice.DepartmentService.Department GetById(int id) {
+        public BackOffice.DepartmentProxy.Department GetById(int id) {
             return base.Channel.GetById(id);
         }
         
-        public System.Threading.Tasks.Task<BackOffice.DepartmentService.Department> GetByIdAsync(int id) {
+        public System.Threading.Tasks.Task<BackOffice.DepartmentProxy.Department> GetByIdAsync(int id) {
             return base.Channel.GetByIdAsync(id);
         }
         
-        public BackOffice.DepartmentService.Department Insert(BackOffice.DepartmentService.Department entity) {
+        public BackOffice.DepartmentProxy.Department Insert(BackOffice.DepartmentProxy.Department entity) {
             return base.Channel.Insert(entity);
         }
         
-        public System.Threading.Tasks.Task<BackOffice.DepartmentService.Department> InsertAsync(BackOffice.DepartmentService.Department entity) {
+        public System.Threading.Tasks.Task<BackOffice.DepartmentProxy.Department> InsertAsync(BackOffice.DepartmentProxy.Department entity) {
             return base.Channel.InsertAsync(entity);
         }
         
@@ -206,27 +206,27 @@ namespace BackOffice.DepartmentService {
             return base.Channel.DeleteAsync(id);
         }
         
-        public BackOffice.DepartmentService.Department Update(BackOffice.DepartmentService.Department entity) {
+        public BackOffice.DepartmentProxy.Department Update(BackOffice.DepartmentProxy.Department entity) {
             return base.Channel.Update(entity);
         }
         
-        public System.Threading.Tasks.Task<BackOffice.DepartmentService.Department> UpdateAsync(BackOffice.DepartmentService.Department entity) {
+        public System.Threading.Tasks.Task<BackOffice.DepartmentProxy.Department> UpdateAsync(BackOffice.DepartmentProxy.Department entity) {
             return base.Channel.UpdateAsync(entity);
         }
         
-        public BackOffice.DepartmentService.Department[] SearchFor(System.Func<BackOffice.DepartmentService.Department, bool> predicate) {
+        public BackOffice.DepartmentProxy.Department[] SearchFor(System.Func<BackOffice.DepartmentProxy.Department, bool> predicate) {
             return base.Channel.SearchFor(predicate);
         }
         
-        public System.Threading.Tasks.Task<BackOffice.DepartmentService.Department[]> SearchForAsync(System.Func<BackOffice.DepartmentService.Department, bool> predicate) {
+        public System.Threading.Tasks.Task<BackOffice.DepartmentProxy.Department[]> SearchForAsync(System.Func<BackOffice.DepartmentProxy.Department, bool> predicate) {
             return base.Channel.SearchForAsync(predicate);
         }
         
-        public BackOffice.DepartmentService.Department[] GetAll() {
+        public BackOffice.DepartmentProxy.Department[] GetAll() {
             return base.Channel.GetAll();
         }
         
-        public System.Threading.Tasks.Task<BackOffice.DepartmentService.Department[]> GetAllAsync() {
+        public System.Threading.Tasks.Task<BackOffice.DepartmentProxy.Department[]> GetAllAsync() {
             return base.Channel.GetAllAsync();
         }
     }

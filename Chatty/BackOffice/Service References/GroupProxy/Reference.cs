@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace BackOffice.GroupService {
+namespace BackOffice.GroupProxy {
     using System.Runtime.Serialization;
     using System;
     
@@ -17,7 +17,7 @@ namespace BackOffice.GroupService {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="BaseEntityOfint", Namespace="http://schemas.datacontract.org/2004/07/Service.Utils")]
     [System.SerializableAttribute()]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(BackOffice.GroupService.Group))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(BackOffice.GroupProxy.Group))]
     public partial class BaseEntityOfint : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
@@ -95,7 +95,7 @@ namespace BackOffice.GroupService {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="Group", Namespace="http://schemas.datacontract.org/2004/07/Service.Models")]
     [System.SerializableAttribute()]
-    public partial class Group : BackOffice.GroupService.BaseEntityOfint {
+    public partial class Group : BackOffice.GroupProxy.BaseEntityOfint {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string NameField;
@@ -115,20 +115,20 @@ namespace BackOffice.GroupService {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="GroupService.GroupContract")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="GroupProxy.GroupContract")]
     public interface GroupContract {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRepositoryOf_Int32_Group/GetById", ReplyAction="http://tempuri.org/IRepositoryOf_Int32_Group/GetByIdResponse")]
-        BackOffice.GroupService.Group GetById(int id);
+        BackOffice.GroupProxy.Group GetById(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRepositoryOf_Int32_Group/GetById", ReplyAction="http://tempuri.org/IRepositoryOf_Int32_Group/GetByIdResponse")]
-        System.Threading.Tasks.Task<BackOffice.GroupService.Group> GetByIdAsync(int id);
+        System.Threading.Tasks.Task<BackOffice.GroupProxy.Group> GetByIdAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRepositoryOf_Int32_Group/Insert", ReplyAction="http://tempuri.org/IRepositoryOf_Int32_Group/InsertResponse")]
-        BackOffice.GroupService.Group Insert(BackOffice.GroupService.Group entity);
+        BackOffice.GroupProxy.Group Insert(BackOffice.GroupProxy.Group entity);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRepositoryOf_Int32_Group/Insert", ReplyAction="http://tempuri.org/IRepositoryOf_Int32_Group/InsertResponse")]
-        System.Threading.Tasks.Task<BackOffice.GroupService.Group> InsertAsync(BackOffice.GroupService.Group entity);
+        System.Threading.Tasks.Task<BackOffice.GroupProxy.Group> InsertAsync(BackOffice.GroupProxy.Group entity);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRepositoryOf_Int32_Group/Delete", ReplyAction="http://tempuri.org/IRepositoryOf_Int32_Group/DeleteResponse")]
         bool Delete(int id);
@@ -137,31 +137,31 @@ namespace BackOffice.GroupService {
         System.Threading.Tasks.Task<bool> DeleteAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRepositoryOf_Int32_Group/Update", ReplyAction="http://tempuri.org/IRepositoryOf_Int32_Group/UpdateResponse")]
-        BackOffice.GroupService.Group Update(BackOffice.GroupService.Group entity);
+        BackOffice.GroupProxy.Group Update(BackOffice.GroupProxy.Group entity);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRepositoryOf_Int32_Group/Update", ReplyAction="http://tempuri.org/IRepositoryOf_Int32_Group/UpdateResponse")]
-        System.Threading.Tasks.Task<BackOffice.GroupService.Group> UpdateAsync(BackOffice.GroupService.Group entity);
+        System.Threading.Tasks.Task<BackOffice.GroupProxy.Group> UpdateAsync(BackOffice.GroupProxy.Group entity);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRepositoryOf_Int32_Group/SearchFor", ReplyAction="http://tempuri.org/IRepositoryOf_Int32_Group/SearchForResponse")]
-        BackOffice.GroupService.Group[] SearchFor(System.Func<BackOffice.GroupService.Group, bool> predicate);
+        BackOffice.GroupProxy.Group[] SearchFor(System.Func<BackOffice.GroupProxy.Group, bool> predicate);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRepositoryOf_Int32_Group/SearchFor", ReplyAction="http://tempuri.org/IRepositoryOf_Int32_Group/SearchForResponse")]
-        System.Threading.Tasks.Task<BackOffice.GroupService.Group[]> SearchForAsync(System.Func<BackOffice.GroupService.Group, bool> predicate);
+        System.Threading.Tasks.Task<BackOffice.GroupProxy.Group[]> SearchForAsync(System.Func<BackOffice.GroupProxy.Group, bool> predicate);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRepositoryOf_Int32_Group/GetAll", ReplyAction="http://tempuri.org/IRepositoryOf_Int32_Group/GetAllResponse")]
-        BackOffice.GroupService.Group[] GetAll();
+        BackOffice.GroupProxy.Group[] GetAll();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRepositoryOf_Int32_Group/GetAll", ReplyAction="http://tempuri.org/IRepositoryOf_Int32_Group/GetAllResponse")]
-        System.Threading.Tasks.Task<BackOffice.GroupService.Group[]> GetAllAsync();
+        System.Threading.Tasks.Task<BackOffice.GroupProxy.Group[]> GetAllAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface GroupContractChannel : BackOffice.GroupService.GroupContract, System.ServiceModel.IClientChannel {
+    public interface GroupContractChannel : BackOffice.GroupProxy.GroupContract, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class GroupContractClient : System.ServiceModel.ClientBase<BackOffice.GroupService.GroupContract>, BackOffice.GroupService.GroupContract {
+    public partial class GroupContractClient : System.ServiceModel.ClientBase<BackOffice.GroupProxy.GroupContract>, BackOffice.GroupProxy.GroupContract {
         
         public GroupContractClient() {
         }
@@ -182,19 +182,19 @@ namespace BackOffice.GroupService {
                 base(binding, remoteAddress) {
         }
         
-        public BackOffice.GroupService.Group GetById(int id) {
+        public BackOffice.GroupProxy.Group GetById(int id) {
             return base.Channel.GetById(id);
         }
         
-        public System.Threading.Tasks.Task<BackOffice.GroupService.Group> GetByIdAsync(int id) {
+        public System.Threading.Tasks.Task<BackOffice.GroupProxy.Group> GetByIdAsync(int id) {
             return base.Channel.GetByIdAsync(id);
         }
         
-        public BackOffice.GroupService.Group Insert(BackOffice.GroupService.Group entity) {
+        public BackOffice.GroupProxy.Group Insert(BackOffice.GroupProxy.Group entity) {
             return base.Channel.Insert(entity);
         }
         
-        public System.Threading.Tasks.Task<BackOffice.GroupService.Group> InsertAsync(BackOffice.GroupService.Group entity) {
+        public System.Threading.Tasks.Task<BackOffice.GroupProxy.Group> InsertAsync(BackOffice.GroupProxy.Group entity) {
             return base.Channel.InsertAsync(entity);
         }
         
@@ -206,27 +206,27 @@ namespace BackOffice.GroupService {
             return base.Channel.DeleteAsync(id);
         }
         
-        public BackOffice.GroupService.Group Update(BackOffice.GroupService.Group entity) {
+        public BackOffice.GroupProxy.Group Update(BackOffice.GroupProxy.Group entity) {
             return base.Channel.Update(entity);
         }
         
-        public System.Threading.Tasks.Task<BackOffice.GroupService.Group> UpdateAsync(BackOffice.GroupService.Group entity) {
+        public System.Threading.Tasks.Task<BackOffice.GroupProxy.Group> UpdateAsync(BackOffice.GroupProxy.Group entity) {
             return base.Channel.UpdateAsync(entity);
         }
         
-        public BackOffice.GroupService.Group[] SearchFor(System.Func<BackOffice.GroupService.Group, bool> predicate) {
+        public BackOffice.GroupProxy.Group[] SearchFor(System.Func<BackOffice.GroupProxy.Group, bool> predicate) {
             return base.Channel.SearchFor(predicate);
         }
         
-        public System.Threading.Tasks.Task<BackOffice.GroupService.Group[]> SearchForAsync(System.Func<BackOffice.GroupService.Group, bool> predicate) {
+        public System.Threading.Tasks.Task<BackOffice.GroupProxy.Group[]> SearchForAsync(System.Func<BackOffice.GroupProxy.Group, bool> predicate) {
             return base.Channel.SearchForAsync(predicate);
         }
         
-        public BackOffice.GroupService.Group[] GetAll() {
+        public BackOffice.GroupProxy.Group[] GetAll() {
             return base.Channel.GetAll();
         }
         
-        public System.Threading.Tasks.Task<BackOffice.GroupService.Group[]> GetAllAsync() {
+        public System.Threading.Tasks.Task<BackOffice.GroupProxy.Group[]> GetAllAsync() {
             return base.Channel.GetAllAsync();
         }
     }
