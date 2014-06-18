@@ -1,0 +1,100 @@
+﻿using Service.DataAccess;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Service.Utils
+{
+    /// <summary>
+    /// Abstract class for data-access
+    /// </summary>
+    /// <typeparam name="K">table id key type</typeparam>
+    /// <typeparam name="E">dbo entity type</typeparam>
+    public abstract class BaseDao<K, E> : Contracts.IRepository<K, E>
+        where K : struct, IEquatable<K>
+        where E : BaseModel<K>, new()
+    {
+
+        private ChattyDbContext ctx { get { return App.container.Resolve<ChattyDbContext>(); } }
+
+        public virtual E GetById(K id)
+        {
+            try
+            {
+                return ctx.Set<E>().SingleOrDefault(x => x.Id.Equals(id));
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        public virtual E Insert(E entity)
+        {
+            try
+            {
+                ctx.Set<E>().Add(entity);
+                ctx.SaveChanges();
+                return entity;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        public virtual bool Delete(K id)
+        {
+            try
+            {
+                ctx.Entry<E>(GetById(id)).State = System.Data.Entity.EntityState.Deleted;
+                ctx.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public virtual E Update(E entity)
+        {
+            try
+            {
+                ctx.Entry<E>(ctx.Set<E>().Find(entity.Id)).CurrentValues.SetValues(entity);
+                ctx.SaveChanges();
+                return entity;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        public virtual IEnumerable<E> SearchFor(Func<E, bool> predicate)
+        {
+            try
+            {
+                return ctx.Set<E>().Where(predicate);
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        public virtual IEnumerable<E> GetAll()
+        {
+            try
+            {
+                return ctx.Set<E>();
+            }
+            catch
+            {
+                return null;
+            }
+        }
+    }
+}
