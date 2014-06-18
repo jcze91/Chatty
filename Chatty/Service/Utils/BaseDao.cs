@@ -14,16 +14,15 @@ namespace Service.Utils
     /// <typeparam name="E">dbo entity type</typeparam>
     public abstract class BaseDao<K, E> : Contracts.IRepository<K, E>
         where K : struct, IEquatable<K>
-        where E : BaseModel<K>, new()
+        where E : BaseEntity<K>, new()
     {
-
-        private ChattyDbContext ctx { get { return App.container.Resolve<ChattyDbContext>(); } }
 
         public virtual E GetById(K id)
         {
             try
             {
-                return ctx.Set<E>().SingleOrDefault(x => x.Id.Equals(id));
+                using (ChattyDbContext ctx = new ChattyDbContext())
+                    return ctx.Set<E>().SingleOrDefault(x => x.Id.Equals(id));
             }
             catch
             {
@@ -35,9 +34,12 @@ namespace Service.Utils
         {
             try
             {
-                ctx.Set<E>().Add(entity);
-                ctx.SaveChanges();
-                return entity;
+                using (ChattyDbContext ctx = new ChattyDbContext())
+                {
+                    ctx.Set<E>().Add(entity);
+                    ctx.SaveChanges();
+                    return entity;
+                }
             }
             catch
             {
@@ -49,8 +51,11 @@ namespace Service.Utils
         {
             try
             {
-                ctx.Entry<E>(GetById(id)).State = System.Data.Entity.EntityState.Deleted;
-                ctx.SaveChanges();
+                using (ChattyDbContext ctx = new ChattyDbContext())
+                {
+                    ctx.Entry<E>(GetById(id)).State = System.Data.Entity.EntityState.Deleted;
+                    ctx.SaveChanges();
+                }
                 return true;
             }
             catch
@@ -63,8 +68,11 @@ namespace Service.Utils
         {
             try
             {
-                ctx.Entry<E>(ctx.Set<E>().Find(entity.Id)).CurrentValues.SetValues(entity);
-                ctx.SaveChanges();
+                using (ChattyDbContext ctx = new ChattyDbContext())
+                {
+                    ctx.Entry<E>(ctx.Set<E>().Find(entity.Id)).CurrentValues.SetValues(entity);
+                    ctx.SaveChanges();
+                }
                 return entity;
             }
             catch
@@ -77,7 +85,8 @@ namespace Service.Utils
         {
             try
             {
-                return ctx.Set<E>().Where(predicate);
+                using (ChattyDbContext ctx = new ChattyDbContext())
+                    return ctx.Set<E>().Where(predicate);
             }
             catch
             {
@@ -89,7 +98,8 @@ namespace Service.Utils
         {
             try
             {
-                return ctx.Set<E>();
+                using (ChattyDbContext ctx = new ChattyDbContext())
+                    return ctx.Set<E>();
             }
             catch
             {

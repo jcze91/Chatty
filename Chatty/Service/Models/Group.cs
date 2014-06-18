@@ -1,7 +1,7 @@
 ﻿
 namespace Service.Models
 {
-    public class Group : Utils.BaseModel<int>
+    public class Group : Utils.BaseEntity<int>
     {
         public string Name { get; set; }
     }

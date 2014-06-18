@@ -6,7 +6,7 @@ namespace Service.Contracts
 {
     public interface IRepository<K, E>
         where K : struct, IEquatable<K>
-        where E : Utils.BaseModel<K>
+        where E : Utils.BaseEntity<K>
     {
         E GetById(K id);
 

@@ -15,11 +15,16 @@ namespace Service.Utils
     /// <typeparam name="D">dao type</typeparam>
     public abstract class BaseService<K, E, D> : IRepository<K, E>
         where K : struct, IEquatable<K>
-        where E : BaseModel<K>, new()
+        where E : BaseEntity<K>, new()
         where D : BaseDao<K, E>, new()
     {
 
-        private D dao { get { return App.container.Resolve<D>(); } }
+        private D dao;
+
+        public BaseService()
+        {
+            dao = new D();
+        }
 
         public virtual E GetById(K id)
         {

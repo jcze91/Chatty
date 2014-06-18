@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Service.Models
 {
-    public class Department : Utils.BaseModel<int>
+    public class Department : Utils.BaseEntity<int>
     {
         public string Name { get; set; }
     }

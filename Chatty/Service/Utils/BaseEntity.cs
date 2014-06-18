@@ -11,7 +11,7 @@ namespace Service.Utils
     /// BaseModel for mapping
     /// </summary>
     /// <typeparam name="K">table id key type</typeparam>
-    public abstract class BaseModel<K>
+    public abstract class BaseEntity<K>
         where K : struct, IEquatable<K>
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

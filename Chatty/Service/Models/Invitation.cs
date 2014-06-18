@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Service.Models
 {
-    public class Invitation : Utils.BaseModel<int>
+    public class Invitation : Utils.BaseEntity<int>
     {
         public int FromUserId { get; set; }
         public int ToUserId { get; set; }
