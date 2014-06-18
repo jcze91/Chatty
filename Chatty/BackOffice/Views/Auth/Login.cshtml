@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model Chatty.BackOffice.Models.LoginModel
+
+<body class="preadmin">
+    <div id="wrapper">
+        <div id="headwrap"></div>
+        <div id="contentwrap">
+            @if (@Model.Error != null)
+            {
+                <div class="error"><em>Error! </em>@Model.Error</div>
+            }
+            <h2>Sign in to access the Chatty back-office</h2>
+            @using (Html.BeginForm("Login", null, FormMethod.Post, new { @class = "auth-live" }))
+            {
+                <div>
+                    <ul>
+                        <li><label>Login</label> @Html.TextBoxFor(m => m.UserName)</li>
+                        <li><label>Password</label> @Html.PasswordFor(m => m.Password)</li>
+                        <li>@Html.CheckBoxFor(m => m.RememberMe) <label>Remember me</label></li>
+                    </ul>
+                    @Html.AntiForgeryToken()
+                    <p><input type="submit" value="Sign in" id="validateAuthLive" /></p>
+                </div>
+            }
+        </div>
+        <div id="footer"></div>
+    </div>
+</body>

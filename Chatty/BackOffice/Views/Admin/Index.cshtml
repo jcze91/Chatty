@@ -1,0 +1,51 @@
+@model Chatty.BackOffice.Models.AdminModel
+@{
+    Layout = "~/Areas/Manager/Views/Shared/_Layout.cshtml";
+}
+<body ng-controller="AdminTabCtrl">
+
+    <!--[if lt IE 9]>
+        <script src="@Url.Content("~/Scripts/libs/hackIe.js")"></script>
+    <![endif]-->
+    <section class="container">
+
+        <nav class="mainnav">
+            <div>
+                <ul>
+                    <li class="@(ViewBag.Title == "Messages" ? "active" : " ")">@Html.ActionLink(" ", "Messages", new { liveName = @Model.LiveName }, new { @class = "messages", title = "Messages" })</li>
+                    <li class="@(ViewBag.Title == "Users" ? "active" : " ")">@Html.ActionLink(" ", "Users", new { liveName = @Model.LiveName }, new { @class = "users", title = "Users" })</li>
+                    <li class="@(ViewBag.Title == "Tags" ? "active" : " ")">@Html.ActionLink(" ", "Tags", new { liveName = @Model.LiveName }, new { @class = "tags", title = "Tags" })</li>
+                    <li class="@(ViewBag.Title == "Fronts" ? "active" : " ")">@Html.ActionLink(" ", "Fronts", new { liveName = @Model.LiveName }, new { @class = "fronts", title = "Fronts" })</li>
+                </ul>
+                <div class="logout">
+                    @using (Html.BeginForm("LogOff", "Auth", FormMethod.Post, new { id = "logoutForm" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <button title="Logout"></button>
+                    }
+                </div>
+            </div>
+        </nav>
+        <section class="content" ng-controller="AdminCtrl" id="adminCtrl" class="not_loaded">
+            <div class="" id="response">{{infoMessage}}</div>
+            <div id="content_group" class="tab_content ng-cloak" ng-cloak>
+                <div>
+
+                </div>
+            </div>
+        </section>
+    </section>
+
+    <script src="@Url.Content("~/Scripts/libs/angular.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/app.js")"></script>
+    <script src="@Url.Content("~/Scripts/model/user.model.class.js")"></script>
+    <script src="@Url.Content("~/Scripts/controller/admin.controller.js")"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            init({
+                adminId: "@Model.ConnectedAdmin.Uid"
+            });
+        });
+    </script>
+</body>
