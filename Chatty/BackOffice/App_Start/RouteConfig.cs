@@ -12,8 +12,6 @@ namespace BackOffice
     {
         public static void RegisterRoutes(RouteCollection routes)
         {
-            test();
-
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
@@ -21,14 +19,6 @@ namespace BackOffice
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Auth", action = "Login", id = UrlParameter.Optional }
             );
-        }
-
-        static void test()
-        {
-            using (var service = new DepartmentProxy.DepartmentContractClient())
-            {
-                var all = service.GetAll();
-            }
         }
 
     }
