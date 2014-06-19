@@ -1,6 +1,10 @@
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
 using Microsoft.AspNet.SignalR.Client;
 using System.Diagnostics;
+using System.Windows.Input;
+using System.Windows.Media.Imaging;
+using Chatty.Utils;
 
 namespace Chatty.ViewModel
 {
@@ -16,8 +20,25 @@ namespace Chatty.ViewModel
     /// See http://www.galasoft.ch/mvvm
     /// </para>
     /// </summary>
-    public class MainViewModel : ViewModelBase
+    public class MainViewModel : Utils.BaseNotify
     {
+        private string username;
+        public string Username
+        {
+            get { return username; }
+            set { SetField(ref username, value, "Username"); }
+        }
+
+        private string password;
+        public string Password
+        {
+            get { return password; }
+            set { SetField(ref password, value, "Password"); }
+        }
+
+
+        HubConnection hubConnection;
+        IHubProxy stockTickerHubProxy;
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
         /// </summary>
@@ -32,13 +53,32 @@ namespace Chatty.ViewModel
             ////    // Code runs "for real"
             ////}
 
-            var hubConnection = new HubConnection("http://localhost:64061/");
-            IHubProxy stockTickerHubProxy = hubConnection.CreateHubProxy("ChatHub");
+            hubConnection = new HubConnection("http://localhost:64061/");
+            stockTickerHubProxy = hubConnection.CreateHubProxy("MainHub");
             stockTickerHubProxy.On<string, string>("addNewMessageToPage", (name, message) => { callback(name, message); });
+            stockTickerHubProxy.On<string>("OnConnectionInfo", (name) => { callback(name); });
             hubConnection.Start().Wait();
         }
 
-        private static void callback(string name, string message)
+        private ICommand _loginCommand;
+
+        public ICommand LogInCommand
+        {
+            get
+            {
+                if (_loginCommand == null)
+                    _loginCommand = new RelayCommand(() => Login());
+                return _loginCommand;
+            }
+        }
+
+
+        async private void Login()
+        {
+            var result = await stockTickerHubProxy.Invoke<bool>("Login", new object[] { username, password.sha1() });
+        }
+
+        private static void callback(string name, string message = null)
         {
             Debug.WriteLine(name + " : " + message);
         }
