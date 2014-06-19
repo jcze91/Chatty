@@ -6,6 +6,6 @@ namespace Service.Contracts
     public interface UserContract : IRepository<int, Models.User>
     {
         [OperationContract]
-        bool Login(string username, string password);
+        int Login(string username, string password);
     }
 }

@@ -5,9 +5,13 @@ namespace Service.Services
     public class UserService : Utils.BaseService<int, Models.User, DataAccess.UserDao>, Contracts.UserContract
     {
 
-        public bool Login(string username, string password)
+        public int Login(string username, string password)
         {
-            return SearchFor(x => x.Username == username && x.Password == password).Count() == 1;
+            var res = SearchFor(x => x.Username == username && x.Password == password);
+            if (res.Count() == 1)
+                return res.First().Id;
+            else
+                return -1;
         }
     }
 }

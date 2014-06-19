@@ -23,6 +23,28 @@ namespace Chatty
         public MainWindow()
         {
             InitializeComponent();
+
+            this.Loaded += MainWindow_Loaded;
         }
+
+        void MainWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            (DataContext as ViewModel.MainViewModel).Logged += MainWindow_Logged;
+        }
+
+        void MainWindow_Logged(object sender, ViewModel.LoginEventArgs e)
+        {
+            if(e.Logged)
+            {
+                System.Windows.MessageBox.Show("OK");
+            }
+            else
+            {
+                System.Windows.MessageBox.Show("KO");
+
+            }
+        }
+
+
     }
 }

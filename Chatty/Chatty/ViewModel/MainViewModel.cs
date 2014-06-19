@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using Chatty.Utils;
+using System;
 
 namespace Chatty.ViewModel
 {
@@ -35,6 +36,8 @@ namespace Chatty.ViewModel
             get { return password; }
             set { SetField(ref password, value, "Password"); }
         }
+
+        private bool isLogging = false;
 
 
         HubConnection hubConnection;
@@ -67,15 +70,19 @@ namespace Chatty.ViewModel
             get
             {
                 if (_loginCommand == null)
-                    _loginCommand = new RelayCommand(() => Login());
+                    _loginCommand = new RelayCommand(() => Login(), () => canLog);
                 return _loginCommand;
             }
         }
 
+        private bool canLog { get { return !isLogging && !string.IsNullOrWhiteSpace(username) && !string.IsNullOrWhiteSpace(password); } }
 
         async private void Login()
         {
-            var result = await stockTickerHubProxy.Invoke<bool>("Login", new object[] { username, password.sha1() });
+            isLogging = true;
+            var res = await stockTickerHubProxy.Invoke<int>("Login", new object[] { username, password.sha1() });
+            isLogging = false;
+            OnLogInfo(new LoginEventArgs() { UserId = res, Username = username, Logged = res != -1 });
         }
 
         private static void callback(string name, string message = null)
@@ -83,7 +90,23 @@ namespace Chatty.ViewModel
             Debug.WriteLine(name + " : " + message);
         }
 
+        protected virtual void OnLogInfo(LoginEventArgs e)
+        {
+            LoginEventHandler handler = Logged;
+            if (handler != null)
+                handler(this, e);
+        }
 
-
+        public event LoginEventHandler Logged;
     }
+
+    public class LoginEventArgs : EventArgs
+    {
+        public int UserId { get; set; }
+        public string Username { get; set; }
+        public bool Logged { get; set; }
+    }
+
+    public delegate void LoginEventHandler(Object sender, LoginEventArgs e);
+
 }

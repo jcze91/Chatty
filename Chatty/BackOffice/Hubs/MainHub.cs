@@ -23,7 +23,7 @@ namespace BackOffice.Hubs
             return base.OnConnected();
         }
 
-        public bool Login(string username, string password)
+        public int Login(string username, string password)
         {
             return Startup.container.Resolve<UserContractClient>().Login(username, password);
         }
