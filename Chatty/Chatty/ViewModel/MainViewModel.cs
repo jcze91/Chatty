@@ -1,4 +1,6 @@
 using GalaSoft.MvvmLight;
+using Microsoft.AspNet.SignalR.Client;
+using System.Diagnostics;
 
 namespace Chatty.ViewModel
 {
@@ -29,6 +31,19 @@ namespace Chatty.ViewModel
             ////{
             ////    // Code runs "for real"
             ////}
+
+            var hubConnection = new HubConnection("http://localhost:64061/");
+            IHubProxy stockTickerHubProxy = hubConnection.CreateHubProxy("ChatHub");
+            stockTickerHubProxy.On<string, string>("addNewMessageToPage", (name, message) => { callback(name, message); });
+            hubConnection.Start().Wait();
         }
+
+        private static void callback(string name, string message)
+        {
+            Debug.WriteLine(name + " : " + message);
+        }
+
+
+
     }
 }

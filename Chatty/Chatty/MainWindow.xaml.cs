@@ -23,6 +23,7 @@ namespace Chatty
         public MainWindow()
         {
             InitializeComponent();
+            this.DataContext = new ViewModel.MainViewModel();
         }
     }
 }
