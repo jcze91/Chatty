@@ -45,6 +45,12 @@
   <wsdl:message name="UserContract_GetAll_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetAllResponse" />
   </wsdl:message>
+  <wsdl:message name="UserContract_Login_InputMessage">
+    <wsdl:part name="parameters" element="tns:Login" />
+  </wsdl:message>
+  <wsdl:message name="UserContract_Login_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoginResponse" />
+  </wsdl:message>
   <wsdl:portType name="UserContract">
     <wsdl:operation name="GetById">
       <wsdl:input wsaw:Action="http://tempuri.org/IRepositoryOf_Int32_User/GetById" message="tns:UserContract_GetById_InputMessage" />
@@ -69,6 +75,10 @@
     <wsdl:operation name="GetAll">
       <wsdl:input wsaw:Action="http://tempuri.org/IRepositoryOf_Int32_User/GetAll" message="tns:UserContract_GetAll_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IRepositoryOf_Int32_User/GetAllResponse" message="tns:UserContract_GetAll_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Login">
+      <wsdl:input wsaw:Action="http://tempuri.org/UserContract/Login" message="tns:UserContract_Login_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/UserContract/LoginResponse" message="tns:UserContract_Login_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_UserContract" type="tns:UserContract">
@@ -120,6 +130,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetAll">
       <soap:operation soapAction="http://tempuri.org/IRepositoryOf_Int32_User/GetAll" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Login">
+      <soap:operation soapAction="http://tempuri.org/UserContract/Login" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

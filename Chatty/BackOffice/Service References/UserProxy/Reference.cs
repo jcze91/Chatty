@@ -233,6 +233,12 @@ namespace BackOffice.UserProxy {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRepositoryOf_Int32_User/GetAll", ReplyAction="http://tempuri.org/IRepositoryOf_Int32_User/GetAllResponse")]
         System.Threading.Tasks.Task<BackOffice.UserProxy.User[]> GetAllAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/UserContract/Login", ReplyAction="http://tempuri.org/UserContract/LoginResponse")]
+        bool Login(string username, string password);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/UserContract/Login", ReplyAction="http://tempuri.org/UserContract/LoginResponse")]
+        System.Threading.Tasks.Task<bool> LoginAsync(string username, string password);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -308,6 +314,14 @@ namespace BackOffice.UserProxy {
         
         public System.Threading.Tasks.Task<BackOffice.UserProxy.User[]> GetAllAsync() {
             return base.Channel.GetAllAsync();
+        }
+        
+        public bool Login(string username, string password) {
+            return base.Channel.Login(username, password);
+        }
+        
+        public System.Threading.Tasks.Task<bool> LoginAsync(string username, string password) {
+            return base.Channel.LoginAsync(username, password);
         }
     }
 }
