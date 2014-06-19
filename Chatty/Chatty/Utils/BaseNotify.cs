@@ -3,7 +3,7 @@ using System.ComponentModel;
 
 namespace Chatty.Utils
 {
-    public class BaseNotify: INotifyPropertyChanged
+    public abstract class BaseNotify: INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged(string propertyName)

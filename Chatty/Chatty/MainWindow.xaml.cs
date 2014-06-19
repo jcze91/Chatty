@@ -29,7 +29,8 @@ namespace Chatty
 
         void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            (DataContext as ViewModel.MainViewModel).Logged += MainWindow_Logged;
+            var dc = DataContext as ViewModel.MainViewModel;
+            dc.Login.Logged += MainWindow_Logged;
         }
 
         void MainWindow_Logged(object sender, ViewModel.LoginEventArgs e)

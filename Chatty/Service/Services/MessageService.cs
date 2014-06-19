@@ -1,7 +1,7 @@
 ﻿
 namespace Service.Services
 {
-    public class MessageService : Utils.BaseService<long, Models.Message, DataAccess.MessageDao>, Contracts.MessageContract
+    public class MessageService : Utils.BaseService<int, Models.Message, DataAccess.MessageDao>, Contracts.MessageContract
     {
 
     }

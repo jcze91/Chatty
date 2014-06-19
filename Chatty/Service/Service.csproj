@@ -64,8 +64,15 @@
     <Compile Include="DataAccess\MessageDao.cs" />
     <Compile Include="DataAccess\GroupDao.cs" />
     <Compile Include="DataAccess\UserDao.cs" />
+    <Compile Include="Migrations\201406192132347_initial.cs" />
+    <Compile Include="Migrations\201406192132347_initial.Designer.cs">
+      <DependentUpon>201406192132347_initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Department.cs" />
+    <Compile Include="Models\Discussion.cs" />
     <Compile Include="Models\Group.cs" />
+    <Compile Include="Models\GroupUser.cs" />
     <Compile Include="Models\Invitation.cs" />
     <Compile Include="Models\Message.cs" />
     <Compile Include="Models\User.cs" />
@@ -83,7 +90,11 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201406192132347_initial.resx">
+      <DependentUpon>201406192132347_initial.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <VSToolsPath Condition="'$(VSToolsPath)' == '' and '$(VisualStudioVersion)' != '' and '$(VisualStudioVersion)' != '11.0'">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

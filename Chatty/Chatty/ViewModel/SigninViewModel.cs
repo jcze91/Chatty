@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Service.Models
+namespace Chatty.ViewModel
 {
-    public partial class Department : Utils.BaseEntity<int>
+    public class SignInViewModel : Utils.BaseNotify
     {
-        public string Name { get; set; }
     }
 }

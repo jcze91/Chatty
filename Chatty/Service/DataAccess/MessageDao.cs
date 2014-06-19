@@ -1,7 +1,7 @@
 ﻿
 namespace Service.DataAccess
 {
-    public class MessageDao : Utils.BaseDao<long, Models.Message>
+    public class MessageDao : Utils.BaseDao<int, Models.Message>
     {
 
     }

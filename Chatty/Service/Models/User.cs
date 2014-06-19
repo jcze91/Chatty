@@ -1,7 +1,7 @@
 ﻿
 namespace Service.Models
 {
-    public class User : Service.Utils.BaseEntity<int>
+    public partial class User : Service.Utils.BaseEntity<int>
     {
         public string Username { get; set; }
         public string Lastname { get; set; }

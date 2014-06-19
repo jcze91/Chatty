@@ -4,7 +4,7 @@ namespace Service.Contracts
 {
 
     [ServiceContract]
-    public interface MessageContract : IRepository<long, Models.Message>
+    public interface MessageContract : IRepository<int, Models.Message>
     {
     }
 }
