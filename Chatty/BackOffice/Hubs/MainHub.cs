@@ -21,7 +21,7 @@ namespace BackOffice.Hubs
             Clients.Client(Context.ConnectionId).OnConnectionInfo(uid);
             return base.OnConnected();
         }
-
+        
         public int Login(string username, string password)
         {
             var res = Startup.container.Resolve<UserService>().SearchFor(x => x.Username == username && x.Password == password).SingleOrDefault();

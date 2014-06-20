@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -18,8 +19,9 @@ namespace BackOffice.Dbo
         [StringLength(255)]
         [Index(IsUnique = true)]
         public string Email { get; set; }
-
+        [JsonIgnore]
         public string Password { get; set; }
+        [JsonIgnore]
         public bool isEnable { get; set; }
 
     }
