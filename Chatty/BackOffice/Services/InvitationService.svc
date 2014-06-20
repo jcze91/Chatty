@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="BackOffice.Services.InvitationService" CodeBehind="InvitationService.svc.cs" %>

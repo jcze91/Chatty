@@ -16,9 +16,6 @@ namespace BackOffice.Hubs
             var request = Context.Request;
             var uid = Guid.NewGuid().ToString().sha1();
             Clients.Client(Context.ConnectionId).OnConnectionInfo(uid);
-
-            DepartmentProxy.DepartmentContractClient client = new DepartmentProxy.DepartmentContractClient();
-
             return base.OnConnected();
         }
 

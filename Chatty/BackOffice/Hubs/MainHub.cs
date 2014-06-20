@@ -6,7 +6,7 @@ using Microsoft.AspNet.SignalR;
 using System.Threading;
 using BackOffice.Utils;
 using Microsoft.Practices.Unity;
-using BackOffice.UserProxy;
+//using BackOffice.UserProxy;
 
 namespace BackOffice.Hubs
 {
@@ -25,20 +25,22 @@ namespace BackOffice.Hubs
 
         public int Login(string username, string password)
         {
-            return Startup.container.Resolve<UserContractClient>().Login(username, password);
+            //return Startup.container.Resolve<UserContractClient>().Login(username, password);
+            return -1;
         }
 
         public bool SignIn(string username, string lastname, string firstname, string password, string email)
         {
-            var res = Startup.container.Resolve<UserContractClient>().Insert(new User()
-            {
-                Username = username,
-                Lastname = lastname,
-                Firstname = firstname,
-                Password = password,
-                Email = email
-            });
-            return res == null;
+            //var res = Startup.container.Resolve<UserContractClient>().Insert(new User()
+            //{
+            //    Username = username,
+            //    Lastname = lastname,
+            //    Firstname = firstname,
+            //    Password = password,
+            //    Email = email
+            //});
+            //return res == null;
+            return false;
         }
 
         public dynamic Execute(string[] args)
