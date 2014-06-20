@@ -28,6 +28,19 @@ namespace BackOffice.Hubs
             return Startup.container.Resolve<UserContractClient>().Login(username, password);
         }
 
+        public bool SignIn(string username, string lastname, string firstname, string password, string email)
+        {
+            var res = Startup.container.Resolve<UserContractClient>().Insert(new User()
+            {
+                Username = username,
+                Lastname = lastname,
+                Firstname = firstname,
+                Password = password,
+                Email = email
+            });
+            return res == null;
+        }
+
         public dynamic Execute(string[] args)
         {
             return null;
