@@ -193,7 +193,14 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Configs\ContainerInjection.cs" />
+    <Compile Include="Contracts\DepartmentContract.cs" />
+    <Compile Include="Contracts\DiscussionContract.cs" />
+    <Compile Include="Contracts\GroupContract.cs" />
+    <Compile Include="Contracts\GroupUserContract.cs" />
+    <Compile Include="Contracts\InvitationContract.cs" />
+    <Compile Include="Contracts\MessageContract.cs" />
     <Compile Include="Contracts\Repository.cs" />
+    <Compile Include="Contracts\UserContract.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="DataAccess\ChattyDbContext.cs" />

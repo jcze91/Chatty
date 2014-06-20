@@ -1,7 +1,7 @@
 ﻿
 namespace BackOffice.Services
 {
-    public class GroupUserService : Utils.BaseService<int, Dbo.GroupUser, DataAccess.GroupUserDao>
+    public class GroupUserService : Utils.BaseService<int, Dbo.GroupUser, DataAccess.GroupUserDao>, Contracts.GroupUserContract
     {
     }
 }
