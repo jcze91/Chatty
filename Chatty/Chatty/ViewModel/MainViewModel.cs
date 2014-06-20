@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.AspNet.SignalR.Client;
+using Microsoft.Practices.ServiceLocation;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,26 +10,18 @@ namespace Chatty.ViewModel
 {
     public class MainViewModel : Utils.BaseNotify
     {
-        private LoginViewModel login;
+        HubConnection hubConnection;
+        public static IHubProxy stockTickerHubProxy { get; set; }
 
-        public LoginViewModel Login
-        {
-            get { return login; }
-            set { SetField(ref login, value, "Login"); }
-        }
-
-        private SignInViewModel signIn;
-
-        public SignInViewModel SignIn
-        {
-            get { return signIn; }
-            set { SetField(ref signIn, value, "SignIn"); }
-        }
+        private static LoginViewModel Login { get { return ServiceLocator.Current.GetInstance<LoginViewModel>(); ; } }
 
         public MainViewModel()
         {
-            Login = new LoginViewModel();
-            SignIn = new SignInViewModel();
+            hubConnection = new HubConnection("http://localhost:64061/");
+            stockTickerHubProxy = hubConnection.CreateHubProxy("MainHub");
+            stockTickerHubProxy.On<string, string>("addNewMessageToPage", (name, message) => { Login.callback(name, message); });
+            stockTickerHubProxy.On<string>("OnConnectionInfo", (name) => { Login.callback(name); });
+            hubConnection.Start().Wait();
         }
     }
 }

@@ -193,8 +193,24 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Configs\ContainerInjection.cs" />
+    <Compile Include="Contracts\Repository.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\AuthController.cs" />
+    <Compile Include="DataAccess\ChattyDbContext.cs" />
+    <Compile Include="DataAccess\DepartmentDao.cs" />
+    <Compile Include="DataAccess\DiscussionDao.cs" />
+    <Compile Include="DataAccess\GroupDao.cs" />
+    <Compile Include="DataAccess\GroupUserDao.cs" />
+    <Compile Include="DataAccess\InvitationDao.cs" />
+    <Compile Include="DataAccess\MessageDao.cs" />
+    <Compile Include="DataAccess\UserDao.cs" />
+    <Compile Include="Dbo\Department.cs" />
+    <Compile Include="Dbo\Discussion.cs" />
+    <Compile Include="Dbo\Group.cs" />
+    <Compile Include="Dbo\GroupUser.cs" />
+    <Compile Include="Dbo\Invitation.cs" />
+    <Compile Include="Dbo\Message.cs" />
+    <Compile Include="Dbo\User.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -230,7 +246,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Services\IUserService.cs" />
+    <Compile Include="Services\UserService.svc.cs">
+      <DependentUpon>UserService.svc</DependentUpon>
+    </Compile>
     <Compile Include="Startup.cs" />
+    <Compile Include="Utils\BaseDao.cs" />
+    <Compile Include="Utils\BaseEntity.cs" />
     <Compile Include="Utils\Hash.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -394,6 +416,7 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <Content Include="Services\UserService.svc" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -477,7 +500,6 @@
     <Folder Include="Scripts\directive\" />
     <Folder Include="Scripts\factory\" />
     <Folder Include="Scripts\filter\" />
-    <Folder Include="Services\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

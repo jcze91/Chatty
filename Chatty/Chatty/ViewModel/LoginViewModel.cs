@@ -6,6 +6,7 @@ using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using Chatty.Utils;
 using System;
+using Microsoft.Practices.ServiceLocation;
 
 namespace Chatty.ViewModel
 {
@@ -38,10 +39,6 @@ namespace Chatty.ViewModel
         }
 
         private bool isLogging = false;
-
-
-        HubConnection hubConnection;
-        IHubProxy stockTickerHubProxy;
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
         /// </summary>
@@ -55,12 +52,6 @@ namespace Chatty.ViewModel
             ////{
             ////    // Code runs "for real"
             ////}
-
-            hubConnection = new HubConnection("http://localhost:64061/");
-            stockTickerHubProxy = hubConnection.CreateHubProxy("MainHub");
-            stockTickerHubProxy.On<string, string>("addNewMessageToPage", (name, message) => { callback(name, message); });
-            stockTickerHubProxy.On<string>("OnConnectionInfo", (name) => { callback(name); });
-            hubConnection.Start().Wait();
         }
 
         private ICommand _loginCommand;
@@ -80,12 +71,12 @@ namespace Chatty.ViewModel
         async private void Login()
         {
             isLogging = true;
-            var res = await stockTickerHubProxy.Invoke<int>("Login", new object[] { username, password.sha1() });
+            var res = await MainViewModel.stockTickerHubProxy.Invoke<int>("Login", new object[] { username, password.sha1() });
             isLogging = false;
             OnLogInfo(new LoginEventArgs() { UserId = res, Username = username, Logged = res != -1 });
         }
 
-        private static void callback(string name, string message = null)
+        public void callback(string name, string message = null)
         {
             Debug.WriteLine(name + " : " + message);
         }

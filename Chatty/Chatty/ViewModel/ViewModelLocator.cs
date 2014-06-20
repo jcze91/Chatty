@@ -43,9 +43,13 @@ namespace Chatty.ViewModel
             ////}
 
             SimpleIoc.Default.Register<MainViewModel>();
+            SimpleIoc.Default.Register<LoginViewModel>();
+            SimpleIoc.Default.Register<SignInViewModel>();
         }
 
         public MainViewModel Main { get { return ServiceLocator.Current.GetInstance<MainViewModel>(); } }
+        public LoginViewModel Login{ get { return ServiceLocator.Current.GetInstance<LoginViewModel>(); } }
+        public SignInViewModel SignIn { get { return ServiceLocator.Current.GetInstance<SignInViewModel>(); } }
 
         public static void Cleanup()
         {

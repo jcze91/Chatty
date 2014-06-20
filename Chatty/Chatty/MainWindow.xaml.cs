@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Practices.ServiceLocation;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -29,13 +30,13 @@ namespace Chatty
 
         void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            var dc = DataContext as ViewModel.MainViewModel;
-            dc.Login.Logged += MainWindow_Logged;
+            DataContext = new ViewModel.MainViewModel();
+            ServiceLocator.Current.GetInstance<ViewModel.LoginViewModel>().Logged += Logged;
         }
 
-        void MainWindow_Logged(object sender, ViewModel.LoginEventArgs e)
+        void Logged(object sender, ViewModel.LoginEventArgs e)
         {
-            if(e.Logged)
+            if (e.Logged)
             {
                 System.Windows.MessageBox.Show("OK");
             }
@@ -45,7 +46,5 @@ namespace Chatty
 
             }
         }
-
-
     }
 }

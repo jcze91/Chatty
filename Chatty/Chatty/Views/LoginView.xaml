@@ -7,7 +7,7 @@
              DataContext="{Binding Source={StaticResource Locator}, Path=Login}"
              mc:Ignorable="d" 
              d:DesignHeight="400" d:DesignWidth="250">
-    <Grid Margin="8">
+    <Grid Margin="8" VerticalAlignment="Center">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="auto"/>
@@ -15,13 +15,11 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
-            <RowDefinition Height="*"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
-            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
 
@@ -68,6 +66,12 @@
             </toolkit:WatermarkTextBox>
         </Grid>
 
+        <TextBlock Grid.Column="0" Grid.Row="6" 
+                   TextDecorations="Underline" Foreground="#333"
+                   VerticalAlignment="Center">
+           <Hyperlink Command="" TextDecorations="None" Foreground="Black">Create Account</Hyperlink>
+        </TextBlock>
+        
         <Button Grid.Column="2" Grid.Row="6" Margin="0 8"
             Content="Log in" Command="{Binding Path=LogInCommand}" />
     </Grid>
