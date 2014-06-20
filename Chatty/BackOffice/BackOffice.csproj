@@ -253,6 +253,7 @@
     <Compile Include="Startup.cs" />
     <Compile Include="Utils\BaseDao.cs" />
     <Compile Include="Utils\BaseEntity.cs" />
+    <Compile Include="Utils\BaseService.cs" />
     <Compile Include="Utils\Hash.cs" />
   </ItemGroup>
   <ItemGroup>
