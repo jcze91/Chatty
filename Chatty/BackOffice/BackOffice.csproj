@@ -217,6 +217,15 @@
     </Compile>
     <Compile Include="Hubs\ChatHub.cs" />
     <Compile Include="Hubs\MainHub.cs" />
+    <Compile Include="Migrations\201406201649411_Initial.cs" />
+    <Compile Include="Migrations\201406201649411_Initial.Designer.cs">
+      <DependentUpon>201406201649411_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201406201650215_AddUpdatedAtColumn.cs" />
+    <Compile Include="Migrations\201406201650215_AddUpdatedAtColumn.Designer.cs">
+      <DependentUpon>201406201650215_AddUpdatedAtColumn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\LiveModel.cs" />
     <Compile Include="Models\UserModel.cs" />
@@ -396,6 +405,14 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201406201649411_Initial.resx">
+      <DependentUpon>201406201649411_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201406201650215_AddUpdatedAtColumn.resx">
+      <DependentUpon>201406201650215_AddUpdatedAtColumn.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

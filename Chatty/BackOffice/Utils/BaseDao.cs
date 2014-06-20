@@ -1,4 +1,5 @@
 ﻿using BackOffice.DataAccess;
+using Microsoft.Practices.Unity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,12 +16,13 @@ namespace BackOffice.Utils
         where E : BaseEntity<K>, new()
     {
 
+        private ChattyDbContext ctx { get { return Startup.container.Resolve<ChattyDbContext>(); } }
+
         public virtual E GetById(K id)
         {
             try
             {
-                using (ChattyDbContext ctx = new ChattyDbContext())
-                    return ctx.Set<E>().SingleOrDefault(x => x.Id.Equals(id));
+                return ctx.Set<E>().SingleOrDefault(x => x.Id.Equals(id));
             }
             catch
             {
@@ -32,12 +34,9 @@ namespace BackOffice.Utils
         {
             try
             {
-                using (ChattyDbContext ctx = new ChattyDbContext())
-                {
-                    ctx.Set<E>().Add(entity);
-                    ctx.SaveChanges();
-                    return entity;
-                }
+                ctx.Set<E>().Add(entity);
+                ctx.SaveChanges();
+                return entity;
             }
             catch
             {
@@ -49,11 +48,8 @@ namespace BackOffice.Utils
         {
             try
             {
-                using (ChattyDbContext ctx = new ChattyDbContext())
-                {
-                    ctx.Entry<E>(GetById(id)).State = System.Data.Entity.EntityState.Deleted;
-                    ctx.SaveChanges();
-                }
+                ctx.Entry<E>(GetById(id)).State = System.Data.Entity.EntityState.Deleted;
+                ctx.SaveChanges();
                 return true;
             }
             catch
@@ -66,11 +62,8 @@ namespace BackOffice.Utils
         {
             try
             {
-                using (ChattyDbContext ctx = new ChattyDbContext())
-                {
-                    ctx.Entry<E>(ctx.Set<E>().Find(entity.Id)).CurrentValues.SetValues(entity);
-                    ctx.SaveChanges();
-                }
+                ctx.Entry<E>(ctx.Set<E>().Find(entity.Id)).CurrentValues.SetValues(entity);
+                ctx.SaveChanges();
                 return entity;
             }
             catch
@@ -83,8 +76,7 @@ namespace BackOffice.Utils
         {
             try
             {
-                using (ChattyDbContext ctx = new ChattyDbContext())
-                    return ctx.Set<E>().Where(predicate).ToArray();
+                return ctx.Set<E>().Where(predicate).ToArray();
             }
             catch
             {
@@ -96,8 +88,7 @@ namespace BackOffice.Utils
         {
             try
             {
-                using (ChattyDbContext ctx = new ChattyDbContext())
-                    return ctx.Set<E>().ToArray();
+                return ctx.Set<E>().ToArray();
             }
             catch
             {

@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using Microsoft.AspNet.SignalR;
-using System.Threading;
+﻿using BackOffice.Dbo;
+using BackOffice.Services;
 using BackOffice.Utils;
+using Microsoft.AspNet.SignalR;
 using Microsoft.Practices.Unity;
-//using BackOffice.UserProxy;
+using System;
+using System.Linq;
+using System.Threading;
 
 namespace BackOffice.Hubs
 {
@@ -25,22 +24,23 @@ namespace BackOffice.Hubs
 
         public int Login(string username, string password)
         {
-            //return Startup.container.Resolve<UserContractClient>().Login(username, password);
-            return -1;
+            var srv = Startup.container.Resolve<UserService>();
+            var res = srv.GetAll();
+            var user = res.SingleOrDefault();
+            return user == null ? -1 : user.Id;
         }
 
         public bool SignIn(string username, string lastname, string firstname, string password, string email)
         {
-            //var res = Startup.container.Resolve<UserContractClient>().Insert(new User()
-            //{
-            //    Username = username,
-            //    Lastname = lastname,
-            //    Firstname = firstname,
-            //    Password = password,
-            //    Email = email
-            //});
-            //return res == null;
-            return false;
+            var res = Startup.container.Resolve<UserService>().Insert(new User()
+            {
+                Username = username,
+                Lastname = lastname,
+                Firstname = firstname,
+                Password = password,
+                Email = email
+            });
+            return res == null;
         }
 
         public dynamic Execute(string[] args)

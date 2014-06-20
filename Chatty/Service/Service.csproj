@@ -68,6 +68,10 @@
     <Compile Include="Migrations\201406192132347_initial.Designer.cs">
       <DependentUpon>201406192132347_initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201406201517376_UniqueKeyConstraintOnUser.cs" />
+    <Compile Include="Migrations\201406201517376_UniqueKeyConstraintOnUser.Designer.cs">
+      <DependentUpon>201406201517376_UniqueKeyConstraintOnUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Department.cs" />
     <Compile Include="Models\Discussion.cs" />
@@ -93,6 +97,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201406192132347_initial.resx">
       <DependentUpon>201406192132347_initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201406201517376_UniqueKeyConstraintOnUser.resx">
+      <DependentUpon>201406201517376_UniqueKeyConstraintOnUser.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
