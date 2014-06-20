@@ -34,6 +34,8 @@ namespace BackOffice.Utils
         {
             try
             {
+                entity.CreatedAt = DateTime.Now;
+                entity.UpdatedAt = DateTime.Now;
                 ctx.Set<E>().Add(entity);
                 ctx.SaveChanges();
                 return entity;
@@ -62,7 +64,9 @@ namespace BackOffice.Utils
         {
             try
             {
-                ctx.Entry<E>(ctx.Set<E>().Find(entity.Id)).CurrentValues.SetValues(entity);
+                var e = ctx.Set<E>().Find(entity.Id);
+                e.UpdatedAt = DateTime.Now;
+                ctx.Entry<E>(e).CurrentValues.SetValues(entity);
                 ctx.SaveChanges();
                 return entity;
             }
