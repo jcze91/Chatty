@@ -3,7 +3,5 @@
 namespace BackOffice.Contracts
 {
     [ServiceContract]
-    public interface MessageContract : IRepository<int, Dbo.Message>
-    {
-    }
+    public interface MessageContract : IRepository<int, Dbo.Message> { }
 }

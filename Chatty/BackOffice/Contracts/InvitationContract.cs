@@ -3,7 +3,5 @@
 namespace BackOffice.Contracts
 {
     [ServiceContract]
-    public interface InvitationContract : IRepository<int, Dbo.Invitation>
-    {
-    }
+    public interface InvitationContract : IRepository<int, Dbo.Invitation> { }
 }

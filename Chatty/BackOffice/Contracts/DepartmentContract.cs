@@ -3,7 +3,5 @@
 namespace BackOffice.Contracts
 {
     [ServiceContract]
-    public interface DepartmentContract : IRepository<int, Dbo.Department>
-    {
-    }
+    public interface DepartmentContract : IRepository<int, Dbo.Department>    {    }
 }

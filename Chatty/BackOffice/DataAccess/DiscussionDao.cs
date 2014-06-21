@@ -1,8 +1,5 @@
 ﻿
 namespace BackOffice.DataAccess
 {
-    public class DiscussionDao : Utils.BaseDao<int, Dbo.Discussion>
-    {
-
-    }
+    public class DiscussionDao : Utils.BaseDao<int, Dbo.Discussion>    {    }
 }

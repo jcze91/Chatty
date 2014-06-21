@@ -11,6 +11,8 @@ namespace BackOffice.Hubs
 {
     public class MainHub : Hub
     {
+        private Runtime runtime { get { return Startup.container.Resolve<Runtime>(); } }
+
         public MainHub() { }
 
         public override System.Threading.Tasks.Task OnConnected()
@@ -21,7 +23,7 @@ namespace BackOffice.Hubs
             Clients.Client(Context.ConnectionId).OnConnectionInfo(uid);
             return base.OnConnected();
         }
-        
+
         public int Login(string username, string password)
         {
             var res = Startup.container.Resolve<UserService>().SearchFor(x => x.Username == username && x.Password == password).SingleOrDefault();
@@ -41,9 +43,20 @@ namespace BackOffice.Hubs
             return res == null;
         }
 
-        public dynamic Execute(string[] args)
+        public void Execute(string[] args)
         {
-            return null;
+            var result = runtime.Invoke(args);
+
+            /**
+             * FAIL
+             */
+            if (result == null || result is bool && !((bool)result))
+                Clients.Caller.OnError(args);
+            /**
+             * SUCCESS
+             */
+            else
+                Clients.All.Callback(args[0], result);
         }
     }
 }

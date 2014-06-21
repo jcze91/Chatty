@@ -3,7 +3,5 @@
 namespace BackOffice.Contracts
 {
     [ServiceContract]
-    public interface GroupUserContract : IRepository<int, Dbo.GroupUser>
-    {
-    }
+    public interface GroupUserContract : IRepository<int, Dbo.GroupUser> { }
 }

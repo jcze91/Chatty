@@ -3,5 +3,5 @@
 namespace BackOffice.Contracts
 {
     [ServiceContract]
-    public interface UserContract : IRepository<int, Dbo.User>    {    }
+    public interface ContactContract : IRepository<int, Dbo.Contact> { }
 }

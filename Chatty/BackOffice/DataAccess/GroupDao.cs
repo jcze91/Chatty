@@ -1,8 +1,5 @@
 ﻿
 namespace BackOffice.DataAccess
 {
-    public class GroupDao : Utils.BaseDao<int, Dbo.Group>
-    {
-
-    }
+    public class GroupDao : Utils.BaseDao<int, Dbo.Group> { }
 }

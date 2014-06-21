@@ -62,7 +62,7 @@ namespace BackOffice.Utils
              * UPDATE
              */
             if (args[0] == cmd_update && args.Length == GetFieldCount() + 1)
-                return Insert(args);
+                return Update(args);
 
             /**
              * DELETE

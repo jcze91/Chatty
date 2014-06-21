@@ -49,11 +49,11 @@
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -193,6 +193,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Configs\ContainerInjection.cs" />
+    <Compile Include="Contracts\ContactContract.cs" />
     <Compile Include="Contracts\DepartmentContract.cs" />
     <Compile Include="Contracts\DiscussionContract.cs" />
     <Compile Include="Contracts\GroupContract.cs" />
@@ -204,6 +205,7 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="DataAccess\ChattyDbContext.cs" />
+    <Compile Include="DataAccess\ContactDao.cs" />
     <Compile Include="DataAccess\DepartmentDao.cs" />
     <Compile Include="DataAccess\DiscussionDao.cs" />
     <Compile Include="DataAccess\GroupDao.cs" />
@@ -211,6 +213,7 @@
     <Compile Include="DataAccess\InvitationDao.cs" />
     <Compile Include="DataAccess\MessageDao.cs" />
     <Compile Include="DataAccess\UserDao.cs" />
+    <Compile Include="Dbo\Contact.cs" />
     <Compile Include="Dbo\Department.cs" />
     <Compile Include="Dbo\Discussion.cs" />
     <Compile Include="Dbo\Group.cs" />
@@ -232,17 +235,25 @@
     <Compile Include="Migrations\201406201650215_AddUpdatedAtColumn.Designer.cs">
       <DependentUpon>201406201650215_AddUpdatedAtColumn.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201406211527471_AddUserContactTable.cs" />
+    <Compile Include="Migrations\201406211527471_AddUserContactTable.Designer.cs">
+      <DependentUpon>201406211527471_AddUserContactTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\LiveModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Providers\ContactProvider.cs" />
     <Compile Include="Providers\DepartmentProvider.cs" />
     <Compile Include="Providers\DiscussionProvider.cs" />
     <Compile Include="Providers\GroupProvider.cs" />
     <Compile Include="Providers\GroupUserProvider.cs" />
     <Compile Include="Providers\InvitationProvider.cs" />
     <Compile Include="Providers\UserProvider.cs" />
+    <Compile Include="Services\ContactService.svc.cs">
+      <DependentUpon>ContactService.svc</DependentUpon>
+    </Compile>
     <Compile Include="Services\DepartmentService.svc.cs">
       <DependentUpon>DepartmentService.svc</DependentUpon>
     </Compile>
@@ -391,6 +402,7 @@
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Scripts\jquery-2.1.1.min.map" />
+    <Content Include="Services\ContactService.svc" />
     <Content Include="Services\DepartmentService.svc" />
     <Content Include="Services\DiscussionService.svc" />
     <Content Include="Services\GroupService.svc" />
@@ -427,6 +439,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201406201650215_AddUpdatedAtColumn.resx">
       <DependentUpon>201406201650215_AddUpdatedAtColumn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201406211527471_AddUserContactTable.resx">
+      <DependentUpon>201406211527471_AddUserContactTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
