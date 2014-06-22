@@ -250,6 +250,7 @@
     <Compile Include="Providers\GroupProvider.cs" />
     <Compile Include="Providers\GroupUserProvider.cs" />
     <Compile Include="Providers\InvitationProvider.cs" />
+    <Compile Include="Providers\MessageProvider.cs" />
     <Compile Include="Providers\UserProvider.cs" />
     <Compile Include="Services\ContactService.svc.cs">
       <DependentUpon>ContactService.svc</DependentUpon>
