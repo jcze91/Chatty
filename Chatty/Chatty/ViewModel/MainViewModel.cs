@@ -11,16 +11,18 @@ namespace Chatty.ViewModel
     public class MainViewModel : Utils.BaseNotify
     {
         HubConnection hubConnection;
-        public static IHubProxy stockTickerHubProxy { get; set; }
+        public static IHubProxy Proxy { get; set; }
 
-        private static LoginViewModel Login { get { return ServiceLocator.Current.GetInstance<LoginViewModel>(); ; } }
+        LoginViewModel Login { get { return ServiceLocator.Current.GetInstance<LoginViewModel>(); ; } }
 
         public MainViewModel()
         {
             hubConnection = new HubConnection("http://localhost:64061/");
-            stockTickerHubProxy = hubConnection.CreateHubProxy("MainHub");
-            stockTickerHubProxy.On<string, string>("addNewMessageToPage", (name, message) => { Login.callback(name, message); });
-            stockTickerHubProxy.On<string>("OnConnectionInfo", (name) => { Login.callback(name); });
+            Proxy = hubConnection.CreateHubProxy("MainHub");
+            Proxy.On<string, string>("addNewMessageToPage", (name, message) => { Login.callback(name, message); });
+            Proxy.On<string>("OnConnectionInfo", (name) => { Login.callback(name); });
+            //Proxy.On<string, Object>("OnConnectionInfo", (arg, res) => { Utils.CallbackHandler.Handle(arg, res); });
+            //Proxy.On<string[]>("OnError", (args) => { Login.O(args); });
             hubConnection.Start().Wait();
         }
     }

@@ -5,7 +5,7 @@ namespace BackOffice.Providers
     {
         protected override string getClass() { return "user"; }
 
-        protected override int GetFieldCount() { return 4; }
+        protected override int GetFieldCount() { return 7; }
 
         protected override dynamic Insert(string[] args)
         {
@@ -17,7 +17,8 @@ namespace BackOffice.Providers
                     Lastname = args[2],
                     Firstname = args[3],
                     Email = args[4],
-                    Password = args[5]
+                    Password = args[5],
+                    isEnable = bool.Parse(args[6])
                 });
             }
             catch { return null; }
@@ -34,7 +35,8 @@ namespace BackOffice.Providers
                     Lastname = args[3],
                     Firstname = args[4],
                     Email = args[5],
-                    Password = args[6]
+                    Password = args[6],
+                    isEnable = bool.Parse(args[7])
                 });
             }
             catch { return null; }

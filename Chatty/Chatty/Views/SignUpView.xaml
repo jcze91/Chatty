@@ -1,13 +1,13 @@
 ﻿<UserControl x:Class="Chatty.Views.SignInView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:toolkit="http://schemas.xceed.com/wpf/xaml/toolkit"
-             DataContext="{Binding Source={StaticResource Locator}, Path=SignIn}"
-             mc:Ignorable="d" 
+             DataContext="{Binding Source={StaticResource Locator}, Path=SignUp}"
+             mc:Ignorable="d"
              d:DesignHeight="400" d:DesignWidth="250">
-    
+
     <StackPanel Margin="8" VerticalAlignment="Center">
         <Grid Margin="0 8">
             <Grid.ColumnDefinitions>
@@ -23,13 +23,13 @@
                                   Text="{Binding Path=Username, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                 <toolkit:WatermarkTextBox.Watermark>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="Username..." Margin="4,0,0,0" 
+                        <TextBlock Text="Username..." Margin="4,0,0,0"
                  Foreground="#f18158"/>
                     </StackPanel>
                 </toolkit:WatermarkTextBox.Watermark>
             </toolkit:WatermarkTextBox>
         </Grid>
-        
+
         <Grid Margin="0 8">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto"/>
@@ -44,13 +44,13 @@
                                   Text="{Binding Path=Firstname, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                 <toolkit:WatermarkTextBox.Watermark>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="Firstname..." Margin="4,0,0,0" 
+                        <TextBlock Text="Firstname..." Margin="4,0,0,0"
                  Foreground="#f18158"/>
                     </StackPanel>
                 </toolkit:WatermarkTextBox.Watermark>
             </toolkit:WatermarkTextBox>
         </Grid>
-        
+
         <Grid Margin="0 8">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto"/>
@@ -65,7 +65,7 @@
                                   Text="{Binding Path=Lastname, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                 <toolkit:WatermarkTextBox.Watermark>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="Lastname..." Margin="4,0,0,0" 
+                        <TextBlock Text="Lastname..." Margin="4,0,0,0"
                  Foreground="#f18158"/>
                     </StackPanel>
                 </toolkit:WatermarkTextBox.Watermark>
@@ -87,7 +87,7 @@
                                   Text="{Binding Path=Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                 <toolkit:WatermarkTextBox.Watermark>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="Password..." Margin="4,0,0,0" 
+                        <TextBlock Text="Password..." Margin="4,0,0,0"
                  Foreground="#f18158"/>
                     </StackPanel>
                 </toolkit:WatermarkTextBox.Watermark>
@@ -108,7 +108,7 @@
                                   Text="{Binding Path=Password2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                 <toolkit:WatermarkTextBox.Watermark>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="Confirm Password..." Margin="4,0,0,0" 
+                        <TextBlock Text="Confirm Password..." Margin="4,0,0,0"
                  Foreground="#f18158"/>
                     </StackPanel>
                 </toolkit:WatermarkTextBox.Watermark>
@@ -129,12 +129,25 @@
                                   Text="{Binding Path=Email, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                 <toolkit:WatermarkTextBox.Watermark>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="Email..." Margin="4,0,0,0" 
+                        <TextBlock Text="Email..." Margin="4,0,0,0"
                  Foreground="#f18158"/>
                     </StackPanel>
                 </toolkit:WatermarkTextBox.Watermark>
             </toolkit:WatermarkTextBox>
         </Grid>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="8"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Button Content="Go back" Command="{Binding Path=GoBackCommand}"/>
+            <Button Content="Sign Up" Command="{Binding Path=SignUpCommand}" Grid.Column="2"/>
+
+
+        </Grid>
     </StackPanel>
-    
+
 </UserControl>

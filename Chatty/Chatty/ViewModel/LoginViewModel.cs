@@ -55,7 +55,6 @@ namespace Chatty.ViewModel
         }
 
         private ICommand _loginCommand;
-
         public ICommand LogInCommand
         {
             get
@@ -66,12 +65,23 @@ namespace Chatty.ViewModel
             }
         }
 
+        private ICommand _createCommand;
+        public ICommand CreateCommand
+        {
+            get
+            {
+                if (_createCommand == null)
+                    _createCommand = new RelayCommand(() => OnCreate(EventArgs.Empty));
+                return _createCommand;
+            }
+        }
+
         private bool canLog { get { return !isLogging && !string.IsNullOrWhiteSpace(username) && !string.IsNullOrWhiteSpace(password); } }
 
         async private void Login()
         {
             isLogging = true;
-            var res = await MainViewModel.stockTickerHubProxy.Invoke<int>("Login", new object[] { username, password.sha1() });
+            var res = await MainViewModel.Proxy.Invoke<int>("Login", new object[] { username, password.sha1() });
             isLogging = false;
             OnLogInfo(new LoginEventArgs() { UserId = res, Username = username, Logged = res != -1 });
         }
@@ -81,6 +91,12 @@ namespace Chatty.ViewModel
             Debug.WriteLine(name + " : " + message);
         }
 
+
+
+
+
+
+        public event LoginEventHandler Logged;
         protected virtual void OnLogInfo(LoginEventArgs e)
         {
             LoginEventHandler handler = Logged;
@@ -88,7 +104,14 @@ namespace Chatty.ViewModel
                 handler(this, e);
         }
 
-        public event LoginEventHandler Logged;
+        public event EventHandler Create;
+        protected virtual void OnCreate(EventArgs e)
+        {
+            EventHandler handler = Create;
+            if (handler != null)
+                handler(this, e);
+        }
+
     }
 
     public class LoginEventArgs : EventArgs

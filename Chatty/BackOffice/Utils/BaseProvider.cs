@@ -44,7 +44,7 @@ namespace BackOffice.Utils
         protected string cmd_delete { get { return getClass() + "-delete"; } }
         protected string cmd_all { get { return getClass() + "-all"; } }
 
-        protected virtual dynamic Execute(string[] args)
+        public virtual dynamic Execute(string[] args)
         {
             /**
              * GET BY ID

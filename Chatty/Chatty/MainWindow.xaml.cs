@@ -31,7 +31,33 @@ namespace Chatty
         void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
             DataContext = new ViewModel.MainViewModel();
-            ServiceLocator.Current.GetInstance<ViewModel.LoginViewModel>().Logged += Logged;
+
+            var login = ServiceLocator.Current.GetInstance<ViewModel.LoginViewModel>();
+            login.Logged += Logged;
+            login.Create += login_Create;
+
+            var signUp = ServiceLocator.Current.GetInstance<ViewModel.SignUpViewModel>();
+            signUp.GoBack += signUp_GoBack;
+            signUp.SignUpped += signUp_SignUpped;
+        }
+
+        void signUp_SignUpped(object sender, EventArgs e)
+        {
+            this.loginView.Visibility = Visibility.Visible;
+            this.signInView.Visibility = Visibility.Hidden;
+        }
+
+
+        void signUp_GoBack(object sender, EventArgs e)
+        {
+            this.loginView.Visibility = Visibility.Visible;
+            this.signInView.Visibility = Visibility.Hidden;
+        }
+
+        void login_Create(object sender, EventArgs e)
+        {
+            this.loginView.Visibility = Visibility.Hidden;
+            this.signInView.Visibility = Visibility.Visible;
         }
 
         void Logged(object sender, ViewModel.LoginEventArgs e)
@@ -43,7 +69,6 @@ namespace Chatty
             else
             {
                 System.Windows.MessageBox.Show("KO");
-
             }
         }
     }

@@ -30,7 +30,7 @@ namespace BackOffice.Hubs
             return res == null ? -1 : res.Id;
         }
 
-        public bool SignIn(string username, string lastname, string firstname, string password, string email)
+        public bool SignUp(string username, string lastname, string firstname, string password, string email)
         {
             var res = Startup.container.Resolve<UserService>().Insert(new User()
             {
@@ -38,9 +38,10 @@ namespace BackOffice.Hubs
                 Lastname = lastname,
                 Firstname = firstname,
                 Password = password,
-                Email = email
+                Email = email,
+                isEnable = true
             });
-            return res == null;
+            return res != null;
         }
 
         public void Execute(string[] args)
