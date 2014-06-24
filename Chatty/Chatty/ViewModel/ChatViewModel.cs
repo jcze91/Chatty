@@ -4,8 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace Chatty.ViewModel
@@ -57,30 +55,39 @@ namespace Chatty.ViewModel
 
             /** 
              * Get invitations
+             * 
+             * for me
              */
-            Invitations = await MainViewModel.Proxy.Invoke<ObservableCollection<Dbo.Invitation>>("Execute", new object[] { new string[] { "invitation-all" } });
+            var tmpiList = await MainViewModel.Proxy.Invoke<IList<Dbo.Invitation>>("Execute", new object[] { new string[] { "invitation-all" } });
+            Invitations = new ObservableCollection<Dbo.Invitation>(tmpiList.Where(x => x.ToUserId == userId));
 
             /**
              * Get contact list
+             * 
+             * Add users in my contact list
              */
+            Contacts = new ObservableCollection<Dbo.User>();
             var c_users = await MainViewModel.Proxy.Invoke<IList<Dbo.Contact>>("Execute", new object[] { new string[] { "contact-all" } });
-            Contacts = new ObservableCollection<Dbo.User>(Users.Where(x => c_users.Count(i => i.UserId == userId) > 0));
+            foreach (var contact in c_users.Where(x => x.ContactId != userId && x.UserId == userId))
+                await App.Current.Dispatcher.BeginInvoke((Action)(() => Contacts.Add(list.Single(x => x.Id == contact.ContactId))));
         }
 
-        async public void Callback(string cmd, dynamic result)
+        async public void Callback(string[] args, dynamic result)
         {
             var data = result.ToString();
+            string cmd = args[0];
 
-            if (cmd == "invitation-add")
+            if (cmd == "invitation-insert")
             {
                 Dbo.Invitation item = JsonConvert.DeserializeObject<Dbo.Invitation>(data);
                 if (item.ToUserId == userId)
-                    Invitations.Add(item);
+                    await App.Current.Dispatcher.BeginInvoke((Action)(() => Invitations.Add(item)));
             }
             else if (cmd == "invitation-delete")
             {
-                Dbo.Invitation item = JsonConvert.DeserializeObject<Dbo.Invitation>(data);
-                Invitations.Remove(invitations.SingleOrDefault(x => x.Id == item.Id));
+                var item = Invitations.SingleOrDefault(x => x.Id == int.Parse(args[1]));
+                if (item != null)
+                    await App.Current.Dispatcher.BeginInvoke((Action)(() => Invitations.Remove(item)));
             }
             else if (cmd == "contact-insert")
             {
@@ -88,9 +95,24 @@ namespace Chatty.ViewModel
                 if (item.UserId == userId)
                 {
                     var newContact = await MainViewModel.Proxy.Invoke<Dbo.User>("Execute", new object[] { new string[] { "user-id", item.ContactId.ToString() } });
-                    contacts.Add(newContact);
+                    await App.Current.Dispatcher.BeginInvoke((Action)(() => Contacts.Add(newContact)));
                 }
             }
+        }
+
+        private ICommand _debugCommand;
+        public ICommand DebugCommand
+        {
+            get
+            {
+                if (_debugCommand == null)
+                    _debugCommand = new RelayCommand(Debug);
+                return _debugCommand;
+            }
+        }
+
+        async private void Debug()
+        {
         }
     }
 }

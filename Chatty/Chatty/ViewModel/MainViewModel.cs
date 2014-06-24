@@ -22,7 +22,7 @@ namespace Chatty.ViewModel
             Proxy = hubConnection.CreateHubProxy("MainHub");
             Proxy.On<string, string>("addNewMessageToPage", (name, message) => { Login.callback(name, message); });
             Proxy.On<string>("OnConnectionInfo", (name) => { Login.callback(name); });
-            Proxy.On<string, dynamic>("Callback", (cmd, res) => Chat.Callback(cmd, res));
+            Proxy.On<string[], dynamic>("Callback", (args, res) => Chat.Callback(args, res));
             //Proxy.On<string, Object>("OnConnectionInfo", (arg, res) => { Utils.CallbackHandler.Handle(arg, res); });
             //Proxy.On<string[]>("OnError", (args) => { Login.O(args); });
             hubConnection.Start().Wait();

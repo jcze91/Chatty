@@ -46,7 +46,7 @@
             </TabItem>
 
             <TabItem Header="Groups">
-
+                <Button Command="{Binding Debug}" />
             </TabItem>
 
             <TabItem Header="Others">

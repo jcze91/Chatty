@@ -64,7 +64,7 @@ namespace BackOffice.Hubs
              * SUCCESS
              */
             else
-                Clients.All.Callback(args[0], result);
+                Clients.All.Callback(args, result);
 
             return result;
         }
