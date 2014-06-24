@@ -11,6 +11,7 @@ using BackOffice.Providers;
 using BackOffice.Common;
 using BackOffice.Services;
 using BackOffice.Dbo;
+using BackOffice;
 
 namespace Chatty.BackOffice.Controllers
 {
@@ -18,10 +19,11 @@ namespace Chatty.BackOffice.Controllers
     [InitializeSimpleMembership]
     public class AuthController : Controller
     {
+        private UserService userService { get { return (UserService)Startup.container.Resolve(typeof(UserService), "UserService"); } }
+
         [AllowAnonymous]
         public ActionResult Index(string error = null)
         {
-            UserService userService = new UserService();
             var superAdminRes = userService.SearchFor(u => u.Username == Constants.SuperAdminLogin);
             if (superAdminRes.Count() == 0) // premier lancement
                 userService.Insert(new User

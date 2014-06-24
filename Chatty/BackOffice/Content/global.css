@@ -78,13 +78,10 @@ body, html {
 				opacity: 1;
 			}
 
-			.mainnav ul li a.messages { background: url('img/menu_ico_messages.png') no-repeat center; }
 			.mainnav ul li a.users { background: url('img/menu_ico_users.png') no-repeat center; }
-			.mainnav ul li a.tags { background: url('img/menu_ico_tags.png') no-repeat center; }
-			.mainnav ul li a.fronts { background: url('img/menu_ico_fronts.png') no-repeat center; }
-			.mainnav ul li a.stats { background: url('img/menu_ico_stats.png') no-repeat center; }
-			.mainnav ul li a.settings { background: url('img/menu_ico_settings.png') no-repeat center; }
-			.mainnav ul li a.polls { background: url('img/menu_ico_polls.png') no-repeat center; }
+			.mainnav ul li a.departments { background: url('img/menu_ico_departments.png') no-repeat center; }
+			.mainnav ul li a.discussions { background: url('img/menu_ico_discussions.png') no-repeat center; }
+			.mainnav ul li a.admin { background: url('img/menu_ico_admin.png') no-repeat center; }
 
 			.mainnav div.logout {
 				cursor: pointer;

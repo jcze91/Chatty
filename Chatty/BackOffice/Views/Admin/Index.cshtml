@@ -12,7 +12,10 @@
         <nav class="mainnav">
             <div>
                 <ul>
-                    <li class="active">@Html.ActionLink(" ", "Messages", new { @class = "messages", title = "Messages" })</li>
+                    <li class="active"><a href="#" ng-click="switchTab('users')" class="users"></a></li>
+                    <li><a href="#" ng-click="switchTab('departments')" class="departments"></a></li>
+                    <li><a href="#" ng-click="switchTab('discussions')" class="discussions"></a></li>
+                    <li><a href="#" ng-click="switchTab('admin')" class="admin"></a></li>
                   </ul>
                 <div class="logout">
                     @using (Html.BeginForm("LogOff", "Auth", FormMethod.Post, new { id = "logoutForm" }))
