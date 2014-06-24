@@ -26,5 +26,7 @@ namespace BackOffice.Dbo
         public string Password { get; set; }
         [JsonIgnore]
         public bool isEnable { get; set; }
+        [JsonIgnore]
+        public bool isAdmin { get; set; }
     }
 }
