@@ -11,6 +11,7 @@ using BackOffice.Providers;
 using BackOffice.Common;
 using BackOffice.Services;
 using BackOffice.Dbo;
+using BackOffice;
 
 namespace Chatty.BackOffice.Controllers
 {
@@ -18,10 +19,11 @@ namespace Chatty.BackOffice.Controllers
     [InitializeSimpleMembership]
     public class AuthController : Controller
     {
+        private UserService userService { get { return (UserService)Startup.container.Resolve(typeof(UserService), "UserService"); } }
+
         [AllowAnonymous]
         public ActionResult Index(string error = null)
         {
-            UserService userService = new UserService();
             var superAdminRes = userService.SearchFor(u => u.Username == Constants.SuperAdminLogin);
             if (superAdminRes.Count() == 0) // premier lancement
                 userService.Insert(new User
@@ -33,7 +35,8 @@ namespace Chatty.BackOffice.Controllers
                     Email = "master@chatty.com",
                     isEnable = true,
                     Firstname = "Chatty",
-                    Lastname = "Master"
+                    Lastname = "Master",
+                    isAdmin = true
                 });
 
             if (WebSecurity.HasUserId)
@@ -55,11 +58,11 @@ namespace Chatty.BackOffice.Controllers
                 if (ModelState.IsValid && WebSecurity.Login(model.UserName, model.Password, persistCookie: model.RememberMe))
                     return RedirectToAction("Index", "Admin");
 
-                return RedirectToAction("Login", new { Error="Login/Password are wrong" });
+                return RedirectToAction("Index", new { Error="Login/Password are wrong" });
             }
             catch (Exception ex)
             {
-                return RedirectToAction("Login", new { Error = "Login/Password are wrong" });
+                return RedirectToAction("Index", new { Error = "Login/Password are wrong" });
 
             }
         }
@@ -70,7 +73,7 @@ namespace Chatty.BackOffice.Controllers
         {
             WebSecurity.Logout();
 
-            return RedirectToAction("Login", "Auth");
+            return RedirectToAction("Index", "Auth");
         }
     }
 }

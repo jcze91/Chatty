@@ -17,3 +17,4 @@
 /// <reference path="libs/jquery.signalr-2.0.0.min.js" />
 /// <reference path="libs/json2.js" />
 /// <reference path="model/user.model.class.js" />
+/// <reference path="libs/jquery-ui-1.10.3.custom.js" />

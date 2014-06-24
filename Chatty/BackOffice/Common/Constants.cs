@@ -7,7 +7,7 @@ namespace BackOffice.Common
 {
     public class Constants
     {
-        public static readonly string SuperAdminLogin = "admin";
-        public static readonly string SuperAdminPass = "admin";
+        public static string SuperAdminLogin { get { return "admin"; } }
+        public static string SuperAdminPass { get { return "admin"; } }
     }
 }
