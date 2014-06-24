@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 
 namespace Chatty.Utils
 {
-    public abstract class BaseNotify : INotifyPropertyChanged
+    public abstract class BaseModel<K> : BaseEntity<K>, INotifyPropertyChanged
+        where K : struct, IEquatable<K>
     {
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged(string propertyName)

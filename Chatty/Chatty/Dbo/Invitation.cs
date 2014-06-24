@@ -9,7 +9,7 @@ using System.Windows.Input;
 
 namespace Chatty.Dbo
 {
-    public class Invitation : Utils.BaseEntity<int>
+    public class Invitation : Utils.BaseModel<int>
     {
         public string Username { get; set; }
 
@@ -17,6 +17,7 @@ namespace Chatty.Dbo
         {
             var res = await MainViewModel.Proxy.Invoke<Dbo.User>("Execute", new object[] { new string[] { "user-id", FromUserId.ToString() } });
             Username = res.Username;
+            OnPropertyChanged("Username");
         }
 
         private int fromUserId;
