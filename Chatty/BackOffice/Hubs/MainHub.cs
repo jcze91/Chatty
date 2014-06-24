@@ -26,7 +26,7 @@ namespace BackOffice.Hubs
 
         public int Login(string username, string password)
         {
-            var res = Startup.container.Resolve<UserService>().SearchFor(x => x.Username == username && x.Password == password).SingleOrDefault();
+            var res = Startup.container.Resolve<UserService>().SearchFor(x => x.Username == username && x.Password == password && x.isEnable).SingleOrDefault();
             return res == null ? -1 : res.Id;
         }
 

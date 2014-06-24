@@ -13,13 +13,16 @@ namespace BackOffice.Dbo
         [Index(IsUnique = true)]
         [StringLength(255)]
         public string Username { get; set; }
+        [StringLength(255)]
         public string Lastname { get; set; }
+        [StringLength(255)]
         public string Firstname { get; set; }
 
         [StringLength(255)]
         [Index(IsUnique = true)]
         public string Email { get; set; }
         [JsonIgnore]
+        [StringLength(255)]
         public string Password { get; set; }
         [JsonIgnore]
         public bool isEnable { get; set; }

@@ -243,6 +243,10 @@
     <Compile Include="Migrations\201406211527471_AddUserContactTable.Designer.cs">
       <DependentUpon>201406211527471_AddUserContactTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201406241343061_addTags.cs" />
+    <Compile Include="Migrations\201406241343061_addTags.Designer.cs">
+      <DependentUpon>201406241343061_addTags.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\AdminModel.cs" />
@@ -447,6 +451,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201406211527471_AddUserContactTable.resx">
       <DependentUpon>201406211527471_AddUserContactTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201406241343061_addTags.resx">
+      <DependentUpon>201406241343061_addTags.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
