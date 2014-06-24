@@ -12,5 +12,6 @@
     <Grid>        
         <local:LoginView x:Name="loginView"/>
         <local:SignInView x:Name="signInView" Visibility="Hidden"/>
+        <local:ChatView x:Name="chatView" Visibility="Hidden"/>
     </Grid>
 </Window>

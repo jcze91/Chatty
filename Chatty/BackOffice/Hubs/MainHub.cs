@@ -26,7 +26,13 @@ namespace BackOffice.Hubs
 
         public int Login(string username, string password)
         {
-            var res = Startup.container.Resolve<UserService>().SearchFor(x => x.Username == username && x.Password == password && x.isEnable).SingleOrDefault();
+            var srv = Startup.container.Resolve<UserService>();
+            var q = srv.SearchFor(x => x.Username == username && x.Password == password && x.isEnable);
+
+            if (q == null)
+                return -1;
+
+            var res = q.SingleOrDefault();
             return res == null ? -1 : res.Id;
         }
 
@@ -39,12 +45,13 @@ namespace BackOffice.Hubs
                 Firstname = firstname,
                 Password = password,
                 Email = email,
-                isEnable = true
+                isEnable = true,
+                isAdmin = false
             });
             return res != null;
         }
 
-        public void Execute(string[] args)
+        public dynamic Execute(string[] args)
         {
             var result = runtime.Invoke(args);
 
@@ -58,6 +65,8 @@ namespace BackOffice.Hubs
              */
             else
                 Clients.All.Callback(args[0], result);
+
+            return result;
         }
     }
 }

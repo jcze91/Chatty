@@ -1,0 +1,94 @@
+﻿<UserControl x:Class="Chatty.Views.ChatView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:Chatty.Views"
+             mc:Ignorable="d"
+             xmlns:toolkit="http://schemas.xceed.com/wpf/xaml/toolkit"
+             DataContext="{Binding Source={StaticResource Locator}, Path=Chat}"
+             d:DesignHeight="300" d:DesignWidth="600">
+    <Grid>
+        <Grid.Resources>
+            <DataTemplate x:Key="UserTemplate">
+                <StackPanel>
+                    <TextBlock Text="{Binding Username}"/>
+                    <TextBlock>
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="{}{0} {1}">
+                                <Binding Path="Lastname" />
+                                <Binding Path="Firstname" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                    <TextBlock Text="{Binding Email}"/>
+                </StackPanel>
+            </DataTemplate>
+        </Grid.Resources>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Background="White">
+            <TextBlock Text="{Binding Path=User.Username}" Padding="12 8"
+                       FontWeight="Black"/>
+        </Grid>
+
+        <TabControl Grid.Column="0" Grid.Row="1" Background="White">
+            <TabItem Header="Contacts">
+                <ListBox ItemsSource="{Binding Contacts}" ItemTemplate="{StaticResource UserTemplate}"/>
+            </TabItem>
+
+            <TabItem Header="Groups">
+
+            </TabItem>
+
+            <TabItem Header="Others">
+                <ListBox ItemsSource="{Binding Users}" ItemTemplate="{StaticResource UserTemplate}">
+                    <ListBox.ItemContainerStyle>
+                        <Style TargetType="ListBoxItem">
+                            <Setter Property="ContextMenu">
+                                <Setter.Value>
+                                    <ContextMenu>
+                                        <MenuItem Header="Invite" Command="{Binding InviteCommand}" />
+                                    </ContextMenu>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </ListBox.ItemContainerStyle>
+                </ListBox>
+            </TabItem>
+
+            <TabItem Header="Invitations">
+                <ListBox ItemsSource="{Binding Invitations}" >
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <TextBlock Text="{Binding Username}" />
+                                <TextBlock Text="{Binding Content}" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                    <ListBox.ItemContainerStyle>
+                        <Style TargetType="ListBoxItem">
+                            <Setter Property="ContextMenu">
+                                <Setter.Value>
+                                    <ContextMenu>
+                                        <MenuItem Header="Accept" Command="{Binding AcceptCommand}" />
+                                        <MenuItem Header="Decline" Command="{Binding DeclineCommand}" />
+                                    </ContextMenu>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </ListBox.ItemContainerStyle>
+                </ListBox>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</UserControl>

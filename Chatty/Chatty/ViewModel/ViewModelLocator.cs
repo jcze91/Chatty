@@ -44,12 +44,14 @@ namespace Chatty.ViewModel
 
             SimpleIoc.Default.Register<LoginViewModel>();
             SimpleIoc.Default.Register<SignUpViewModel>();
+            SimpleIoc.Default.Register<ChatViewModel>();
             SimpleIoc.Default.Register<MainViewModel>();
         }
 
         public MainViewModel Main { get { return ServiceLocator.Current.GetInstance<MainViewModel>(); } }
         public LoginViewModel Login{ get { return ServiceLocator.Current.GetInstance<LoginViewModel>(); } }
         public SignUpViewModel SignUp { get { return ServiceLocator.Current.GetInstance<SignUpViewModel>(); } }
+        public ChatViewModel Chat { get { return ServiceLocator.Current.GetInstance<ChatViewModel>(); } }
 
         public static void Cleanup()
         {
