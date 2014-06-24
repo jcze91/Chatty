@@ -1,6 +1,6 @@
 @model Chatty.BackOffice.Models.AdminModel
 @{
-    Layout = "~/Areas/Manager/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <body ng-controller="AdminTabCtrl">
 
@@ -12,7 +12,7 @@
         <nav class="mainnav">
             <div>
                 <ul>
-                    <li class="@(ViewBag.Title == "Messages" ? "active" : " ")">@Html.ActionLink(" ", "Messages", new { @class = "messages", title = "Messages" })</li>
+                    <li class="active">@Html.ActionLink(" ", "Messages", new { @class = "messages", title = "Messages" })</li>
                   </ul>
                 <div class="logout">
                     @using (Html.BeginForm("LogOff", "Auth", FormMethod.Post, new { id = "logoutForm" }))
@@ -41,7 +41,7 @@
     <script type="text/javascript">
         $(document).ready(function () {
             init({
-                adminId: "@Model.ConnectedAdmin.Uid"
+                adminId: "@Model.ConnectedAdmin.Id"
             });
         });
     </script>

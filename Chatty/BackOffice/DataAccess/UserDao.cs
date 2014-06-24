@@ -7,8 +7,16 @@ namespace BackOffice.DataAccess
     {
         public override Dbo.User Insert(Dbo.User entity)
         {
-            var e = base.Insert(entity);
-            WebSecurity.CreateAccount(e.Username, e.Password);
+            Dbo.User e = null;
+            if (!entity.isAdmin)
+                e = base.Insert(entity);
+            else
+            {
+                var password = entity.Password;
+                entity.Password = null;
+                e = base.Insert(entity);
+                WebSecurity.CreateAccount(e.Username, password);
+            }
             return e;
         }
     }

@@ -9,18 +9,30 @@ using Chatty.BackOffice.Filters;
 using System.Net.Mail;
 using System.Net;
 using System.Threading.Tasks;
+using BackOffice.Common;
+using BackOffice;
+using BackOffice.Services;
 
 namespace Chatty.BackOffice.Controllers
 {
     [InitializeSimpleMembership]
     public class AdminController : Controller
     {
+        private UserService userService { get { return (UserService)Startup.container.Resolve(typeof(UserService), "UserService"); } }
+
         public ActionResult Index(string view)
         {
             AdminModel model = new AdminModel();
 
-            if (!WebSecurity.HasUserId)// || !HttpContextDataAccessFactory.GetDataAccess().IsAuth(live.Name))
-                return RedirectToAction("Login", "Auth");
+            if (!WebSecurity.HasUserId)
+                return RedirectToAction("Index", "Auth");
+            var connectedAdmin = userService.SearchFor(u => u.Username == WebSecurity.CurrentUserName).First();
+            UserModel connectedAdminModel = new UserModel
+            {
+                Username = connectedAdmin.Username,
+                Id = connectedAdmin.Id
+            };
+            model.ConnectedAdmin = connectedAdminModel;
 
            return View(model);
        
@@ -32,7 +44,7 @@ namespace Chatty.BackOffice.Controllers
         {
             WebSecurity.Logout();
 
-            return RedirectToAction("Login", "Auth");
+            return RedirectToAction("Index", "Auth");
         }
 
     }

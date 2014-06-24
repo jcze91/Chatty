@@ -19,10 +19,11 @@ namespace BackOffice.Dbo
         [StringLength(255)]
         [Index(IsUnique = true)]
         public string Email { get; set; }
-        [NotMapped]
         [JsonIgnore]
         public string Password { get; set; }
         [JsonIgnore]
         public bool isEnable { get; set; }
+        [JsonIgnore]
+        public bool isAdmin { get; set; }
     }
 }
