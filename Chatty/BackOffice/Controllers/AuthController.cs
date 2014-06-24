@@ -33,7 +33,8 @@ namespace Chatty.BackOffice.Controllers
                     Email = "master@chatty.com",
                     isEnable = true,
                     Firstname = "Chatty",
-                    Lastname = "Master"
+                    Lastname = "Master",
+                    isAdmin = true
                 });
 
             if (WebSecurity.HasUserId)
@@ -55,11 +56,11 @@ namespace Chatty.BackOffice.Controllers
                 if (ModelState.IsValid && WebSecurity.Login(model.UserName, model.Password, persistCookie: model.RememberMe))
                     return RedirectToAction("Index", "Admin");
 
-                return RedirectToAction("Login", new { Error="Login/Password are wrong" });
+                return RedirectToAction("Index", new { Error="Login/Password are wrong" });
             }
             catch (Exception ex)
             {
-                return RedirectToAction("Login", new { Error = "Login/Password are wrong" });
+                return RedirectToAction("Index", new { Error = "Login/Password are wrong" });
 
             }
         }
@@ -70,7 +71,7 @@ namespace Chatty.BackOffice.Controllers
         {
             WebSecurity.Logout();
 
-            return RedirectToAction("Login", "Auth");
+            return RedirectToAction("Index", "Auth");
         }
     }
 }
