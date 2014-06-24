@@ -26,7 +26,7 @@ namespace Chatty.BackOffice.Filters
             {
                 try
                 {
-                    WebSecurity.InitializeDatabaseConnection("ChattySqlClient", "User", "Id", "Username", autoCreateTables: true);
+                    WebSecurity.InitializeDatabaseConnection("ChattyDbContext", "Users", "Id", "Username", autoCreateTables: true);
                 }
                 catch (Exception ex)
                 {

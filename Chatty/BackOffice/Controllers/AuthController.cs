@@ -7,6 +7,10 @@ using System.Web.Security;
 using WebMatrix.WebData;
 using Chatty.BackOffice.Filters;
 using Chatty.BackOffice.Models;
+using BackOffice.Providers;
+using BackOffice.Common;
+using BackOffice.Services;
+using BackOffice.Dbo;
 
 namespace Chatty.BackOffice.Controllers
 {
@@ -15,10 +19,25 @@ namespace Chatty.BackOffice.Controllers
     public class AuthController : Controller
     {
         [AllowAnonymous]
-        public ActionResult Login(string liveName, string error = null)
+        public ActionResult Index(string error = null)
         {
-            if (WebSecurity.HasUserId) // && HttpContextDataAccessFactory.GetDataAccess().IsAuth(liveName))
-                return RedirectToAction("Messages", "Admin", new { LiveName = liveName });
+            UserService userService = new UserService();
+            var superAdminRes = userService.SearchFor(u => u.Username == Constants.SuperAdminLogin);
+            if (superAdminRes.Count() == 0) // premier lancement
+                userService.Insert(new User
+                {
+                    Username = Constants.SuperAdminLogin,
+                    Password = Constants.SuperAdminPass,
+                    UpdatedAt = DateTime.Now,
+                    CreatedAt = DateTime.Now,
+                    Email = "master@chatty.com",
+                    isEnable = true,
+                    Firstname = "Chatty",
+                    Lastname = "Master"
+                });
+
+            if (WebSecurity.HasUserId)
+                return RedirectToAction("Index", "Admin");
                 
             var model = new LoginModel { Error = error };
 

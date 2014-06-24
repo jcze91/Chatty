@@ -12,11 +12,8 @@
         <nav class="mainnav">
             <div>
                 <ul>
-                    <li class="@(ViewBag.Title == "Messages" ? "active" : " ")">@Html.ActionLink(" ", "Messages", new { liveName = @Model.LiveName }, new { @class = "messages", title = "Messages" })</li>
-                    <li class="@(ViewBag.Title == "Users" ? "active" : " ")">@Html.ActionLink(" ", "Users", new { liveName = @Model.LiveName }, new { @class = "users", title = "Users" })</li>
-                    <li class="@(ViewBag.Title == "Tags" ? "active" : " ")">@Html.ActionLink(" ", "Tags", new { liveName = @Model.LiveName }, new { @class = "tags", title = "Tags" })</li>
-                    <li class="@(ViewBag.Title == "Fronts" ? "active" : " ")">@Html.ActionLink(" ", "Fronts", new { liveName = @Model.LiveName }, new { @class = "fronts", title = "Fronts" })</li>
-                </ul>
+                    <li class="@(ViewBag.Title == "Messages" ? "active" : " ")">@Html.ActionLink(" ", "Messages", new { @class = "messages", title = "Messages" })</li>
+                  </ul>
                 <div class="logout">
                     @using (Html.BeginForm("LogOff", "Auth", FormMethod.Post, new { id = "logoutForm" }))
                     {

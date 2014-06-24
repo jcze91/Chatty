@@ -2,7 +2,7 @@
 using Microsoft.Owin;
 using Owin;
 
-[assembly: OwinStartup(typeof(BackOffice.Startup))]
+[assembly: OwinStartup("ChattyConfiguration", typeof(BackOffice.Startup))]
 namespace BackOffice
 {
     public class Startup
