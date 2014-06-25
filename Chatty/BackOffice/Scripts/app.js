@@ -5,7 +5,7 @@
     });
 
     chatty.init = function init(params) {
-        //angular.element($("#adminCtrl")).scope().initChat(params);
+        angular.element($("#adminCtrl")).scope().init(params);
         $(document).tooltip({
             track: true,
             position: {

@@ -3,7 +3,15 @@
         $scope.tab = 0;
 
         $scope.setTab = function (n) {
-            $scope.tab = n;
+            if ($scope.tab != n) {
+                $scope.tab = n;
+                if (n == 0)
+                    $rootScope.$broadcast('initUsers');
+                else if (n == 1)
+                    $rootScope.$broadcast('initDepartments');
+                else if (n == 2)
+                    $rootScope.$broadcast('initConversations');
+            }
         };
 
         $scope.getTabClass = function (n) {

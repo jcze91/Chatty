@@ -2,54 +2,56 @@
     chatty.app.controller("AdminUsersCtrl", ['$scope', '$rootScope', 'chattyService', function ($scope, $rootScope, chattyService) {
         $scope.currentPage = 0;
         $scope.pageSize = 15;
-        $scope.departmentsOrder = 0;
+        $scope.usersOrder = 0;
         $scope.totalPageCount = 1;
-        $scope.filterDepartment = null;
-        $scope.loadingDepartments = true;
-        $scope.departments = [];
+        $scope.filterUser = "";
+        $scope.loadingUsers = true;
+        $scope.users = [];
 
-        $scope.$on('initDepartments', function (e, scope) {
-            $scope.getDepartments();
+        $scope.$on('initUsers', function (e, scope) {
+            $scope.getUsers();
         });
 
         $scope.numberOfPages = function () {
-            return Math.ceil($scope.departments.length / $scope.pageSize);
+            return Math.ceil($scope.Users.length / $scope.pageSize);
         };
 
-        $scope.getDepartments = function (e) {
-            $scope.loadingDepartments = true;
-            chattyService.getUsers($scope.user.id, $scope.user.token, $scope.currentPage, $scope.pageSize, $scope.DepartmentsOrder, $scope.filterDepartment, $.proxy(function (data) {
-                $scope.people = data.items;
-                $scope.totalPageCount = Math.ceil(data.totalCount / $scope.pageSize);
-                $scope.loadingDepartments = false;
+        $scope.getUsers = function (e) {
+            $scope.loadingUsers = true;
+            chattyService.getUsers($scope.user.id, $scope.user.token, $scope.currentPage, $scope.pageSize, $scope.usersOrder, $scope.filterUser, $.proxy(function (data) {
+                $scope.users = [];
+                for (var i = 0; i < data.Items.length; i++)
+                    $scope.users.push(new User(data.Items[i]));
+                $scope.totalPageCount = Math.ceil(data.TotalCount / $scope.pageSize);
+                $scope.loadingUsers = false;
 
                 $scope.$apply();
             }, this));
         };
 
-        $scope.nextDepartments = function (e) {
+        $scope.nextUsers = function (e) {
             $scope.currentPage++;
-            $scope.getDepartments();
+            $scope.getUsers();
         };
 
-        $scope.previousDepartments = function (e) {
+        $scope.previousUsers = function (e) {
             $scope.currentPage--;
-            $scope.getDepartments();
+            $scope.getUsers();
         };
 
         $scope.checkEmptyFilter = function (query) {
-            if (!query.length && $scope.filterDepartment != "") {
-                $scope.filterDepartment = "";
+            if (!query.length && $scope.filterUser != "") {
+                $scope.filterUser = "";
                 $scope.currentPage = 0;
-                $scope.getDepartments();
+                $scope.getUsers();
             }
         };
 
         $scope.enterFilter = function (query) {
-            if ($scope.filterDepartment != query) {
-                $scope.filterDepartment = query;
+            if ($scope.filterUser != query) {
+                $scope.filterUser = query;
                 $scope.currentPage = 0;
-                $scope.getDepartments();
+                $scope.getUsers();
             }
         };
     }]);

@@ -1,5 +1,12 @@
 ﻿(function (chatty) {
     chatty.app.controller("AdminCtrl", ['$scope', '$rootScope', 'chattyService', function ($scope, $rootScope, chattyService) {
+        $scope.user = null;
+
+        $scope.init = function init(attributes) {
+            $scope.user = new User({ Token: attributes.adminToken, Id: attributes.adminId, UserName: attributes.userName });
+            chattyService.init(attributes.restUrl);
+            $rootScope.$broadcast('initUsers');
+        };
         $scope.hideMessage = function () {
             $("#response").animate({
                 opacity: 0

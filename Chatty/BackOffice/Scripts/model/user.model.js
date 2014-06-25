@@ -1,12 +1,11 @@
 function User(attributes){
-    this.token = attributes.token;
-    this.userName = attributes.userName ? attributes.userName : null;
-    this.id = attributes.id;
-    this.messages = attributes.messages? attributes.messages : [];
-    this.avatar = attributes.avatar;
-    this.firstName = attributes.firstName;
-    this.lastName = attributes.lastName;
-    this.isBanned = attributes.IsBanned || false;
+    this.token = attributes.Token;
+    this.userName = attributes.Username;
+    this.id = attributes.Id;
+    this.firstName = attributes.Firstname;
+    this.lastName = attributes.Lastname;
+    this.email = attributes.Email;
+    this.isBanned = attributes.isEnable || false;
 }
 User.prototype.getId = function(){
     return this.id;
@@ -19,10 +18,6 @@ User.prototype.setName = function(userName){
 };
 User.prototype.getName = function(){
     return this.userName;
-};
-
-User.prototype.getAvatar = function(){
-    return this.avatar;
 };
 
 User.prototype.getFirstName = function(){

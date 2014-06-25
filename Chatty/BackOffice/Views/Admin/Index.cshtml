@@ -43,19 +43,26 @@
     <script src="@Url.Content("~/Scripts/angular.min.js")" type="text/javascript"></script>
     <script src="@Url.Content("~/Scripts/directive/compile.directive.js")"></script>
     <script src="@Url.Content("~/Scripts/app.js")"></script>
+    <script src="@Url.Content("~/Scripts/model/user.model.js")"></script>
+
     <script src="@Url.Content("~/Scripts/factory/chattyservice.factory.js")"></script>
     <script src="@Url.Content("~/Scripts/controller/tab.controller.js")"></script>
     <script src="@Url.Content("~/Scripts/controller/admin.controller.js")"></script>
     <script src="@Url.Content("~/Scripts/controller/conversations.controller.js")"></script>
     <script src="@Url.Content("~/Scripts/controller/departments.controller.js")"></script>
     <script src="@Url.Content("~/Scripts/controller/users.controller.js")"></script>
-
-
+    <script src="@Url.Content("~/Scripts/directive/numbersOnly.directive.js")"></script>
+    <script src="@Url.Content("~/Scripts/directive/onBlur.directive.js")"></script>
+    <script src="@Url.Content("~/Scripts/directive/onEnter.directive.js")"></script>
+    <script src="@Url.Content("~/Scripts/directive/onBlurEnter.directive.js")"></script>
 
     <script type="text/javascript">
         $(document).ready(function () {
             init({
-                adminId: "@Model.ConnectedAdmin.Id"
+                adminUserName: "@Model.ConnectedAdmin.Username",
+                adminId: "@Model.ConnectedAdmin.Id",
+                adminToken: "@Model.ConnectedAdmin.Token",
+                restUrl: "@Model.RestURL"
             });
         });
     </script>
