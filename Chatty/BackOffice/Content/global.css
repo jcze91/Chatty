@@ -183,6 +183,7 @@ body, html {
 .settingsblock ul {
 	padding: 20px;
 	padding-bottom: 2px;
+    min-height: 600px;
 }
 
 	.settingsblock ul li {
@@ -368,7 +369,7 @@ select {
 }
 
 .settingsblock input[type="submit"],
-.settingsblock button,
+.settingsblock button
  {
 	opacity: .9;
 	float: right;
