@@ -111,6 +111,26 @@
                         this._deleteCallback(callback);
                     }, this));
             },
+            editUser: function (adminId, adminToken, id, email, firstname, lastname, isBanned, callback_ret) {
+                var callback = "editUser_" + new Date().getTime();
+                this._request("User", "EditUser/" + adminId + "/" + adminToken
+                    + "/" + id + "/" + email + "/" + firstname + "/" + lastname + "/" + isBanned,
+                    callback,
+                    $.proxy(function (data) {
+                        callback_ret && callback_ret(data);
+                        this._deleteCallback(callback);
+                    }, this));
+            },
+            getDepartments: function (adminId, adminToken, page, pageSize, order, filter, callback_ret) {
+                var callback = "getDepartments_" + new Date().getTime();
+                this._request("Department", "GetFilteredDepartments/" + adminId + "/" + adminToken
+                    + "/" + page + "/" + pageSize + "/" + order + this._buildUri({ filter: filter }),
+                    callback,
+                    $.proxy(function (data) {
+                        callback_ret && callback_ret(data);
+                        this._deleteCallback(callback);
+                    }, this));
+            },
         };
     }
     ]);

@@ -7,6 +7,22 @@
         $scope.filterUser = "";
         $scope.loadingUsers = true;
         $scope.users = [];
+        $scope.selectedUser = null;
+
+        $scope.selectUser = function (user) {
+            $scope.selectedUser = user;
+        };
+
+        $scope.editSelectedUser = function () {
+            chattyService.editUser($scope.user.id, $scope.user.token, $scope.selectedUser.id, $scope.selectedUser.email,
+                $scope.selectedUser.firstName, $scope.selectedUser.lastName, $scope.selectedUser.isBanned, $.proxy(function (data) {
+                $rootScope.$broadcast('onInfoMessage', {
+                    type: "success",
+                    message: $scope.selectedUser.userName + " well updated"
+                });
+                $scope.$apply();
+            }, this));
+        };
 
         $scope.$on('initUsers', function (e, scope) {
             $scope.getUsers();

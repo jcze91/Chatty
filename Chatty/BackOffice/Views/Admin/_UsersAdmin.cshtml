@@ -21,7 +21,7 @@
                     <li ng-repeat="user in users" ng-class-even="'even'">
                         <p class="userElt">
                             <span>{{user.userName}}</span>
-                            <button ng-click="show(user.id)">Show</button>
+                            <button ng-click="selectUser(user)">Show</button>
                         </p>
                     </li>
                     <p class="no_item_info" ng-show="!users.length && !filterUserName.length && !loadingUsers">No users</p>
@@ -39,9 +39,28 @@
             </fieldset>
         </div>
 
-        <div>
+        <div ng-show="selectedUser">
             <fieldset>
-                <h1>User infos</h1>
+                <h1><strong style="font-size:18px">{{selectedUser.userName}}</strong> infos</h1>
+                <ul>
+                    <li>
+                        <label for="mail">Email:</label>
+                        <input type="text" name="mail" ng-model="selectedUser.email" />
+                    </li>
+                    <li>
+                        <label for="firstname">First name:</label>
+                        <input type="text" name="firstname" ng-model="selectedUser.firstName" />
+                    </li>
+                    <li>
+                        <label for="lastname">Last name:</label>
+                         <input type="text" name="lastname" ng-model="selectedUser.lastName" />
+                    </li>
+                    <li>
+                        <label for="isbanned">Is banned</label>
+                        <input type="checkbox" name="isbanned" ng-model="selectedUser.isBanned" />
+                    </li>
+                    <p><button ng-click="editSelectedUser()">Edit</button></p>
+                 </ul>
 
             </fieldset>
         </div>

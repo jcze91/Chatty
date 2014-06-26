@@ -26,8 +26,7 @@ namespace BackOffice.DataAccess
         {
             var query = this.ctx.Users.Where(u => !u.isAdmin);
             if (filter != null && filter != "")
-                query = query.Where(u => u.Username.Contains(filter)
-                    || u.Lastname.Contains(filter) || u.Firstname.Contains(filter));
+                query = query.Where(u => u.Username.Contains(filter));
 
             if (order == 0)
                 query = query.OrderByDescending(x => x.Id);
@@ -42,8 +41,7 @@ namespace BackOffice.DataAccess
         {
             var query = this.ctx.Users.Where(u => !u.isAdmin);
             if (filter != null && filter != "")
-                query = query.Where(u => u.Username.Contains(filter)
-                    || u.Lastname.Contains(filter) || u.Firstname.Contains(filter));
+                query = query.Where(u => u.Username.Contains(filter));
 
             if (order == 0)
                 query = query.OrderByDescending(x => x.Id);

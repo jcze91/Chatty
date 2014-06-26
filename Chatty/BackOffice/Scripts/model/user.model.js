@@ -5,7 +5,7 @@ function User(attributes){
     this.firstName = attributes.Firstname;
     this.lastName = attributes.Lastname;
     this.email = attributes.Email;
-    this.isBanned = attributes.isEnable || false;
+    this.isBanned = !attributes.isEnable;
 }
 User.prototype.getId = function(){
     return this.id;
