@@ -119,6 +119,7 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Web" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -255,9 +256,22 @@
     <Compile Include="Migrations\201406242225276_addIndexOnInvitation.Designer.cs">
       <DependentUpon>201406242225276_addIndexOnInvitation.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201406251120226_AddToken.cs" />
+    <Compile Include="Migrations\201406251120226_AddToken.Designer.cs">
+      <DependentUpon>201406251120226_AddToken.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201406251126029_AddConnexionDate.cs" />
+    <Compile Include="Migrations\201406251126029_AddConnexionDate.Designer.cs">
+      <DependentUpon>201406251126029_AddConnexionDate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201406251134122_SetConnexionDateNullable.cs" />
+    <Compile Include="Migrations\201406251134122_SetConnexionDateNullable.Designer.cs">
+      <DependentUpon>201406251134122_SetConnexionDateNullable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\AdminModel.cs" />
+    <Compile Include="Models\PaginateModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ContactProvider.cs" />
@@ -268,6 +282,8 @@
     <Compile Include="Providers\InvitationProvider.cs" />
     <Compile Include="Providers\MessageProvider.cs" />
     <Compile Include="Providers\UserProvider.cs" />
+    <Content Include="Content\jquery-ui.css" />
+    <Content Include="Scripts\controller\admin.controller.js" />
     <Compile Include="Services\ContactService.svc.cs">
       <DependentUpon>ContactService.svc</DependentUpon>
     </Compile>
@@ -384,7 +400,6 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="index.html" />
     <Content Include="Scripts\app.js" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
@@ -394,6 +409,15 @@
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\controller\conversations.controller.js" />
+    <Content Include="Scripts\controller\users.controller.js" />
+    <Content Include="Scripts\controller\departments.controller.js" />
+    <Content Include="Scripts\controller\tab.controller.js" />
+    <Content Include="Scripts\factory\chattyservice.factory.js" />
+    <Content Include="Scripts\directive\numbersOnly.directive.js" />
+    <Content Include="Scripts\directive\onBlur.directive.js" />
+    <Content Include="Scripts\directive\onBlurEnter.directive.js" />
+    <Content Include="Scripts\directive\onEnter.directive.js" />
     <Content Include="Scripts\jquery-2.1.1.js" />
     <Content Include="Scripts\jquery-2.1.1.min.js" />
     <Content Include="Scripts\jquery.signalR-2.1.0.js" />
@@ -403,15 +427,14 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\libs\angular.min.js" />
-    <Content Include="Scripts\libs\compile.directive.js" />
+    <Content Include="Scripts\angular.min.js" />
+    <Content Include="Scripts\directive\compile.directive.js" />
     <Content Include="Scripts\libs\hackIe.js" />
     <Content Include="Scripts\libs\html5.js" />
-    <Content Include="Scripts\libs\jquery-1.8.2.min.js" />
-    <Content Include="Scripts\libs\jquery.jsonp.js" />
-    <Content Include="Scripts\libs\jquery.signalR-2.0.0.min.js" />
-    <Content Include="Scripts\libs\json2.js" />
-    <Content Include="Scripts\model\user.model.class.js" />
+    <Content Include="Scripts\jquery-ui-1.10.3.custom.min.js" />
+    <Content Include="Scripts\jquery.jsonp.js" />
+    <Content Include="Scripts\json2.js" />
+    <Content Include="Scripts\model\user.model.js" />
     <Content Include="Scripts\modernizr-2.7.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.js" />
@@ -427,7 +450,9 @@
     <Content Include="Services\InvitationService.svc" />
     <Content Include="Services\MessageService.svc" />
     <Content Include="Services\UserService.svc" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -439,12 +464,13 @@
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Auth\Index.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Admin\_UsersAdmin.cshtml" />
+    <Content Include="Views\Admin\_ConversationsAdmin.cshtml" />
+    <Content Include="Views\Admin\_DepartmentsAdmin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Scripts\controller\" />
-    <Folder Include="Scripts\directive\" />
-    <Folder Include="Scripts\factory\" />
+    <Folder Include="obj\" />
     <Folder Include="Scripts\filter\" />
   </ItemGroup>
   <ItemGroup>
@@ -468,6 +494,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201406242225276_addIndexOnInvitation.resx">
       <DependentUpon>201406242225276_addIndexOnInvitation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201406251120226_AddToken.resx">
+      <DependentUpon>201406251120226_AddToken.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201406251126029_AddConnexionDate.resx">
+      <DependentUpon>201406251126029_AddConnexionDate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201406251134122_SetConnexionDateNullable.resx">
+      <DependentUpon>201406251134122_SetConnexionDateNullable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

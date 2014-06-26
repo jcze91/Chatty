@@ -16,7 +16,7 @@ namespace BackOffice.Utils
         where E : BaseEntity<K>, new()
     {
 
-        private ChattyDbContext ctx { get { return Startup.container.Resolve<ChattyDbContext>(); } }
+        protected ChattyDbContext ctx { get { return Startup.container.Resolve<ChattyDbContext>(); } }
 
         public virtual E GetById(K id)
         {

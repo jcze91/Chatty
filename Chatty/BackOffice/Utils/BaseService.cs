@@ -16,7 +16,7 @@ namespace BackOffice.Utils
         where E : BaseEntity<K>, new()
         where D : BaseDao<K, E>, new()
     {
-        private D dao { get { return Startup.container.Resolve<D>(); } }
+        protected D dao { get { return Startup.container.Resolve<D>(); } }
 
         public virtual E GetById(K id)
         {
