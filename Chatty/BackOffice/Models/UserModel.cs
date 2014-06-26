@@ -29,5 +29,10 @@ namespace BackOffice.Models
         public int Id;
         [JsonIgnore]
         public string Token;
+        [JsonProperty("connexionDate")]
+        public string ConnexionDate { get; set; }
+        [JsonProperty("job")]
+        public string Job { get; set; }
+        public int DepartmentId { get; set; }
     }
 }

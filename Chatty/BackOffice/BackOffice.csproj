@@ -272,6 +272,10 @@
     <Compile Include="Migrations\201406261429284_AddMoreUserInfo.Designer.cs">
       <DependentUpon>201406261429284_AddMoreUserInfo.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201406262203319_AddJobUSer.cs" />
+    <Compile Include="Migrations\201406262203319_AddJobUSer.Designer.cs">
+      <DependentUpon>201406262203319_AddJobUSer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\DepartmentModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
@@ -287,6 +291,9 @@
     <Compile Include="Providers\InvitationProvider.cs" />
     <Compile Include="Providers\MessageProvider.cs" />
     <Compile Include="Providers\UserProvider.cs" />
+    <Content Include="Content\img\menu_ico_admin.png" />
+    <Content Include="Content\img\menu_ico_departments.png" />
+    <Content Include="Content\img\menu_ico_discussions.png" />
     <Content Include="Content\jquery-ui.css" />
     <Content Include="Scripts\controller\admin.controller.js" />
     <Compile Include="Services\ContactService.svc.cs">
@@ -327,32 +334,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\global.css" />
-    <Content Include="Content\img\1375983601_Cancel.png" />
-    <Content Include="Content\img\1375983610_Save.png" />
-    <Content Include="Content\img\1375985060_Save.png" />
-    <Content Include="Content\img\1375985081_Cancel.png" />
-    <Content Include="Content\img\accept.png" />
-    <Content Include="Content\img\add-tag.png" />
-    <Content Include="Content\img\answer_close.png" />
-    <Content Include="Content\img\avatar_blank.png" />
-    <Content Include="Content\img\avatar_blank_tiny.png" />
-    <Content Include="Content\img\block.png" />
-    <Content Include="Content\img\btn_refuse.png" />
-    <Content Include="Content\img\btn_valid.png" />
     <Content Include="Content\img\chargement.gif" />
-    <Content Include="Content\img\check-tweet-bad.png" />
-    <Content Include="Content\img\check-tweet-ok.png" />
-    <Content Include="Content\img\check_off.png" />
-    <Content Include="Content\img\check_on.png" />
-    <Content Include="Content\img\close.gif" />
-    <Content Include="Content\img\close.png" />
-    <Content Include="Content\img\collapse.png" />
-    <Content Include="Content\img\delete.png" />
-    <Content Include="Content\img\edit-exit.png" />
-    <Content Include="Content\img\edit-save.png" />
-    <Content Include="Content\img\ico_like.png" />
-    <Content Include="Content\img\ico_like_hover.png" />
-    <Content Include="Content\img\ico_like_liked.png" />
     <Content Include="Content\img\jquery-ui\animated-overlay.gif" />
     <Content Include="Content\img\jquery-ui\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\img\jquery-ui\ui-bg_flat_75_ffffff_40x100.png" />
@@ -374,33 +356,7 @@
     <Content Include="Content\img\jquery-ui\ui-icons_cd0a0a_256x240.png" />
     <Content Include="Content\img\loader.gif" />
     <Content Include="Content\img\logout.png" />
-    <Content Include="Content\img\mainfront.png" />
-    <Content Include="Content\img\mainfront_active.png" />
-    <Content Include="Content\img\menu_ico_fronts.png" />
-    <Content Include="Content\img\menu_ico_messages.png" />
-    <Content Include="Content\img\menu_ico_polls.png" />
-    <Content Include="Content\img\menu_ico_settings.png" />
-    <Content Include="Content\img\menu_ico_stats.png" />
-    <Content Include="Content\img\menu_ico_tags.png" />
     <Content Include="Content\img\menu_ico_users.png" />
-    <Content Include="Content\img\newPanel.png" />
-    <Content Include="Content\img\pop_close.png" />
-    <Content Include="Content\img\scrollBottom.png" />
-    <Content Include="Content\img\search.png" />
-    <Content Include="Content\img\send.png" />
-    <Content Include="Content\img\set_front_tags.png" />
-    <Content Include="Content\img\smiley-sprite.png" />
-    <Content Include="Content\img\sort.png" />
-    <Content Include="Content\img\sprite.png" />
-    <Content Include="Content\img\star.png" />
-    <Content Include="Content\img\star_off.png" />
-    <Content Include="Content\img\star_on.png" />
-    <Content Include="Content\img\tag-delete.png" />
-    <Content Include="Content\img\tag-left.png" />
-    <Content Include="Content\img\tag-right.png" />
-    <Content Include="Content\img\tooltip.png" />
-    <Content Include="Content\img\uncollapse.png" />
-    <Content Include="Content\img\unroll.png" />
     <Content Include="Content\reset.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -496,6 +452,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201406261429284_AddMoreUserInfo.resx">
       <DependentUpon>201406261429284_AddMoreUserInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201406262203319_AddJobUSer.resx">
+      <DependentUpon>201406262203319_AddJobUSer.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

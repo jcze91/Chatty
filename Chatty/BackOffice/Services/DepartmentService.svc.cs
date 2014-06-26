@@ -9,6 +9,59 @@ namespace BackOffice.Services
     {
         private UserService userService { get { return (UserService)Startup.container.Resolve(typeof(UserService), "UserService"); } }
 
+        [WebGet(UriTemplate = "AddDepartment/{adminId}/{token}/{departmentName}",
+           ResponseFormat = WebMessageFormat.Json)]
+        public string AddDepartment(string adminId, string token, string departmentName)
+        {
+            int iadminId = -1;
+            int.TryParse(adminId, out iadminId);
+
+            var admin = userService.GetById(iadminId);
+            if (admin.Token != token)
+                return null;
+
+            var departmentExists = this.SearchFor(d => d.Name == departmentName).Any();
+            if (departmentExists)
+                return "ERROR";
+            Dbo.Department newDpt = new Dbo.Department();
+            newDpt.Name = departmentName;
+            this.Insert(newDpt);
+
+            return "SUCCESS";
+        }
+
+        [WebGet(UriTemplate = "GetDepartment/{adminId}/{token}/{departmentId}",
+            ResponseFormat = WebMessageFormat.Json)]
+        public DepartmentModel GetDepartment(string adminId, string token, string departmentId)
+        {
+            int idepartmentId = -1;
+            int.TryParse(departmentId, out idepartmentId);
+            int iadminId = -1;
+            int.TryParse(adminId, out iadminId);
+
+            var admin = userService.GetById(iadminId);
+            if (admin.Token != token)
+                return null;
+
+            var department = this.GetById(idepartmentId);
+            var users = userService.SearchFor(u => u.DepartmentId == department.Id).Select(user => new UserModel {
+                    Id = user.Id,
+                    isEnable = user.isEnable,
+                    Lastname = user.Lastname,
+                    Firstname = user.Firstname,
+                    Username = user.Username,
+                    Email = user.Email,
+                    ConnexionDate = user.ConnexionDate.ToString(),
+                    Job = user.Job
+            }).ToList();
+            return new DepartmentModel
+            {
+                Id = department.Id,
+                Name = department.Name,
+                Users = users,
+                UsersCount = users.Count
+            };
+        }
         [WebGet(UriTemplate = "GetFilteredDepartments/{adminId}/{token}/{page}/{pageSize}/{order}?filter={filter}",
            ResponseFormat = WebMessageFormat.Json)]
         public PaginateModel<DepartmentModel> GetFilteredDepartments(string adminId, string token, string page, string pageSize, string order, string filter = null)

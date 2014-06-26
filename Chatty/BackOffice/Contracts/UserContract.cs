@@ -13,6 +13,6 @@ namespace BackOffice.Contracts
                                     string order, string filter = null);
         [OperationContract]
         UserModel EditUser(string adminId, string token, string userId, string userEmail, string userFirstName, string userLastName,
-            string isBanned);
+            string job, string departmentId, string isBanned);
     }
 }

@@ -81,7 +81,6 @@ body, html {
 			.mainnav ul li a.users { background: url('img/menu_ico_users.png') no-repeat center; }
 			.mainnav ul li a.departments { background: url('img/menu_ico_departments.png') no-repeat center; }
 			.mainnav ul li a.discussions { background: url('img/menu_ico_discussions.png') no-repeat center; }
-			.mainnav ul li a.admin { background: url('img/menu_ico_admin.png') no-repeat center; }
 
 			.mainnav div.logout {
 				cursor: pointer;
@@ -526,24 +525,6 @@ select {
 	background: -ms-linear-gradient(top, #3C92C2 0%,#1E4A66 100%); /* IE10+ */
 	background: linear-gradient(to bottom, #3C92C2 0%,#1E4A66 100%); /* W3C */
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3C92C2', endColorstr='#1E4A66',GradientType=0 ); /* IE6-9 */
-}
-
-.settingsblock ul li p.userElt button.delete_tag div
-{
-	width:16px;
-	height:16px;
-	background: url(img/tag-delete.png) no-repeat;
-}
-
-.settingsblock ul li p.userElt button.edit_tooltip_tag div
-{
-	width:16px;
-	height:16px;
-	background: url(img/tooltip.png) no-repeat;
-}
-
-.settingsblock ul li p.userElt.tooltip_editing {
-	height:65px;
 }
 
 .settingsblock ul li p.userElt input[type=text] {

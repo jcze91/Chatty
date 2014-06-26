@@ -1,13 +1,14 @@
 ﻿(function (chatty) {
     chatty.app.controller("AdminUsersCtrl", ['$scope', '$rootScope', 'chattyService', function ($scope, $rootScope, chattyService) {
         $scope.currentPage = 0;
-        $scope.pageSize = 15;
+        $scope.pageSize = 12;
         $scope.usersOrder = 0;
         $scope.totalPageCount = 1;
         $scope.filterUser = "";
         $scope.loadingUsers = true;
         $scope.users = [];
         $scope.selectedUser = null;
+        $scope.departmentsList = [];
 
         $scope.selectUser = function (user) {
             $scope.selectedUser = user;
@@ -15,7 +16,8 @@
 
         $scope.editSelectedUser = function () {
             chattyService.editUser($scope.user.id, $scope.user.token, $scope.selectedUser.id, $scope.selectedUser.email,
-                $scope.selectedUser.firstName, $scope.selectedUser.lastName, $scope.selectedUser.isBanned, $.proxy(function (data) {
+                $scope.selectedUser.firstName, $scope.selectedUser.lastName, $scope.selectedUser.job,
+                $scope.selectedUser.departmentId, $scope.selectedUser.isBanned, $.proxy(function (data) {
                 $rootScope.$broadcast('onInfoMessage', {
                     type: "success",
                     message: $scope.selectedUser.userName + " well updated"
@@ -26,6 +28,7 @@
 
         $scope.$on('initUsers', function (e, scope) {
             $scope.getUsers();
+            $scope.getAllDepartments();
         });
 
         $scope.numberOfPages = function () {
@@ -44,7 +47,15 @@
                 $scope.$apply();
             }, this));
         };
+        $scope.getAllDepartments = function (e) {
+            chattyService.getDepartments($scope.user.id, $scope.user.token, $scope.currentPage, 99999, $scope.usersOrder, "", $.proxy(function (data) {
+                $scope.departmentsList = [];
+                for (var i = 0; i < data.Items.length; i++)
+                    $scope.departmentsList.push(new Department(data.Items[i]));
 
+                $scope.$apply();
+            }, this));
+        };
         $scope.nextUsers = function (e) {
             $scope.currentPage++;
             $scope.getUsers();

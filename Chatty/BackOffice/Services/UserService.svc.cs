@@ -10,15 +10,20 @@ namespace BackOffice.Services
 {
     public class UserService : Utils.BaseService<int, Dbo.User, DataAccess.UserDao>, Contracts.UserContract 
     {
-        [WebGet(UriTemplate = "EditUser/{adminId}/{token}/{userId}/{userEmail}/{userFirstName}/{userLastName}/{isBanned}",
+        [WebGet(UriTemplate = "EditUser/{adminId}/{token}/{userId}/{userEmail}/{userFirstName}/{userLastName}/{job}/{departmentId}/{isBanned}",
              ResponseFormat = WebMessageFormat.Json)]
-        public UserModel EditUser(string adminId, string token, string userId, string userEmail, string userFirstName, string userLastName, string isBanned)
+        public UserModel EditUser(string adminId, string token, string userId, string userEmail, string userFirstName, string userLastName, string job,
+                string departmentId, string isBanned)
         {
             int iadminId = -1;
             int iuserId = -1;
+            int idepartmentId = -1;
+
             bool bisBanned = false;
             int.TryParse(adminId, out iadminId);
             int.TryParse(userId, out iuserId);
+            int.TryParse(departmentId, out idepartmentId);
+
             bool.TryParse(isBanned, out bisBanned);
 
             var admin = this.GetById(iadminId);
@@ -29,7 +34,10 @@ namespace BackOffice.Services
             user.Email = userEmail;
             user.Firstname = userFirstName;
             user.Lastname = userLastName;
-            user.isEnable = bisBanned;
+            user.isEnable = !bisBanned;
+            user.Job = job;
+            user.DepartmentId = idepartmentId;
+            this.dao.Update(user);
             return new UserModel
                 {
                     Id = user.Id,
@@ -37,7 +45,10 @@ namespace BackOffice.Services
                     Lastname = user.Lastname,
                     Firstname = user.Firstname,
                     Username = user.Username,
-                    Email = user.Email
+                    Email = user.Email,
+                    ConnexionDate = user.ConnexionDate.ToString(),
+                    Job = user.Job,
+                    DepartmentId = user.DepartmentId
                 };
         }
         [WebGet(UriTemplate = "GetFilteredUsers/{adminId}/{token}/{page}/{pageSize}/{order}?filter={filter}",
@@ -65,7 +76,10 @@ namespace BackOffice.Services
                     Lastname = u.Lastname,
                     Firstname = u.Firstname,
                     Username = u.Username,
-                    Email = u.Email
+                    Email = u.Email,
+                    ConnexionDate = u.ConnexionDate.ToString(),
+                    Job = u.Job,
+                    DepartmentId = u.DepartmentId
                 }).ToList();
             var totalCount = this.dao.GetFilteredUsersCount(ipage, ipageSize, iorder, filter);
             return new PaginateModel<UserModel>

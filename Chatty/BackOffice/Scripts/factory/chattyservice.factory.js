@@ -111,10 +111,10 @@
                         this._deleteCallback(callback);
                     }, this));
             },
-            editUser: function (adminId, adminToken, id, email, firstname, lastname, isBanned, callback_ret) {
+            editUser: function (adminId, adminToken, id, email, firstname, lastname, job, departmentId, isBanned, callback_ret) {
                 var callback = "editUser_" + new Date().getTime();
                 this._request("User", "EditUser/" + adminId + "/" + adminToken
-                    + "/" + id + "/" + email + "/" + firstname + "/" + lastname + "/" + isBanned,
+                    + "/" + id + "/" + email + "/" + firstname + "/" + lastname + "/" + job + "/" + departmentId + "/" + isBanned,
                     callback,
                     $.proxy(function (data) {
                         callback_ret && callback_ret(data);
@@ -125,6 +125,26 @@
                 var callback = "getDepartments_" + new Date().getTime();
                 this._request("Department", "GetFilteredDepartments/" + adminId + "/" + adminToken
                     + "/" + page + "/" + pageSize + "/" + order + this._buildUri({ filter: filter }),
+                    callback,
+                    $.proxy(function (data) {
+                        callback_ret && callback_ret(data);
+                        this._deleteCallback(callback);
+                    }, this));
+            },
+            getDepartment: function (adminId, adminToken, departmentId, callback_ret) {
+                var callback = "getDepartment_" + new Date().getTime();
+                this._request("Department", "GetDepartment/" + adminId + "/" + adminToken
+                    + "/" + departmentId,
+                    callback,
+                    $.proxy(function (data) {
+                        callback_ret && callback_ret(data);
+                        this._deleteCallback(callback);
+                    }, this));
+            },
+            addDepartment: function (adminId, adminToken, departmentName, callback_ret) {
+                var callback = "addDepartment_" + new Date().getTime();
+                this._request("Department", "AddDepartment/" + adminId + "/" + adminToken
+                    + "/" + departmentName,
                     callback,
                     $.proxy(function (data) {
                         callback_ret && callback_ret(data);

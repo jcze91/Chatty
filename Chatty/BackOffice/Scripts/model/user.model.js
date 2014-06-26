@@ -6,6 +6,9 @@ function User(attributes){
     this.lastName = attributes.Lastname;
     this.email = attributes.Email;
     this.isBanned = !attributes.isEnable;
+    this.connexionDate = attributes.ConnexionDate;
+    this.job = attributes.Job;
+    this.departmentId = attributes.DepartmentId;
 }
 User.prototype.getId = function(){
     return this.id;

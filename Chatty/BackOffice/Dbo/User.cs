@@ -35,6 +35,8 @@ namespace BackOffice.Dbo
         [StringLength(255)]
         public string Token { get; set; }
         public DateTime? ConnexionDate { get; set; }
+        [StringLength(255)]
+        public string Job { get; set; }
 
     }
 }

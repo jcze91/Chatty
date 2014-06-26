@@ -44,6 +44,18 @@
                 <h1><strong style="font-size:18px">{{selectedUser.userName}}</strong> infos</h1>
                 <ul>
                     <li>
+                        <label for="job">Job:</label>
+                        <input type="text" name="job" ng-model="selectedUser.job" />
+                    </li>
+                    <li>
+                        <label for="department">Department: </label>
+                        <select
+                                ng-model="selectedUser.departmentId"
+                                ng-options="dpt.id as dpt.name group by dpt.title for dpt in departmentsList">
+                            <option>--</option>
+                        </select>
+                    </li>
+                    <li>
                         <label for="mail">Email:</label>
                         <input type="text" name="mail" ng-model="selectedUser.email" />
                     </li>
@@ -58,6 +70,9 @@
                     <li>
                         <label for="isbanned">Is banned</label>
                         <input type="checkbox" name="isbanned" ng-model="selectedUser.isBanned" />
+                    </li>
+                    <li>
+                        <label>Last connexion date: {{selectedUser.connexionDate}}</label>
                     </li>
                     <p><button ng-click="editSelectedUser()">Edit</button></p>
                  </ul>
