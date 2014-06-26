@@ -80,9 +80,9 @@ namespace Chatty.ViewModel
         async private void SignUp()
         {
             isSigningUp = true;
-            var res = await MainViewModel.Proxy.Invoke<bool>("SignUp", new object[] { username, lastname, firstname, password.sha1(), email });
+            var res = await MainViewModel.Proxy.Invoke<Dbo.User>("Execute", new object[] { new string[] { "user-insert", username, lastname, firstname, email, password.sha1(), true.ToString() } });
             isSigningUp = false;
-            if (res)
+            if (res != null)
                 OnSigned(EventArgs.Empty);
         }
 

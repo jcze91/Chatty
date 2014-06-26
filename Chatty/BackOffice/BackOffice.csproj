@@ -268,6 +268,10 @@
     <Compile Include="Migrations\201406251134122_SetConnexionDateNullable.Designer.cs">
       <DependentUpon>201406251134122_SetConnexionDateNullable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201406261429284_AddMoreUserInfo.cs" />
+    <Compile Include="Migrations\201406261429284_AddMoreUserInfo.Designer.cs">
+      <DependentUpon>201406261429284_AddMoreUserInfo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\AdminModel.cs" />
@@ -503,6 +507,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201406251134122_SetConnexionDateNullable.resx">
       <DependentUpon>201406251134122_SetConnexionDateNullable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201406261429284_AddMoreUserInfo.resx">
+      <DependentUpon>201406261429284_AddMoreUserInfo.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

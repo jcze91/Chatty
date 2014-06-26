@@ -28,8 +28,13 @@ namespace BackOffice.Dbo
         public bool isEnable { get; set; }
         [JsonIgnore]
         public bool isAdmin { get; set; }
+
+        public int DepartmentId { get; set; }
+        public byte[] Thumbnail { get; set; }
+
         [StringLength(255)]
         public string Token { get; set; }
         public DateTime? ConnexionDate { get; set; }
+
     }
 }

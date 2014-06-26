@@ -18,34 +18,16 @@ namespace BackOffice.Utils
     {
         protected D dao { get { return Startup.container.Resolve<D>(); } }
 
-        public virtual E GetById(K id)
-        {
-            return dao.GetById(id);
-        }
+        public virtual E GetById(K id) { return dao.GetById(id); }
 
-        public virtual E Insert(E entity)
-        {
-            return dao.Insert(entity);
-        }
+        public virtual E Insert(E entity) { return dao.Insert(entity); }
 
-        public virtual bool Delete(K id)
-        {
-            return dao.Delete(id);
-        }
+        public virtual bool Delete(K id) { return dao.Delete(id); }
 
-        public virtual E Update(E entity)
-        {
-            return dao.Update(entity);
-        }
+        public virtual E Update(E entity) { return dao.Update(entity); }
 
-        public virtual IEnumerable<E> SearchFor(Func<E, bool> predicate)
-        {
-            return dao.SearchFor(predicate);
-        }
+        public virtual IEnumerable<E> SearchFor(Func<E, bool> predicate) { return dao.SearchFor(predicate); }
 
-        public virtual IEnumerable<E> GetAll()
-        {
-            return dao.GetAll();
-        }
+        public virtual IEnumerable<E> GetAll() { return dao.GetAll(); }
     }
 }

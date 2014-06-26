@@ -21,7 +21,11 @@ namespace Chatty
 
         private async void LogOut()
         {
-            await ViewModel.MainViewModel.Proxy.Invoke("LogOut", new object[] { ViewModel.ChatViewModel.userId });
+            try
+            {
+                await ViewModel.MainViewModel.Proxy.Invoke("LogOut", new object[] { ViewModel.ChatViewModel.userId });
+            }
+            catch { }
         }
     }
 }

@@ -47,27 +47,15 @@ namespace BackOffice.Hubs
 
         public void LogOut(int uid)
         {
-            var map = Startup.container.Resolve<ConcurrentDictionary<string, int>>();
-            var entry = map.SingleOrDefault(x => x.Value == uid);
-            int outValue;
-            map.TryRemove(entry.Key, out outValue);
-            Clients.All.OnConnectionInfo("deconnexion", uid);
-        }
-
-
-        public bool SignUp(string username, string lastname, string firstname, string password, string email)
-        {
-            var res = Startup.container.Resolve<UserService>().Insert(new User()
+            try
             {
-                Username = username,
-                Lastname = lastname,
-                Firstname = firstname,
-                Password = password,
-                Email = email,
-                isEnable = true,
-                isAdmin = false
-            });
-            return res != null;
+                var map = Startup.container.Resolve<ConcurrentDictionary<string, int>>();
+                var entry = map.SingleOrDefault(x => x.Value == uid);
+                int outValue;
+                map.TryRemove(entry.Key, out outValue);
+                Clients.All.OnConnectionInfo("deconnexion", uid);
+            }
+            catch { }
         }
 
         public bool IsUserOnline(int uid)
