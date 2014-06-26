@@ -4,12 +4,19 @@ using System.Windows.Input;
 
 namespace Chatty.Dbo
 {
-    public partial class User : Utils.BaseEntity<int>
+    public partial class User : Utils.BaseModel<int>
     {
         public string Username { get; set; }
         public string Lastname { get; set; }
         public string Firstname { get; set; }
         public string Email { get; set; }
+
+        private bool isOnline;
+        public bool IsOnline
+        {
+            get { return isOnline; }
+            set { SetField(ref isOnline, value, "IsOnline"); }
+        }
 
         private ICommand _inviteCommand;
         public ICommand InviteCommand
@@ -20,6 +27,12 @@ namespace Chatty.Dbo
                     _inviteCommand = new RelayCommand(Invite);
                 return _inviteCommand;
             }
+        }
+
+        protected override async void Initialize()
+        {
+            base.Initialize();
+            IsOnline = await MainViewModel.Proxy.Invoke<bool>("IsUserOnline", new object[] { Id });
         }
 
         async private void Invite()

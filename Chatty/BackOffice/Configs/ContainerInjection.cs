@@ -3,6 +3,7 @@ using BackOffice.Providers;
 using BackOffice.Services;
 using BackOffice.Utils;
 using Microsoft.Practices.Unity;
+using System.Collections.Concurrent;
 
 namespace BackOffice.Configs
 {
@@ -40,7 +41,7 @@ namespace BackOffice.Configs
              * Runtime
              */
             this.RegisterInstance<Runtime>(new Runtime());
-            
+
             /**
              * Providers
              */
@@ -52,6 +53,11 @@ namespace BackOffice.Configs
             this.RegisterInstance<MessageProvider>(new MessageProvider());
             this.RegisterInstance<DepartmentProvider>(new DepartmentProvider());
             this.RegisterInstance<UserProvider>(new UserProvider());
+
+            /**
+             * Dictionary for mapping online/offline users
+             */
+            this.RegisterInstance<ConcurrentDictionary<string, int>>(new ConcurrentDictionary<string, int>());
         }
     }
 }

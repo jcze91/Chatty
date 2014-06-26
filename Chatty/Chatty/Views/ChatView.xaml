@@ -11,18 +11,27 @@
     <Grid>
         <Grid.Resources>
             <DataTemplate x:Key="UserTemplate">
-                <StackPanel>
-                    <TextBlock Text="{Binding Username}"/>
-                    <TextBlock>
-                        <TextBlock.Text>
-                            <MultiBinding StringFormat="{}{0} {1}">
-                                <Binding Path="Lastname" />
-                                <Binding Path="Firstname" />
-                            </MultiBinding>
-                        </TextBlock.Text>
-                    </TextBlock>
-                    <TextBlock Text="{Binding Email}"/>
-                </StackPanel>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="5"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <Rectangle Fill="{Binding IsOnline, Converter={StaticResource BoolToColor}}"/>
+
+                    <StackPanel Grid.Column="1">
+                        <TextBlock Text="{Binding Username}"/>
+                        <TextBlock>
+                            <TextBlock.Text>
+                                <MultiBinding StringFormat="{}{0} {1}">
+                                    <Binding Path="Lastname" />
+                                    <Binding Path="Firstname" />
+                                </MultiBinding>
+                            </TextBlock.Text>
+                        </TextBlock>
+                        <TextBlock Text="{Binding Email}"/>
+                    </StackPanel>
+                </Grid>
             </DataTemplate>
         </Grid.Resources>
 
@@ -121,7 +130,8 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="auto"/>
                 </Grid.ColumnDefinitions>
-                <TextBox Padding="8 2" Text="{Binding Path=CurrentMessage, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBox Padding="8 2" Text="{Binding Path=CurrentMessage, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         MaxLength="900"/>
                 <Button Grid.Column="1" Content="Send" Padding="8 2" Command="{Binding SendMessageCommand}"/>
             </Grid>
         </Grid>

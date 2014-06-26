@@ -77,6 +77,7 @@ namespace Chatty.ViewModel
         public ChatViewModel()
         {
             messages = new ObservableCollection<Dbo.Message>();
+            contacts = new ObservableCollection<Dbo.User>();
         }
 
         private bool canSendMessage()
@@ -123,7 +124,7 @@ namespace Chatty.ViewModel
             Contacts = new ObservableCollection<Dbo.User>();
             var c_users = await MainViewModel.Proxy.Invoke<IList<Dbo.Contact>>("Execute", new object[] { new string[] { "contact-all" } });
             foreach (var contact in c_users.Where(x => x.ContactId != userId && x.UserId == userId))
-                await App.Current.Dispatcher.BeginInvoke((Action)(() => 
+                await App.Current.Dispatcher.BeginInvoke((Action)(() =>
                     Contacts.Add(list.Single(x => x.Id == contact.ContactId))
                 ));
         }
@@ -137,7 +138,7 @@ namespace Chatty.ViewModel
             {
                 Dbo.Invitation item = JsonConvert.DeserializeObject<Dbo.Invitation>(data);
                 if (item.ToUserId == userId)
-                    await App.Current.Dispatcher.BeginInvoke((Action)(() => 
+                    await App.Current.Dispatcher.BeginInvoke((Action)(() =>
                         Invitations.Add(item)
                     ));
             }
@@ -181,5 +182,13 @@ namespace Chatty.ViewModel
             ));
         }
 
+
+        internal void OnConnectionInfo(string info, int uid)
+        {
+            Debug.Print("OnConnectionInfo : {0} => {1}", info, uid);
+            var item = contacts.SingleOrDefault(x => x.Id == uid);
+            if (item != null)
+                item.IsOnline = info == "connexion";
+        }
     }
 }

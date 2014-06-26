@@ -90,8 +90,7 @@ namespace Chatty.ViewModel
         {
             Debug.WriteLine(name + " : " + message);
         }
-
-
+        
 
 
 
@@ -111,7 +110,6 @@ namespace Chatty.ViewModel
             if (handler != null)
                 handler(this, e);
         }
-
     }
 
     public class LoginEventArgs : EventArgs

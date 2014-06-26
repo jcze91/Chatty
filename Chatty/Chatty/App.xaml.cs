@@ -13,5 +13,15 @@ namespace Chatty
     /// </summary>
     public partial class App : Application
     {
+        protected override void OnExit(ExitEventArgs e)
+        {
+            LogOut();
+            base.OnExit(e);
+        }
+
+        private async void LogOut()
+        {
+            await ViewModel.MainViewModel.Proxy.Invoke("LogOut", new object[] { ViewModel.ChatViewModel.userId });
+        }
     }
 }

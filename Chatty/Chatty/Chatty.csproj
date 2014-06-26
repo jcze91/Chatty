@@ -94,6 +94,7 @@
     <Compile Include="Dbo\Invitation.cs" />
     <Compile Include="Dbo\Message.cs" />
     <Compile Include="Dbo\User.cs" />
+    <Compile Include="Helpers\BoolToColorConverter.cs" />
     <Compile Include="Utils\BaseEntity.cs" />
     <Compile Include="Utils\BaseModel.cs" />
     <Compile Include="Utils\BaseNotify.cs" />
