@@ -92,11 +92,11 @@
     </ApplicationDefinition>
     <Compile Include="Dbo\Contact.cs" />
     <Compile Include="Dbo\Invitation.cs" />
+    <Compile Include="Dbo\Message.cs" />
     <Compile Include="Dbo\User.cs" />
     <Compile Include="Utils\BaseEntity.cs" />
     <Compile Include="Utils\BaseModel.cs" />
     <Compile Include="Utils\BaseNotify.cs" />
-    <Compile Include="Utils\CallbackHandler.cs" />
     <Compile Include="Utils\Hash.cs" />
     <Compile Include="ViewModel\ChatViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />

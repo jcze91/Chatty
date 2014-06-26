@@ -21,10 +21,17 @@ namespace BackOffice.Utils
 
         public dynamic Invoke(string[] args)
         {
-            if (args.Length != 0 && commands.ContainsKey(args.First()))
-                return commands[args.First()].Execute(args);
-
-            return null;
+            try
+            {
+                if (args.Length != 0 && commands.ContainsKey(args.First()))
+                    return commands[args.First()].Execute(args);
+                else
+                    return null;
+            }
+            catch
+            {
+                return null;
+            }
         }
     }
 }

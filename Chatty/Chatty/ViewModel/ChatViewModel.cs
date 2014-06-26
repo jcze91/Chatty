@@ -3,7 +3,9 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
+using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace Chatty.ViewModel
@@ -40,6 +42,58 @@ namespace Chatty.ViewModel
             set { SetField(ref invitations, value, "Invitations"); }
         }
 
+        private Dbo.User selectedContact;
+        public Dbo.User SelectedContact
+        {
+            get { return selectedContact; }
+            set { if (SetField(ref selectedContact, value, "SelectedContact")) OnContactChanged(); }
+        }
+
+        private string currentMessage;
+        public string CurrentMessage
+        {
+            get { return currentMessage; }
+            set { SetField(ref currentMessage, value, "CurrentMessage"); }
+        }
+
+        private ObservableCollection<Dbo.Message> messages;
+        public ObservableCollection<Dbo.Message> Messages
+        {
+            get { return messages; }
+            set { SetField(ref messages, value, "Messages"); }
+        }
+
+        private ICommand _sendMessageCommand;
+        public ICommand SendMessageCommand
+        {
+            get
+            {
+                if (_sendMessageCommand == null)
+                    _sendMessageCommand = new RelayCommand(SendMessage, canSendMessage);
+                return _sendMessageCommand;
+            }
+        }
+
+        public ChatViewModel()
+        {
+            messages = new ObservableCollection<Dbo.Message>();
+        }
+
+        private bool canSendMessage()
+        {
+            return !string.IsNullOrWhiteSpace(currentMessage);
+        }
+
+        async private void SendMessage()
+        {
+            var result = await MainViewModel.Proxy.Invoke<object>("Execute", new object[] { new string[] { "message-insert", userId.ToString(), selectedContact.Id.ToString(), currentMessage } });
+            if (result == null || result is bool && !((bool)result))
+                System.Windows.MessageBox.Show("Fail to send message");
+            else
+                CurrentMessage = string.Empty;
+
+        }
+
         async public void LoadData()
         {
             /**
@@ -69,7 +123,9 @@ namespace Chatty.ViewModel
             Contacts = new ObservableCollection<Dbo.User>();
             var c_users = await MainViewModel.Proxy.Invoke<IList<Dbo.Contact>>("Execute", new object[] { new string[] { "contact-all" } });
             foreach (var contact in c_users.Where(x => x.ContactId != userId && x.UserId == userId))
-                await App.Current.Dispatcher.BeginInvoke((Action)(() => Contacts.Add(list.Single(x => x.Id == contact.ContactId))));
+                await App.Current.Dispatcher.BeginInvoke((Action)(() => 
+                    Contacts.Add(list.Single(x => x.Id == contact.ContactId))
+                ));
         }
 
         async public void Callback(string[] args, dynamic result)
@@ -81,7 +137,9 @@ namespace Chatty.ViewModel
             {
                 Dbo.Invitation item = JsonConvert.DeserializeObject<Dbo.Invitation>(data);
                 if (item.ToUserId == userId)
-                    await App.Current.Dispatcher.BeginInvoke((Action)(() => Invitations.Add(item)));
+                    await App.Current.Dispatcher.BeginInvoke((Action)(() => 
+                        Invitations.Add(item)
+                    ));
             }
             else if (cmd == "invitation-delete")
             {
@@ -95,24 +153,33 @@ namespace Chatty.ViewModel
                 if (item.UserId == userId)
                 {
                     var newContact = await MainViewModel.Proxy.Invoke<Dbo.User>("Execute", new object[] { new string[] { "user-id", item.ContactId.ToString() } });
-                    await App.Current.Dispatcher.BeginInvoke((Action)(() => Contacts.Add(newContact)));
+                    await App.Current.Dispatcher.BeginInvoke((Action)(() =>
+                        Contacts.Add(newContact)
+                    ));
+                }
+            }
+            else if (cmd == "message-insert")
+            {
+                Dbo.Message item = JsonConvert.DeserializeObject<Dbo.Message>(data);
+                if (item.UserToId == userId && item.UserFromId == selectedContact.Id || item.UserFromId == userId)
+                {
+                    await App.Current.Dispatcher.BeginInvoke((Action)(() =>
+                            Messages.Add(item)
+                    ));
                 }
             }
         }
 
-        private ICommand _debugCommand;
-        public ICommand DebugCommand
+        async private void OnContactChanged()
         {
-            get
-            {
-                if (_debugCommand == null)
-                    _debugCommand = new RelayCommand(Debug);
-                return _debugCommand;
-            }
+            Messages.Clear();
+            CurrentMessage = string.Empty;
+            var list = await MainViewModel.Proxy.Invoke<IEnumerable<Dbo.Message>>("Execute", new object[] { new string[] { "message-getByContact", userId.ToString(), selectedContact.Id.ToString() } });
+
+            await App.Current.Dispatcher.BeginInvoke((Action)(() =>
+                Messages = new ObservableCollection<Dbo.Message>(list)
+            ));
         }
 
-        async private void Debug()
-        {
-        }
     }
 }
