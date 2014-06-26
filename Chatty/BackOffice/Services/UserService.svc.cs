@@ -1,10 +1,10 @@
-﻿using Chatty.BackOffice.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
 using WebMatrix.WebData;
 using System.Linq;
 using System.ServiceModel.Web;
+using BackOffice.Models;
 
 namespace BackOffice.Services
 {

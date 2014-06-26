@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Web.Security;
 using WebMatrix.WebData;
 using Chatty.BackOffice.Filters;
-using Chatty.BackOffice.Models;
+using BackOffice.Models;
 using BackOffice.Providers;
 using BackOffice.Common;
 using BackOffice.Services;

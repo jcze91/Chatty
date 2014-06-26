@@ -2,7 +2,7 @@
 using System.Configuration;
 using System.Linq;
 using System.Web.Mvc;
-using Chatty.BackOffice.Models;
+using BackOffice.Models;
 using System.Collections.Generic;
 using WebMatrix.WebData;
 using Chatty.BackOffice.Filters;

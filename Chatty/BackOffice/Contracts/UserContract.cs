@@ -1,4 +1,4 @@
-﻿using Chatty.BackOffice.Models;
+﻿using BackOffice.Models;
 using System;
 using System.ServiceModel;
 using System.ServiceModel.Web;
