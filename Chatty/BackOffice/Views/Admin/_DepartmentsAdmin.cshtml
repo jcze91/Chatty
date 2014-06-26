@@ -4,14 +4,39 @@
         
         <div>
             <fieldset>
-                <h1>Department infos</h1>
-                
-            </fieldset>
-        </div>
-        <div class="joined">
-            <fieldset>
                 <h1>Search departments</h1>
+                <ul>
+                    <li class="filters">
+                        <input ng-model="query" type="text" placeholder="Search..." on-enter="enterFilter(query)" ng-change="checkEmptyFilter(query);">
+                        <button ng-click="enterFilter(query);">
+                            ok
+                        </button>
 
+                        <select ng-model="departmentsOrder" ng-change="currentPage=0;getDepartments()">
+                            <option value="0">Choose order...</option>
+                            <option value="1">A-Z order</option>
+                            <option value="2">Z-A order</option>
+                        </select>
+                    </li>
+                    <li class="widget loading" ng-show="loadingDepartments"></li>
+                    <li ng-repeat="department in departments" ng-class-even="'even'">
+                        <p class="departmentElt">
+                            <span>{{department.departmentName}}</span>
+                            <button ng-click="show(department.id)">Show</button>
+                        </p>
+                    </li>
+                    <p class="no_item_info" ng-show="!departments.length && !filterDepartmentName.length && !loadingDepartments">No departments</p>
+                    <p class="no_item_info" ng-show="!departments.length && filterDepartmentName.length && !loadingDepartments">No retrieved departments</p>
+                </ul>
+                <p class="pages" ng-hide="!people.length">
+                    <button ng-disabled="currentPage == 0" ng-click="previousDepartments()">
+                        Previous
+                    </button>
+                    {{currentPage+1}}/{{totalPageCount}}
+                    <button ng-disabled="currentPage >= totalPageCount - 1" ng-click="nextDepartments()">
+                        Next
+                    </button>
+                </p>
             </fieldset>
         </div>
         <div>

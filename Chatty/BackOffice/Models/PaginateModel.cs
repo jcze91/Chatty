@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 
-namespace Chatty.BackOffice.Models
+namespace BackOffice.Models
 {
     public class PaginateModel<T>
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Chatty.BackOffice.Models
+namespace BackOffice.Models
 {
     public class AdminModel
     {

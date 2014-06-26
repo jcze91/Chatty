@@ -4,7 +4,7 @@
         $scope.pageSize = 15;
         $scope.departmentsOrder = 0;
         $scope.totalPageCount = 1;
-        $scope.filterDepartment = null;
+        $scope.filterDepartmentName = "";
         $scope.loadingDepartments = true;
         $scope.departments = [];
 
@@ -13,14 +13,16 @@
         });
 
         $scope.numberOfPages = function () {
-            return Math.ceil($scope.departments.length / $scope.pageSize);
+            return Math.ceil($scope.Departments.length / $scope.pageSize);
         };
 
         $scope.getDepartments = function (e) {
             $scope.loadingDepartments = true;
-            chattyService.getUsers($scope.user.id, $scope.user.token, $scope.currentPage, $scope.pageSize, $scope.DepartmentsOrder, $scope.filterDepartment, $.proxy(function (data) {
-                $scope.people = data.items;
-                $scope.totalPageCount = Math.ceil(data.totalCount / $scope.pageSize);
+            chattyService.getDepartments($scope.user.id, $scope.user.token, $scope.currentPage, $scope.pageSize, $scope.departmentsOrder, $scope.filterUser, $.proxy(function (data) {
+                $scope.departments = [];
+                for (var i = 0; i < data.Items.length; i++)
+                    $scope.departments.push(new User(data.Items[i]));
+                $scope.totalPageCount = Math.ceil(data.TotalCount / $scope.pageSize);
                 $scope.loadingDepartments = false;
 
                 $scope.$apply();
@@ -38,16 +40,16 @@
         };
 
         $scope.checkEmptyFilter = function (query) {
-            if (!query.length && $scope.filterDepartment != "") {
-                $scope.filterDepartment = "";
+            if (!query.length && $scope.filterUser != "") {
+                $scope.filterUser = "";
                 $scope.currentPage = 0;
                 $scope.getDepartments();
             }
         };
 
         $scope.enterFilter = function (query) {
-            if ($scope.filterDepartment != query) {
-                $scope.filterDepartment = query;
+            if ($scope.filterUser != query) {
+                $scope.filterUser = query;
                 $scope.currentPage = 0;
                 $scope.getDepartments();
             }
