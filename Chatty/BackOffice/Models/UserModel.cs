@@ -2,7 +2,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace Chatty.BackOffice.Models
+namespace BackOffice.Models
 {
     public class UserModel
     {

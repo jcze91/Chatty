@@ -273,6 +273,7 @@
       <DependentUpon>201406261429284_AddMoreUserInfo.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\DepartmentModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\AdminModel.cs" />
     <Compile Include="Models\PaginateModel.cs" />
@@ -438,6 +439,7 @@
     <Content Include="Scripts\jquery-ui-1.10.3.custom.min.js" />
     <Content Include="Scripts\jquery.jsonp.js" />
     <Content Include="Scripts\json2.js" />
+    <Content Include="Scripts\model\department.model.js" />
     <Content Include="Scripts\model\user.model.js" />
     <Content Include="Scripts\modernizr-2.7.2.js" />
     <Content Include="Scripts\respond.js" />
