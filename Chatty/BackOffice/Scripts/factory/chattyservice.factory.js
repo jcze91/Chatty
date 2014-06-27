@@ -131,10 +131,50 @@
                         this._deleteCallback(callback);
                     }, this));
             },
+            getGroupDiscussions: function (adminId, adminToken, page, pageSize, callback_ret) {
+                var callback = "getGroupDiscussion_" + new Date().getTime();
+                this._request("Discussion", "GetGroupDiscussions/" + adminId + "/" + adminToken
+                    + "/" + page + "/" + pageSize,
+                    callback,
+                    $.proxy(function (data) {
+                        callback_ret && callback_ret(data);
+                        this._deleteCallback(callback);
+                    }, this));
+            },
+            getSimpleDiscussions: function (adminId, adminToken, page, pageSize, callback_ret) {
+                var callback = "getSimpleDiscussion_" + new Date().getTime();
+                this._request("Message", "GetSimpleDiscussions/" + adminId + "/" + adminToken
+                    + "/" + page + "/" + pageSize,
+                    callback,
+                    $.proxy(function (data) {
+                        callback_ret && callback_ret(data);
+                        this._deleteCallback(callback);
+                    }, this));
+            },
             getDepartment: function (adminId, adminToken, departmentId, callback_ret) {
                 var callback = "getDepartment_" + new Date().getTime();
                 this._request("Department", "GetDepartment/" + adminId + "/" + adminToken
                     + "/" + departmentId,
+                    callback,
+                    $.proxy(function (data) {
+                        callback_ret && callback_ret(data);
+                        this._deleteCallback(callback);
+                    }, this));
+            },
+            getGroupDiscussion: function (adminId, adminToken, groupId, callback_ret) {
+                var callback = "getGroupDiscussion_" + new Date().getTime();
+                this._request("Discussion", "GetGroupDiscussion/" + adminId + "/" + adminToken
+                    + "/" + groupId,
+                    callback,
+                    $.proxy(function (data) {
+                        callback_ret && callback_ret(data);
+                        this._deleteCallback(callback);
+                    }, this));
+            },
+            getSimpleDiscussion: function (adminId, adminToken, userFromId, userToId, callback_ret) {
+                var callback = "getSimpleDiscussion_" + new Date().getTime();
+                this._request("Message", "GetSimpleDiscussion/" + adminId + "/" + adminToken
+                    + "/" + userFromId + "/" + userToId,
                     callback,
                     $.proxy(function (data) {
                         callback_ret && callback_ret(data);
