@@ -103,12 +103,16 @@
     <Compile Include="Utils\BaseNotify.cs" />
     <Compile Include="Utils\Hash.cs" />
     <Compile Include="ViewModel\ChatViewModel.cs" />
+    <Compile Include="ViewModel\InviteViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\SigninViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="Views\ChatView.xaml.cs">
       <DependentUpon>ChatView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Invite.xaml.cs">
+      <DependentUpon>Invite.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
@@ -129,6 +133,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Views\ChatView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Invite.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

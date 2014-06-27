@@ -48,10 +48,11 @@ namespace Chatty.Dbo
             Department = await MainViewModel.Proxy.Invoke<Department>("Execute", new object[] { new string[] { DepartmentId.ToString() } });
         }
 
-        async private void Invite()
+        private void Invite()
         {
-            System.Diagnostics.Debug.WriteLine("invite called in Dbo.User : " + Username);
-            await MainViewModel.Proxy.Invoke("Execute", new object[] { new string[] { "invitation-insert", ChatViewModel.userId.ToString(), Id.ToString(), "Add me " } });
+            var invite = new Views.Invite();
+            (invite.DataContext as ViewModel.InviteViewModel).LoadData(Id);
+            invite.ShowDialog();
         }
     }
 }

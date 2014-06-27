@@ -46,12 +46,14 @@ namespace Chatty.ViewModel
             SimpleIoc.Default.Register<SignUpViewModel>();
             SimpleIoc.Default.Register<ChatViewModel>();
             SimpleIoc.Default.Register<MainViewModel>();
+            SimpleIoc.Default.Register<InviteViewModel>();
         }
 
         public MainViewModel Main { get { return ServiceLocator.Current.GetInstance<MainViewModel>(); } }
         public LoginViewModel Login{ get { return ServiceLocator.Current.GetInstance<LoginViewModel>(); } }
         public SignUpViewModel SignUp { get { return ServiceLocator.Current.GetInstance<SignUpViewModel>(); } }
         public ChatViewModel Chat { get { return ServiceLocator.Current.GetInstance<ChatViewModel>(); } }
+        public InviteViewModel Invite { get { return ServiceLocator.Current.GetInstance<InviteViewModel>(); } }
 
         public static void Cleanup()
         {
