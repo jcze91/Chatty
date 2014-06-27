@@ -272,7 +272,9 @@
     <Compile Include="Migrations\201406261429284_AddMoreUserInfo.Designer.cs">
       <DependentUpon>201406261429284_AddMoreUserInfo.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201406262203319_AddJobUSer.cs" />
+    <Compile Include="Migrations\201406262203319_AddJobUSer.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Migrations\201406262203319_AddJobUSer.Designer.cs">
       <DependentUpon>201406262203319_AddJobUSer.cs</DependentUpon>
     </Compile>
@@ -453,6 +455,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201406261429284_AddMoreUserInfo.resx">
       <DependentUpon>201406261429284_AddMoreUserInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201406262203319_AddJobUSer.resx">
+      <DependentUpon>201406262203319_AddJobUSer.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
