@@ -36,7 +36,7 @@
                     <p class="no_item_info" ng-show="!departments.length && !filterDepartmentName.length && !loadingDepartments">No departments</p>
                     <p class="no_item_info" ng-show="!departments.length && filterDepartmentName.length && !loadingDepartments">No retrieved departments</p>
                 </ul>
-                <p class="pages" ng-hide="!people.length">
+                <p class="pages" ng-hide="!departments.length">
                     <button ng-disabled="currentPage == 0" ng-click="previousDepartments()">
                         Previous
                     </button>

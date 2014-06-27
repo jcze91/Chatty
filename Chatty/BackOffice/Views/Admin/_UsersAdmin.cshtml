@@ -27,7 +27,7 @@
                     <p class="no_item_info" ng-show="!users.length && !filterUserName.length && !loadingUsers">No users</p>
                     <p class="no_item_info" ng-show="!users.length && filterUserName.length && !loadingUsers">No retrieved users</p>
                 </ul>
-                <p class="pages" ng-hide="!people.length">
+                <p class="pages" ng-hide="!users.length">
                     <button ng-disabled="currentPage == 0" ng-click="previousUsers()">
                         Previous
                     </button>

@@ -1,7 +1,7 @@
 ﻿(function (chatty) {
     chatty.app.controller("AdminDepartmentsCtrl", ['$scope', '$rootScope', 'chattyService', function ($scope, $rootScope, chattyService) {
         $scope.currentPage = 0;
-        $scope.pageSize = 12;
+        $scope.pageSize = 10;
         $scope.departmentsOrder = 0;
         $scope.totalPageCount = 1;
         $scope.filterDepartmentName = "";
