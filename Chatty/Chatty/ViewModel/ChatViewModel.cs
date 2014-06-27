@@ -154,11 +154,22 @@ namespace Chatty.ViewModel
 
         async private void SendMessage()
         {
-            var result = await MainViewModel.Proxy.Invoke<object>("Execute", new object[] { new string[] { "message-insert", userId.ToString(), selectedContact.Id.ToString(), currentMessage } });
-            if (result == null || result is bool && !((bool)result))
-                System.Windows.MessageBox.Show("Fail to send message");
-            else
-                CurrentMessage = string.Empty;
+            if (SelectedContact != null)
+            {
+                var result = await MainViewModel.Proxy.Invoke<Dbo.Message>("Execute", new object[] { new string[] { "message-insert", userId.ToString(), selectedContact.Id.ToString(), currentMessage } });
+                if (result == null)
+                    System.Windows.MessageBox.Show("Fail to send message");
+                else
+                    CurrentMessage = string.Empty;
+            }
+            if (SelectedGroup != null)
+            {
+                var result = await MainViewModel.Proxy.Invoke<Dbo.Discussion>("Execute", new object[] { new string[] { "discussion-insert", selectedGroup.Id.ToString(), userId.ToString(), currentMessage } });
+                if (result == null)
+                    System.Windows.MessageBox.Show("Fail to send message");
+                else
+                    CurrentMessage = string.Empty;
+            }
         }
 
 
@@ -270,6 +281,14 @@ namespace Chatty.ViewModel
                             Messages.Add(item)
                     ));
             }
+            else if (cmd == "discussion-insert")
+            {
+                Dbo.Discussion item= JsonConvert.DeserializeObject<Dbo.Discussion>(data);
+                if (SelectedGroup != null && SelectedGroup.Id == item.GroupId)
+                    await App.Current.Dispatcher.BeginInvoke((Action)(() =>
+                            Discussions.Add(item)
+                    ));
+            }
             else if (cmd == "groupuser-insert")
             {
                 Dbo.GroupUser item = JsonConvert.DeserializeObject<Dbo.GroupUser>(data);
@@ -296,12 +315,8 @@ namespace Chatty.ViewModel
         async internal void OnContactChanged()
         {
             if (selectedContact == null) return;
-            MessagingEnable = true;
-            DiscussionEnable = false;
-            Messages.Clear();
-            Discussions.Clear();
-            CurrentMessage = string.Empty;
-            OnSelectionChanged(new SelectionChangedEventArgs() { Sender = "Contact" });
+
+            Reset(true, false, "Contact");
 
             var list = await MainViewModel.Proxy.Invoke<IEnumerable<Dbo.Message>>("Execute", new object[] { new string[] { "message-getByContact", userId.ToString(), selectedContact.Id.ToString() } });
             await App.Current.Dispatcher.BeginInvoke((Action)(() =>
@@ -312,12 +327,8 @@ namespace Chatty.ViewModel
         async internal void OnGroupChanged()
         {
             if (selectedGroup == null) return;
-            MessagingEnable = false;
-            DiscussionEnable = true;
-            Messages.Clear();
-            Discussions.Clear();
-            CurrentMessage = string.Empty;
-            OnSelectionChanged(new SelectionChangedEventArgs() { Sender = "Group" });
+
+            Reset(false, true, "Group");
 
             /**
              * LOAD DISCUSSION
@@ -333,20 +344,40 @@ namespace Chatty.ViewModel
             var _groupUsers = await MainViewModel.Proxy.Invoke<IEnumerable<Dbo.GroupUser>>("Execute", new object[] { new string[] { "groupuser-getByGroupId", SelectedGroup.Id.ToString() } });
             foreach (var _groupUser in _groupUsers.Where(x => x.UserId != userId))
             {
-                var _user = await MainViewModel.Proxy.Invoke<Dbo.User>("Execute", new object[] { new string[] { "user-id", _groupUser.Id.ToString() } });
+                var _user = await MainViewModel.Proxy.Invoke<Dbo.User>("Execute", new object[] { new string[] { "user-id", _groupUser.UserId.ToString() } });
                 await App.Current.Dispatcher.BeginInvoke((Action)(() =>
                     GroupUsers.Add(_user)
                 ));
             }
         }
 
+        private void Reset(bool messagingEnabled, bool discussionEnabled, string sender)
+        {
+            MessagingEnable = messagingEnabled;
+            DiscussionEnable = discussionEnabled;
+            Messages.Clear();
+            Discussions.Clear();
+            GroupUsers.Clear();
+            CurrentMessage = string.Empty;
+            OnSelectionChanged(new SelectionChangedEventArgs() { Sender = sender });
+        }
+
 
         internal void OnConnectionInfo(string info, int uid)
         {
-            Debug.Print("OnConnectionInfo : {0} => {1}", info, uid);
-            var item = contacts.SingleOrDefault(x => x.Id == uid);
+            bool status = info == "connexion";
+
+            var item = Contacts.SingleOrDefault(x => x.Id == uid);
             if (item != null)
-                item.IsOnline = info == "connexion";
+                item.IsOnline = status;
+
+            item = GroupUsers.SingleOrDefault(x => x.Id == uid);
+            if (item != null)
+                item.IsOnline = status;
+
+            item = Users.SingleOrDefault(x => x.Id == uid);
+            if (item != null)
+                item.IsOnline = status;
         }
 
         public event SelectionChangedEventHandler SelectionChanged;

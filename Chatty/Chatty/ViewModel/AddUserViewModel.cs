@@ -1,9 +1,7 @@
-﻿using System;
+﻿using Microsoft.Practices.ServiceLocation;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Chatty.ViewModel
 {
@@ -19,7 +17,8 @@ namespace Chatty.ViewModel
         async public void LoadData()
         {
             var list = await MainViewModel.Proxy.Invoke<IEnumerable<Dbo.User>>("Execute", new object[] { new string[] { "user-all" } });
-            Users = new ObservableCollection<Dbo.User>(list);
+            var chatViewModel = ServiceLocator.Current.GetInstance<ChatViewModel>();
+            Users = new ObservableCollection<Dbo.User>(list.Where(x => x.Id != chatViewModel.userId));
         }
     }
 }

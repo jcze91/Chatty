@@ -117,7 +117,8 @@
                     ItemTemplate="{StaticResource MessageTemplate}"/>
             </Grid>
             <!--Visibility="{Binding DiscussionEnable, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVisibility}}">-->
-            <Grid >
+            <Grid 
+                Visibility="{Binding DiscussionEnable, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVisibility}}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="120"/>
