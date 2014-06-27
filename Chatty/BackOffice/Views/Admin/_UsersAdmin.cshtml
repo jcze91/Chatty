@@ -21,13 +21,13 @@
                     <li ng-repeat="user in users" ng-class-even="'even'">
                         <p class="userElt">
                             <span>{{user.userName}}</span>
-                            <button ng-click="show(user.id)">Show</button>
+                            <button ng-click="selectUser(user)">Show</button>
                         </p>
                     </li>
                     <p class="no_item_info" ng-show="!users.length && !filterUserName.length && !loadingUsers">No users</p>
                     <p class="no_item_info" ng-show="!users.length && filterUserName.length && !loadingUsers">No retrieved users</p>
                 </ul>
-                <p class="pages" ng-hide="!people.length">
+                <p class="pages" ng-hide="!users.length">
                     <button ng-disabled="currentPage == 0" ng-click="previousUsers()">
                         Previous
                     </button>
@@ -39,9 +39,43 @@
             </fieldset>
         </div>
 
-        <div>
+        <div ng-show="selectedUser">
             <fieldset>
-                <h1>User infos</h1>
+                <h1><strong style="font-size:18px">{{selectedUser.userName}}</strong> infos</h1>
+                <ul>
+                    <li>
+                        <label for="job">Job:</label>
+                        <input type="text" name="job" ng-model="selectedUser.job" />
+                    </li>
+                    <li>
+                        <label for="department">Department: </label>
+                        <select
+                                ng-model="selectedUser.departmentId"
+                                ng-options="dpt.id as dpt.name group by dpt.title for dpt in departmentsList">
+                            <option>--</option>
+                        </select>
+                    </li>
+                    <li>
+                        <label for="mail">Email:</label>
+                        <input type="text" name="mail" ng-model="selectedUser.email" />
+                    </li>
+                    <li>
+                        <label for="firstname">First name:</label>
+                        <input type="text" name="firstname" ng-model="selectedUser.firstName" />
+                    </li>
+                    <li>
+                        <label for="lastname">Last name:</label>
+                         <input type="text" name="lastname" ng-model="selectedUser.lastName" />
+                    </li>
+                    <li>
+                        <label for="isbanned">Is banned</label>
+                        <input type="checkbox" name="isbanned" ng-model="selectedUser.isBanned" />
+                    </li>
+                    <li>
+                        <label>Last connexion date: {{selectedUser.connexionDate}}</label>
+                    </li>
+                    <p><button ng-click="editSelectedUser()">Edit</button></p>
+                 </ul>
 
             </fieldset>
         </div>

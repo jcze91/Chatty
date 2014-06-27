@@ -24,6 +24,11 @@
                     setTimeout($scope.hideMessage, duration ? duration : 5000);
             }, this));
         };
+        $rootScope.$on('onInfoMessage', function (e, data) {
+            if (data.message) {
+                $scope.showMessage(data.message, data.duration, data.type);
+            }
+        });
     }]);
 
 })(window.chatty || window);

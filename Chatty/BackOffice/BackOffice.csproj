@@ -272,6 +272,10 @@
     <Compile Include="Migrations\201406261429284_AddMoreUserInfo.Designer.cs">
       <DependentUpon>201406261429284_AddMoreUserInfo.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201406262203319_AddJobUSer.cs" />
+    <Compile Include="Migrations\201406262203319_AddJobUSer.Designer.cs">
+      <DependentUpon>201406262203319_AddJobUSer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\201406271513313_base64image.cs" />
     <Compile Include="Migrations\201406271513313_base64image.Designer.cs">
       <DependentUpon>201406271513313_base64image.cs</DependentUpon>
@@ -291,6 +295,7 @@
     <Compile Include="Providers\InvitationProvider.cs" />
     <Compile Include="Providers\MessageProvider.cs" />
     <Compile Include="Providers\UserProvider.cs" />
+    <Content Include="Content\img\nav_icons.png" />
     <Content Include="Content\jquery-ui.css" />
     <Content Include="Scripts\controller\admin.controller.js" />
     <Compile Include="Services\ContactService.svc.cs">
@@ -331,32 +336,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\global.css" />
-    <Content Include="Content\img\1375983601_Cancel.png" />
-    <Content Include="Content\img\1375983610_Save.png" />
-    <Content Include="Content\img\1375985060_Save.png" />
-    <Content Include="Content\img\1375985081_Cancel.png" />
-    <Content Include="Content\img\accept.png" />
-    <Content Include="Content\img\add-tag.png" />
-    <Content Include="Content\img\answer_close.png" />
-    <Content Include="Content\img\avatar_blank.png" />
-    <Content Include="Content\img\avatar_blank_tiny.png" />
-    <Content Include="Content\img\block.png" />
-    <Content Include="Content\img\btn_refuse.png" />
-    <Content Include="Content\img\btn_valid.png" />
     <Content Include="Content\img\chargement.gif" />
-    <Content Include="Content\img\check-tweet-bad.png" />
-    <Content Include="Content\img\check-tweet-ok.png" />
-    <Content Include="Content\img\check_off.png" />
-    <Content Include="Content\img\check_on.png" />
-    <Content Include="Content\img\close.gif" />
-    <Content Include="Content\img\close.png" />
-    <Content Include="Content\img\collapse.png" />
-    <Content Include="Content\img\delete.png" />
-    <Content Include="Content\img\edit-exit.png" />
-    <Content Include="Content\img\edit-save.png" />
-    <Content Include="Content\img\ico_like.png" />
-    <Content Include="Content\img\ico_like_hover.png" />
-    <Content Include="Content\img\ico_like_liked.png" />
     <Content Include="Content\img\jquery-ui\animated-overlay.gif" />
     <Content Include="Content\img\jquery-ui\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\img\jquery-ui\ui-bg_flat_75_ffffff_40x100.png" />
@@ -378,33 +358,6 @@
     <Content Include="Content\img\jquery-ui\ui-icons_cd0a0a_256x240.png" />
     <Content Include="Content\img\loader.gif" />
     <Content Include="Content\img\logout.png" />
-    <Content Include="Content\img\mainfront.png" />
-    <Content Include="Content\img\mainfront_active.png" />
-    <Content Include="Content\img\menu_ico_fronts.png" />
-    <Content Include="Content\img\menu_ico_messages.png" />
-    <Content Include="Content\img\menu_ico_polls.png" />
-    <Content Include="Content\img\menu_ico_settings.png" />
-    <Content Include="Content\img\menu_ico_stats.png" />
-    <Content Include="Content\img\menu_ico_tags.png" />
-    <Content Include="Content\img\menu_ico_users.png" />
-    <Content Include="Content\img\newPanel.png" />
-    <Content Include="Content\img\pop_close.png" />
-    <Content Include="Content\img\scrollBottom.png" />
-    <Content Include="Content\img\search.png" />
-    <Content Include="Content\img\send.png" />
-    <Content Include="Content\img\set_front_tags.png" />
-    <Content Include="Content\img\smiley-sprite.png" />
-    <Content Include="Content\img\sort.png" />
-    <Content Include="Content\img\sprite.png" />
-    <Content Include="Content\img\star.png" />
-    <Content Include="Content\img\star_off.png" />
-    <Content Include="Content\img\star_on.png" />
-    <Content Include="Content\img\tag-delete.png" />
-    <Content Include="Content\img\tag-left.png" />
-    <Content Include="Content\img\tag-right.png" />
-    <Content Include="Content\img\tooltip.png" />
-    <Content Include="Content\img\uncollapse.png" />
-    <Content Include="Content\img\unroll.png" />
     <Content Include="Content\reset.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -415,9 +368,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.css.map" />
-    <None Include="Scripts\jquery-2.1.1.intellisense.js" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\controller\conversations.controller.js" />
     <Content Include="Scripts\controller\users.controller.js" />
     <Content Include="Scripts\controller\departments.controller.js" />
@@ -427,31 +377,18 @@
     <Content Include="Scripts\directive\onBlur.directive.js" />
     <Content Include="Scripts\directive\onBlurEnter.directive.js" />
     <Content Include="Scripts\directive\onEnter.directive.js" />
-    <Content Include="Scripts\jquery-2.1.1.js" />
     <Content Include="Scripts\jquery-2.1.1.min.js" />
     <Content Include="Scripts\jquery.signalR-2.1.0.js" />
     <Content Include="Scripts\jquery.signalR-2.1.0.min.js" />
-    <None Include="Scripts\jquery.validate-vsdoc.js" />
-    <Content Include="Scripts\jquery.validate.js" />
-    <Content Include="Scripts\jquery.validate.min.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\directive\compile.directive.js" />
     <Content Include="Scripts\libs\hackIe.js" />
     <Content Include="Scripts\libs\html5.js" />
-    <Content Include="Scripts\jquery-ui-1.10.3.custom.min.js" />
     <Content Include="Scripts\jquery.jsonp.js" />
     <Content Include="Scripts\json2.js" />
     <Content Include="Scripts\model\department.model.js" />
     <Content Include="Scripts\model\user.model.js" />
-    <Content Include="Scripts\modernizr-2.7.2.js" />
-    <Content Include="Scripts\respond.js" />
-    <Content Include="Scripts\respond.matchmedia.addListener.js" />
-    <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
-    <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Scripts\jquery-2.1.1.min.map" />
     <Content Include="Services\ContactService.svc" />
     <Content Include="Services\DepartmentService.svc" />
     <Content Include="Services\DiscussionService.svc" />
@@ -516,9 +453,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201406261429284_AddMoreUserInfo.resx">
       <DependentUpon>201406261429284_AddMoreUserInfo.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201406271513313_base64image.resx">
-      <DependentUpon>201406271513313_base64image.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
