@@ -291,9 +291,7 @@
     <Compile Include="Providers\InvitationProvider.cs" />
     <Compile Include="Providers\MessageProvider.cs" />
     <Compile Include="Providers\UserProvider.cs" />
-    <Content Include="Content\img\menu_ico_admin.png" />
-    <Content Include="Content\img\menu_ico_departments.png" />
-    <Content Include="Content\img\menu_ico_discussions.png" />
+    <Content Include="Content\img\nav_icons.png" />
     <Content Include="Content\jquery-ui.css" />
     <Content Include="Scripts\controller\admin.controller.js" />
     <Compile Include="Services\ContactService.svc.cs">
@@ -356,7 +354,6 @@
     <Content Include="Content\img\jquery-ui\ui-icons_cd0a0a_256x240.png" />
     <Content Include="Content\img\loader.gif" />
     <Content Include="Content\img\logout.png" />
-    <Content Include="Content\img\menu_ico_users.png" />
     <Content Include="Content\reset.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />

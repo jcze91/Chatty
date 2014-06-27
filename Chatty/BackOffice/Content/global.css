@@ -64,23 +64,34 @@ body, html {
 
 			.mainnav ul li a {
 				border: none;
-				width: 70px;
-				height: 70px;
-				cursor: pointer;
-				opacity: .5;
-				display: block;
-				color: white;
-				text-align: center;
-				text-decoration: none;
+                width: 70px;
+                height: 56px;
+                cursor: pointer;
+                opacity: .5;
+                display: block;
+                color: white;
+                text-align: center;
+                margin-left: 28%;
+                margin-top: 28px;
+                text-decoration: none;
 			}
 
 			.mainnav ul li.active a {
 				opacity: 1;
 			}
-
-			.mainnav ul li a.users { background: url('img/menu_ico_users.png') no-repeat center; }
-			.mainnav ul li a.departments { background: url('img/menu_ico_departments.png') no-repeat center; }
-			.mainnav ul li a.discussions { background: url('img/menu_ico_discussions.png') no-repeat center; }
+			.mainnav ul li a.users
+             {
+                 background: url('img/nav_icons.png') no-repeat center;
+                 background-position: 0 -313px;
+			}
+			.mainnav ul li a.departments {
+                 background: url('img/nav_icons.png') no-repeat center;
+                 background-position: 0 -159px;
+			}
+			.mainnav ul li a.discussions { 
+                background: url('img/nav_icons.png') no-repeat center;
+                background-position: 0 -236px;
+			}
 
 			.mainnav div.logout {
 				cursor: pointer;
@@ -91,15 +102,21 @@ body, html {
                 border-top: 1px solid #B98059;
 				margin-bottom: 6px;
 			}
+            .mainnav div.logout form {
+                border-top: 1px solid #E9BC9E;
+            }
 			.mainnav div.logout button {
 				border: none;
-				width: 70px;
-				height: 70px;
 				cursor: pointer;
-				background: url('img/logout.png') no-repeat center;
+				background: url('img/nav_icons.png') no-repeat center;
+                background-position: 0 0;
+                width: 32px;
+                height: 32px;
 				opacity: 0.6;
-				border-top: 1px solid #E9BC9E;
 				padding: 0;
+                margin-left: 25%;
+                padding-top: 43px;
+                margin-top: 15px;
 			}
 			.mainnav div.logout button:hover {
 				opacity: 1;
