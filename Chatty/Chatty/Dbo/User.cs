@@ -1,7 +1,6 @@
 ﻿using Chatty.ViewModel;
 using GalaSoft.MvvmLight.Command;
 using System.Windows.Input;
-using System.Windows.Media;
 
 namespace Chatty.Dbo
 {

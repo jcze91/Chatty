@@ -23,11 +23,23 @@ namespace Chatty.Views
         public ChatView()
         {
             InitializeComponent();
+            this.Loaded += ChatView_Loaded;
         }
 
-        private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        void ChatView_Loaded(object sender, RoutedEventArgs e)
         {
-
+            var viewModel = DataContext as ViewModel.ChatViewModel;
+            viewModel.SelectionChanged += viewModel_SelectionChanged;
         }
+
+        void viewModel_SelectionChanged(object sender, ViewModel.SelectionChangedEventArgs e)
+        {
+            var viewModel = DataContext as ViewModel.ChatViewModel;
+            if (e.Sender == "Contact")
+                GroupsBox.UnselectAll();
+            if (e.Sender == "Group")
+                ContactsBox.UnselectAll();
+        }
+
     }
 }

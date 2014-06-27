@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
-using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace Chatty.ViewModel
@@ -35,18 +34,18 @@ namespace Chatty.ViewModel
             set { SetField(ref users, value, "Users"); }
         }
 
-        private ObservableCollection<Dbo.Invitation> invitations;
-        public ObservableCollection<Dbo.Invitation> Invitations
-        {
-            get { return invitations; }
-            set { SetField(ref invitations, value, "Invitations"); }
-        }
-
         private Dbo.User selectedContact;
         public Dbo.User SelectedContact
         {
             get { return selectedContact; }
             set { if (SetField(ref selectedContact, value, "SelectedContact")) OnContactChanged(); }
+        }
+
+        private ObservableCollection<Dbo.Invitation> invitations;
+        public ObservableCollection<Dbo.Invitation> Invitations
+        {
+            get { return invitations; }
+            set { SetField(ref invitations, value, "Invitations"); }
         }
 
         private string currentMessage;
@@ -63,6 +62,27 @@ namespace Chatty.ViewModel
             set { SetField(ref messages, value, "Messages"); }
         }
 
+        private ObservableCollection<Dbo.Group> groups;
+        public ObservableCollection<Dbo.Group> Groups
+        {
+            get { return groups; }
+            set { SetField(ref groups, value, "Groups"); }
+        }
+
+        private Dbo.Group selectedGroup;
+        public Dbo.Group SelectedGroup
+        {
+            get { return selectedGroup; }
+            set { if (SetField(ref selectedGroup, value, "SelectedGroup")) OnGroupChanged(); }
+        }
+
+        private ObservableCollection<Dbo.Discussion> discussions;
+        public ObservableCollection<Dbo.Discussion> Discussions
+        {
+            get { return discussions; }
+            set { SetField(ref discussions, value, "Discussions"); }
+        }
+
         private ICommand _sendMessageCommand;
         public ICommand SendMessageCommand
         {
@@ -74,11 +94,24 @@ namespace Chatty.ViewModel
             }
         }
 
+        private ICommand _newGroupCommand;
+        public ICommand NewGroupCommand
+        {
+            get
+            {
+                if (_newGroupCommand == null)
+                    _newGroupCommand = new RelayCommand(NewGroup);
+                return _newGroupCommand;
+            }
+        }
+
         public ChatViewModel()
         {
             messages = new ObservableCollection<Dbo.Message>();
             contacts = new ObservableCollection<Dbo.User>();
             users = new ObservableCollection<Dbo.User>();
+            groups = new ObservableCollection<Dbo.Group>();
+            discussions = new ObservableCollection<Dbo.Discussion>();
         }
 
         private bool canSendMessage()
@@ -93,7 +126,12 @@ namespace Chatty.ViewModel
                 System.Windows.MessageBox.Show("Fail to send message");
             else
                 CurrentMessage = string.Empty;
+        }
 
+
+        private void NewGroup()
+        {
+            new Views.NewGroupView().ShowDialog();
         }
 
         async public void LoadData()
@@ -131,6 +169,18 @@ namespace Chatty.ViewModel
                     Contacts.Add(entry);
                     Users.Remove(entry);
                 }));
+
+            /**
+             * Load groups in which I am
+             */
+            var groupusers = await MainViewModel.Proxy.Invoke<IList<Dbo.GroupUser>>("Execute", new object[] { new string[] { "groupuser-all" } });
+            foreach (var item in groupusers.Where(x => x.UserId == userId))
+            {
+                Dbo.Group group = await MainViewModel.Proxy.Invoke<Dbo.Group>("Execute", new object[] { new string[] { "group-id", item.GroupId.ToString() } });
+                await App.Current.Dispatcher.BeginInvoke((Action)(() =>
+                    Groups.Add(group)
+                ));
+            }
         }
 
         async public void Callback(string[] args, dynamic result)
@@ -181,16 +231,68 @@ namespace Chatty.ViewModel
                             Messages.Add(item)
                     ));
             }
+            else if (cmd == "groupuser-insert")
+            {
+                Dbo.GroupUser item = JsonConvert.DeserializeObject<Dbo.GroupUser>(data);
+                if (item.UserId == userId)
+                {
+                    Dbo.Group group = await MainViewModel.Proxy.Invoke<Dbo.Group>("Execute", new object[] { new string[] { "group-id", item.GroupId.ToString() } });
+                    await App.Current.Dispatcher.BeginInvoke((Action)(() =>
+                        Groups.Add(group)
+                    ));
+                }
+            }
         }
 
-        async private void OnContactChanged()
+        private bool messagingEnable = false;
+        public bool MessagingEnable
         {
-            Messages.Clear();
-            CurrentMessage = string.Empty;
-            var list = await MainViewModel.Proxy.Invoke<IEnumerable<Dbo.Message>>("Execute", new object[] { new string[] { "message-getByContact", userId.ToString(), selectedContact.Id.ToString() } });
+            get { return messagingEnable; }
+            set { SetField(ref messagingEnable, value, "MessagingEnable"); }
+        }
 
+        private bool discussionEnable = false;
+        public bool DiscussionEnable
+        {
+            get { return discussionEnable; }
+            set { SetField(ref discussionEnable, value, "DiscussionEnable"); }
+        }
+
+
+        async internal void OnContactChanged()
+        {
+            if (selectedContact == null) return;
+            MessagingEnable = true;
+            DiscussionEnable = false;
+            Messages.Clear();
+            Discussions.Clear();
+            CurrentMessage = string.Empty;
+            OnSelectionChanged(new SelectionChangedEventArgs() { Sender = "Contact" });
+            //SelectedGroup = null;
+            //OnPropertyChanged("Groups");
+
+            var list = await MainViewModel.Proxy.Invoke<IEnumerable<Dbo.Message>>("Execute", new object[] { new string[] { "message-getByContact", userId.ToString(), selectedContact.Id.ToString() } });
             await App.Current.Dispatcher.BeginInvoke((Action)(() =>
                 Messages = new ObservableCollection<Dbo.Message>(list)
+            ));
+        }
+
+        async internal void OnGroupChanged()
+        {
+            if (selectedGroup == null) return;
+            MessagingEnable = false;
+            DiscussionEnable = true;
+            Messages.Clear();
+            Discussions.Clear();
+            CurrentMessage = string.Empty;
+            OnSelectionChanged(new SelectionChangedEventArgs() { Sender = "Group" });
+            //SelectedContact = null;
+            //OnPropertyChanged("Contacts");
+
+
+            var list = await MainViewModel.Proxy.Invoke<IEnumerable<Dbo.Discussion>>("Execute", new object[] { new string[] { "discussion-getByGroupId", SelectedGroup.Id.ToString() } });
+            await App.Current.Dispatcher.BeginInvoke((Action)(() =>
+                Discussions = new ObservableCollection<Dbo.Discussion>(list)
             ));
         }
 
@@ -202,5 +304,20 @@ namespace Chatty.ViewModel
             if (item != null)
                 item.IsOnline = info == "connexion";
         }
+
+        public event SelectionChangedEventHandler SelectionChanged;
+        protected virtual void OnSelectionChanged(SelectionChangedEventArgs e)
+        {
+            SelectionChangedEventHandler handler = SelectionChanged;
+            if (handler != null)
+                handler(this, e);
+        }
     }
+
+    public class SelectionChangedEventArgs : EventArgs
+    {
+        public string Sender { get; set; }
+    }
+
+    public delegate void SelectionChangedEventHandler(Object sender, SelectionChangedEventArgs e);
 }

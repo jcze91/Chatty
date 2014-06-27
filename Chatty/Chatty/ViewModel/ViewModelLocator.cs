@@ -47,6 +47,7 @@ namespace Chatty.ViewModel
             SimpleIoc.Default.Register<ChatViewModel>();
             SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<InviteViewModel>();
+            SimpleIoc.Default.Register<NewGroupViewModel>();
         }
 
         public MainViewModel Main { get { return ServiceLocator.Current.GetInstance<MainViewModel>(); } }
@@ -54,6 +55,7 @@ namespace Chatty.ViewModel
         public SignUpViewModel SignUp { get { return ServiceLocator.Current.GetInstance<SignUpViewModel>(); } }
         public ChatViewModel Chat { get { return ServiceLocator.Current.GetInstance<ChatViewModel>(); } }
         public InviteViewModel Invite { get { return ServiceLocator.Current.GetInstance<InviteViewModel>(); } }
+        public NewGroupViewModel Group { get { return ServiceLocator.Current.GetInstance<NewGroupViewModel>(); } }
 
         public static void Cleanup()
         {

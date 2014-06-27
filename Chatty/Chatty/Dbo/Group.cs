@@ -1,7 +1,7 @@
 ﻿
 namespace Chatty.Dbo
 {
-    public  class Department : Utils.BaseModel<int>
+    public class Group : Utils.BaseModel<int>
     {
         public string Name { get; set; }
     }

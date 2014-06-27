@@ -93,11 +93,15 @@
     </ApplicationDefinition>
     <Compile Include="Dbo\Contact.cs" />
     <Compile Include="Dbo\Department.cs" />
+    <Compile Include="Dbo\Discussion.cs" />
+    <Compile Include="Dbo\Group.cs" />
+    <Compile Include="Dbo\GroupUser.cs" />
     <Compile Include="Dbo\Invitation.cs" />
     <Compile Include="Dbo\Message.cs" />
     <Compile Include="Dbo\User.cs" />
     <Compile Include="Helpers\BoolToColorConverter.cs" />
     <Compile Include="Helpers\BinaryImageConverter.cs" />
+    <Compile Include="Helpers\BoolToVisibilityConverter.cs" />
     <Compile Include="Utils\BaseEntity.cs" />
     <Compile Include="Utils\BaseModel.cs" />
     <Compile Include="Utils\BaseNotify.cs" />
@@ -106,6 +110,7 @@
     <Compile Include="ViewModel\InviteViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\NewGroupViewModel.cs" />
     <Compile Include="ViewModel\SigninViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="Views\ChatView.xaml.cs">
@@ -116,6 +121,9 @@
     </Compile>
     <Compile Include="Views\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NewGroupView.xaml.cs">
+      <DependentUpon>NewGroupView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SignUpView.xaml.cs">
       <DependentUpon>SignUpView.xaml</DependentUpon>
@@ -141,6 +149,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\LoginView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NewGroupView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

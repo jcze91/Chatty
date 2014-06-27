@@ -1,4 +1,6 @@
-﻿
+﻿using BackOffice.Utils;
+using Microsoft.Practices.Unity;
+
 namespace BackOffice.Providers
 {
     public class DiscussionProvider : Utils.BaseProvider<int, Dbo.Discussion, DataAccess.DiscussionDao, Services.DiscussionService>
@@ -6,6 +8,13 @@ namespace BackOffice.Providers
         protected override string getClass() { return "discussion"; }
 
         protected override int GetFieldCount() { return 4; }
+        public DiscussionProvider()
+            : base()
+        {
+            Startup.container.Resolve<Runtime>().RegisterCommand(cmd_getByGroupId, this);
+        }
+
+        private string cmd_getByGroupId { get { return getClass() + "-getByGroupId"; } }
 
         protected override dynamic Insert(string[] args)
         {
@@ -34,6 +43,24 @@ namespace BackOffice.Providers
                 });
             }
             catch { return null; }
+        }
+
+        public override dynamic Execute(string[] args)
+        {
+            var res = base.Execute(args);
+            if (res != null)
+                return res;
+
+            /**
+            * GET BY GROUP ID
+            */
+            if (args[0] == cmd_getByGroupId && args.Length == 2)
+            {
+                int groupId = int.Parse(args[1]);
+                return service.SearchFor(x => x.GroupId == groupId);
+            }
+
+            return null;
         }
     }
 }
