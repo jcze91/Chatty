@@ -1,5 +1,4 @@
-﻿using BackOffice.Utils;
-using Microsoft.Practices.Unity;
+﻿using Microsoft.Practices.Unity;
 
 namespace BackOffice.Providers
 {
@@ -11,7 +10,7 @@ namespace BackOffice.Providers
         public DiscussionProvider()
             : base()
         {
-            Startup.container.Resolve<Runtime>().RegisterCommand(cmd_getByGroupId, this);
+            Startup.container.Resolve<Utils.Runtime>().RegisterCommand(cmd_getByGroupId, this);
         }
 
         private string cmd_getByGroupId { get { return getClass() + "-getByGroupId"; } }

@@ -139,27 +139,30 @@ namespace Chatty.ViewModel
         {
             isSigningUp = true;
 
-            var thumb = CreateThumbnail(Thumbnail, 50, 50);
-            BitmapImage bitmapImage = new BitmapImage();
-            using (MemoryStream memory = new MemoryStream())
+            string base64 = "";
+            if (!string.IsNullOrWhiteSpace(thumbnail))
             {
-                thumb.Save(memory, ImageFormat.Png);
-                memory.Position = 0;
-                bitmapImage.BeginInit();
-                bitmapImage.StreamSource = memory;
-                bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
-                bitmapImage.EndInit();
+                Bitmap thumb = CreateThumbnail(Thumbnail, 50, 50);
+                BitmapImage bitmapImage = new BitmapImage();
+                using (MemoryStream memory = new MemoryStream())
+                {
+                    thumb.Save(memory, ImageFormat.Png);
+                    memory.Position = 0;
+                    bitmapImage.BeginInit();
+                    bitmapImage.StreamSource = memory;
+                    bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
+                    bitmapImage.EndInit();
+                }
+                byte[] data;
+                JpegBitmapEncoder encoder = new JpegBitmapEncoder();
+                encoder.Frames.Add(BitmapFrame.Create(bitmapImage));
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    encoder.Save(ms);
+                    data = ms.ToArray();
+                }
+                base64 = Convert.ToBase64String(data);
             }
-            byte[] data;
-            JpegBitmapEncoder encoder = new JpegBitmapEncoder();
-            encoder.Frames.Add(BitmapFrame.Create(bitmapImage));
-            using (MemoryStream ms = new MemoryStream())
-            {
-                encoder.Save(ms);
-                data = ms.ToArray();
-            }
-            string base64 = Convert.ToBase64String(data);
-            int length = base64.Length;
 
             var res = await MainViewModel.Proxy.Invoke<Dbo.User>("Execute", new object[] { new string[] { "user-insert", username, lastname, firstname, email, password.sha1(), true.ToString(), base64, Department.Id.ToString() } });
             isSigningUp = false;

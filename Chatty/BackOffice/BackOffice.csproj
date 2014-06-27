@@ -282,6 +282,10 @@
     <Compile Include="Migrations\201406271513313_base64image.Designer.cs">
       <DependentUpon>201406271513313_base64image.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201406272220323_UniqueContraintGroupUser.cs" />
+    <Compile Include="Migrations\201406272220323_UniqueContraintGroupUser.Designer.cs">
+      <DependentUpon>201406272220323_UniqueContraintGroupUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\DepartmentModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
@@ -458,6 +462,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201406262203319_AddJobUSer.resx">
       <DependentUpon>201406262203319_AddJobUSer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201406272220323_UniqueContraintGroupUser.resx">
+      <DependentUpon>201406272220323_UniqueContraintGroupUser.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

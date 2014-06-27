@@ -1,4 +1,5 @@
-﻿using Microsoft.Practices.ServiceLocation;
+﻿using Chatty.ViewModel;
+using Microsoft.Practices.ServiceLocation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -67,7 +68,8 @@ namespace Chatty
                 this.loginView.Visibility = Visibility.Hidden;
                 this.signInView.Visibility = Visibility.Hidden;
                 this.chatView.Visibility = Visibility.Visible;
-                ViewModel.ChatViewModel.userId = e.UserId;
+                var chatViewModel = ServiceLocator.Current.GetInstance<ChatViewModel>();
+                chatViewModel.userId = e.UserId;
                 (this.chatView.DataContext as ViewModel.ChatViewModel).LoadData();
                 Width *= 3;
             }

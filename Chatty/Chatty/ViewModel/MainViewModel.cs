@@ -13,8 +13,7 @@ namespace Chatty.ViewModel
         HubConnection hubConnection;
         public static IHubProxy Proxy { get; set; }
 
-        LoginViewModel Login { get { return ServiceLocator.Current.GetInstance<LoginViewModel>(); ; } }
-        ChatViewModel Chat { get { return ServiceLocator.Current.GetInstance<ChatViewModel>(); ; } }
+        ChatViewModel Chat { get { return ServiceLocator.Current.GetInstance<ChatViewModel>(); } }
 
         public MainViewModel()
         {
@@ -22,8 +21,6 @@ namespace Chatty.ViewModel
             Proxy = hubConnection.CreateHubProxy("MainHub");
             Proxy.On<string, int>("OnConnectionInfo", (info, uid) => { Chat.OnConnectionInfo(info, uid); });
             Proxy.On<string[], dynamic>("Callback", (args, res) => Chat.Callback(args, res));
-            //Proxy.On<string, Object>("OnConnectionInfo", (arg, res) => { Utils.CallbackHandler.Handle(arg, res); });
-            //Proxy.On<string[]>("OnError", (args) => { Login.O(args); });
             hubConnection.Start().Wait();
         }
     }

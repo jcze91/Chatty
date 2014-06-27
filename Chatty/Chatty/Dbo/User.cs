@@ -1,6 +1,8 @@
 ﻿using Chatty.ViewModel;
 using GalaSoft.MvvmLight.Command;
+using Microsoft.Practices.ServiceLocation;
 using System.Windows.Input;
+using System.Linq;
 
 namespace Chatty.Dbo
 {
@@ -26,7 +28,7 @@ namespace Chatty.Dbo
             get { return department; }
             set { SetField(ref department, value, "Department"); }
         }
-        
+
         public string Thumbnail { get; set; }
 
         private ICommand _inviteCommand;
@@ -37,6 +39,35 @@ namespace Chatty.Dbo
                 if (_inviteCommand == null)
                     _inviteCommand = new RelayCommand(Invite);
                 return _inviteCommand;
+            }
+        }
+
+
+        private ICommand _addToGroupCommand;
+        public ICommand AddToGroupCommand
+        {
+            get
+            {
+                if (_addToGroupCommand == null)
+                    _addToGroupCommand = new RelayCommand(AddToGroup);
+                return _addToGroupCommand;
+            }
+        }
+
+        async private void AddToGroup()
+        {
+            var chatViewModel = ServiceLocator.Current.GetInstance<ChatViewModel>();
+            var group = chatViewModel.SelectedGroup;
+            if (group != null)
+            {
+                var groupUser = await MainViewModel.Proxy.Invoke<Dbo.GroupUser>("Execute", new object[] { new string[] { "groupuser-insert", group.Id.ToString(), Id.ToString() } });
+                if (groupUser != null)
+                {
+                    var addUserViewModel = ServiceLocator.Current.GetInstance<AddUserViewModel>();
+                    var _user = addUserViewModel.Users.SingleOrDefault(x => x.Id == Id);
+                    if (_user != null)
+                        addUserViewModel.Users.Remove(_user);
+                }
             }
         }
 

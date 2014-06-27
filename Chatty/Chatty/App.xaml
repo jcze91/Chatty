@@ -27,7 +27,46 @@
         <cnv:BoolToColorConverter x:Key="BoolToColor"/>
         <cnv:BinaryImageConverter x:Key="BinaryImage"/>
         <cnv:BoolToVisibilityConverter x:Key="BoolToVisibility"/>
-        
-        
+
+        <DataTemplate x:Key="UserTemplate">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="5"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Rectangle Fill="{Binding IsOnline, Converter={StaticResource BoolToColor}}"/>
+
+                <Image Grid.Column="1"
+                        Source="{Binding Path=Thumbnail, Converter={StaticResource BinaryImage}}" 
+                           Width="50" Height="50"/>
+
+                <StackPanel Grid.Column="2">
+                    <TextBlock Text="{Binding Username}"/>
+                    <TextBlock>
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="{}{0} {1}">
+                                <Binding Path="Lastname" />
+                                <Binding Path="Firstname" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                    <TextBlock Text="{Binding Email}"/>
+                </StackPanel>
+            </Grid>
+        </DataTemplate>
+        <DataTemplate x:Key="MessageTemplate">
+            <StackPanel>
+                <TextBlock Foreground="Black">
+                    <TextBlock.Text>
+                        <MultiBinding StringFormat="{}{0} says : {1}">
+                            <Binding Path="Sender.Username" />
+                            <Binding Path="Content"/>
+                        </MultiBinding>
+                    </TextBlock.Text>
+                </TextBlock>
+            </StackPanel>
+        </DataTemplate>
     </Application.Resources>
 </Application>

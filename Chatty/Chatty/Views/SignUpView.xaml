@@ -168,12 +168,11 @@
                     <ImageBrush ImageSource="/Assets/Images/portrait-icon.png"/>
                 </Rectangle.OpacityMask>
             </Rectangle>
-            <toolkit:WatermarkTextBox Grid.Column="1" Margin="8 0 0 0"
+            <toolkit:WatermarkTextBox Grid.Column="1" Margin="8 0 0 0" IsEnabled="False"
                                   Text="{Binding Path=Thumbnail, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                 <toolkit:WatermarkTextBox.Watermark>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="Thumbnail..." Margin="4,0,0,0"
-                 Foreground="#f18158"/>
+                        <TextBlock Text="Thumbnail..." Margin="4,0,0,0" Foreground="#f18158"/>
                     </StackPanel>
                 </toolkit:WatermarkTextBox.Watermark>
             </toolkit:WatermarkTextBox>

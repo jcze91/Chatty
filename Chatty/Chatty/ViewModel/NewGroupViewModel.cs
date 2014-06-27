@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight.Command;
+using Microsoft.Practices.ServiceLocation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,8 +39,9 @@ namespace Chatty.ViewModel
         /// </summary>
         async private void Create()
         {
+            var chatViewModel = ServiceLocator.Current.GetInstance<ChatViewModel>();
             Dbo.Group group = await MainViewModel.Proxy.Invoke<Dbo.Group>("Execute", new object[] { new string[] { "group-insert", name } });
-            await MainViewModel.Proxy.Invoke("Execute", new object[] { new string[] { "groupuser-insert", group.Id.ToString(), ChatViewModel.userId.ToString() } });
+            await MainViewModel.Proxy.Invoke("Execute", new object[] { new string[] { "groupuser-insert", group.Id.ToString(), chatViewModel.userId.ToString() } });
             OnClose(EventArgs.Empty);
         }
 

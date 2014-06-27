@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Chatty.ViewModel;
+using Microsoft.Practices.ServiceLocation;
 using System.Windows;
 
 namespace Chatty
@@ -23,7 +19,8 @@ namespace Chatty
         {
             try
             {
-                await ViewModel.MainViewModel.Proxy.Invoke("LogOut", new object[] { ViewModel.ChatViewModel.userId });
+                var chatViewModel = ServiceLocator.Current.GetInstance<ChatViewModel>();
+                await ViewModel.MainViewModel.Proxy.Invoke("LogOut", new object[] { chatViewModel.userId });
             }
             catch { }
         }
