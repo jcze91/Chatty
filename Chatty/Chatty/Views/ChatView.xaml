@@ -14,12 +14,17 @@
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="5"/>
+                        <ColumnDefinition Width="auto"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    
+
                     <Rectangle Fill="{Binding IsOnline, Converter={StaticResource BoolToColor}}"/>
 
-                    <StackPanel Grid.Column="1">
+                    <Image Grid.Column="1"
+                        Source="{Binding Path=Thumbnail, Converter={StaticResource BinaryImage}}" 
+                           Width="50" Height="50"/>
+
+                    <StackPanel Grid.Column="2">
                         <TextBlock Text="{Binding Username}"/>
                         <TextBlock>
                             <TextBlock.Text>

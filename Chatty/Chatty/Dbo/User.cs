@@ -1,6 +1,7 @@
 ﻿using Chatty.ViewModel;
 using GalaSoft.MvvmLight.Command;
 using System.Windows.Input;
+using System.Windows.Media;
 
 namespace Chatty.Dbo
 {
@@ -18,6 +19,17 @@ namespace Chatty.Dbo
             set { SetField(ref isOnline, value, "IsOnline"); }
         }
 
+        public int DepartmentId { get; set; }
+        private Department department;
+
+        public Department Department
+        {
+            get { return department; }
+            set { SetField(ref department, value, "Department"); }
+        }
+        
+        public string Thumbnail { get; set; }
+
         private ICommand _inviteCommand;
         public ICommand InviteCommand
         {
@@ -33,6 +45,7 @@ namespace Chatty.Dbo
         {
             base.Initialize();
             IsOnline = await MainViewModel.Proxy.Invoke<bool>("IsUserOnline", new object[] { Id });
+            Department = await MainViewModel.Proxy.Invoke<Department>("Execute", new object[] { new string[] { DepartmentId.ToString() } });
         }
 
         async private void Invite()

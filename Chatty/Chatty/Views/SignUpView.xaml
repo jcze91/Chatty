@@ -9,6 +9,7 @@
              d:DesignHeight="400" d:DesignWidth="250">
 
     <StackPanel Margin="8" VerticalAlignment="Center">
+        
         <Grid Margin="0 8">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto"/>
@@ -136,6 +137,49 @@
             </toolkit:WatermarkTextBox>
         </Grid>
 
+        <Grid Margin="0 8">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Rectangle Width="20" Height="20" Fill="#f18158">
+                <Rectangle.OpacityMask>
+                    <ImageBrush ImageSource="/Assets/Images/department-icon.png"/>
+                </Rectangle.OpacityMask>
+            </Rectangle>
+            
+            <ComboBox Grid.Column="1" Margin="8 0 0 0" ItemsSource="{Binding Departments}" SelectedItem="{Binding Department}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Name}"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+        </Grid>
+
+        <Grid Margin="0 8">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+            <Rectangle Width="20" Height="20" Fill="#f18158">
+                <Rectangle.OpacityMask>
+                    <ImageBrush ImageSource="/Assets/Images/portrait-icon.png"/>
+                </Rectangle.OpacityMask>
+            </Rectangle>
+            <toolkit:WatermarkTextBox Grid.Column="1" Margin="8 0 0 0"
+                                  Text="{Binding Path=Thumbnail, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                <toolkit:WatermarkTextBox.Watermark>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Thumbnail..." Margin="4,0,0,0"
+                 Foreground="#f18158"/>
+                    </StackPanel>
+                </toolkit:WatermarkTextBox.Watermark>
+            </toolkit:WatermarkTextBox>
+            <Button Grid.Column="2" Content="browse" Padding="4 0" Command="{Binding BrowseCommand}"/>
+        </Grid>
+
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -145,8 +189,6 @@
 
             <Button Content="Go back" Command="{Binding Path=GoBackCommand}"/>
             <Button Content="Sign Up" Command="{Binding Path=SignUpCommand}" Grid.Column="2"/>
-
-
         </Grid>
     </StackPanel>
 

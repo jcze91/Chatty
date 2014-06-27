@@ -25,6 +25,7 @@
         <!-- CONVERTERS -->
 
         <cnv:BoolToColorConverter x:Key="BoolToColor"/>
+        <cnv:BinaryImageConverter x:Key="BinaryImage"/>
         
         
     </Application.Resources>

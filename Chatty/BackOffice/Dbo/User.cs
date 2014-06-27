@@ -30,7 +30,7 @@ namespace BackOffice.Dbo
         public bool isAdmin { get; set; }
 
         public int DepartmentId { get; set; }
-        public byte[] Thumbnail { get; set; }
+        public string Thumbnail { get; set; }
 
         [StringLength(255)]
         public string Token { get; set; }

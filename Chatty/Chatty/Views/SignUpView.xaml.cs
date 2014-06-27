@@ -23,6 +23,12 @@ namespace Chatty.Views
         public SignInView()
         {
             InitializeComponent();
+            this.Loaded += SignInView_Loaded;
+        }
+
+        void SignInView_Loaded(object sender, RoutedEventArgs e)
+        {
+            (DataContext as ViewModel.SignUpViewModel).LoadData();
         }
     }
 }

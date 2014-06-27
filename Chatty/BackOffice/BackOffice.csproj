@@ -272,6 +272,10 @@
     <Compile Include="Migrations\201406261429284_AddMoreUserInfo.Designer.cs">
       <DependentUpon>201406261429284_AddMoreUserInfo.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201406271513313_base64image.cs" />
+    <Compile Include="Migrations\201406271513313_base64image.Designer.cs">
+      <DependentUpon>201406271513313_base64image.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\DepartmentModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
@@ -512,6 +516,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201406261429284_AddMoreUserInfo.resx">
       <DependentUpon>201406261429284_AddMoreUserInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201406271513313_base64image.resx">
+      <DependentUpon>201406271513313_base64image.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
