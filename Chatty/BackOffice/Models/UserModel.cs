@@ -33,6 +33,7 @@ namespace BackOffice.Models
         public string ConnexionDate { get; set; }
         [JsonProperty("job")]
         public string Job { get; set; }
+        [JsonProperty("departmentId")]
         public int DepartmentId { get; set; }
     }
 }

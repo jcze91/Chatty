@@ -1,0 +1,50 @@
+﻿
+<div id="content_discussion" class="ng-cloak" ng-cloak>
+    <div ng-controller="AdminDiscussionsCtrl" id="adminDiscussionCtrl" class="settingsblock">
+        <div>
+            <fieldset>
+                <h1>Discussions</h1>
+                <ul>
+                    <li style="margin-bottom: 30px;">
+                        <input ng-model="discussionType" value="simple" ng-change="getDiscussions()" type="radio" name="simple"/>
+                        <label for="simple">Between 2 users</label>
+                        <input ng-model="discussionType" value="group" ng-change="getDiscussions()" type="radio" name="group" />
+                        <label for="group">In group</label>
+
+                        <br/>
+                    </li>
+                
+                    <li class="widget loading" ng-show="loadingDiscussions"></li>
+                    <li ng-repeat="discussion in discussions" ng-class-even="'even'">
+                        <p class="userElt">
+                            <span><strong style="font-weight:bold">{{discussion.getGroupName()}}</strong>{{discussion.getAllNames()}}</span>
+                            <button ng-click="selectDiscussion(discussion)">Show</button>
+                        </p>
+                    </li>
+                    <p class="no_item_info" ng-show="!discussions.length && !loadingDepartments">No discussions</p>
+                </ul>
+                <p class="pages" ng-hide="!discussions.length">
+                    <button ng-disabled="currentPage == 0" ng-click="previousDiscussions()">
+                        Previous
+                    </button>
+                    {{currentPage+1}}/{{totalPageCount}}
+                    <button ng-disabled="currentPage >= totalPageCount - 1" ng-click="nextDiscussions()">
+                        Next
+                    </button>
+                </p>
+            </fieldset>
+        </div>
+        <div ng-show="selectedDiscussion">
+            <fieldset>
+                <ul class="discussion">
+                    <li ng-repeat="message in selectedDiscussion.messages" ng-class-even="'even'">
+                        <p class="userElt">
+                            <span><strong style="font-weight:bold">{{message.userName}}</strong> - {{message.date}}</span><br/>
+                            {{message.text}} 
+                        </p>
+                    </li>
+                </ul>
+            </fieldset>
+        </div>
+    </div>
+</div>

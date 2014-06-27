@@ -287,6 +287,10 @@
       <DependentUpon>201406272220323_UniqueContraintGroupUser.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\SimpleDiscussionModel.cs" />
+    <Compile Include="Models\GroupDiscussionModel.cs" />
+    <Compile Include="Models\MessageModel.cs" />
+    <Compile Include="Models\DiscussionModel.cs" />
     <Compile Include="Models\DepartmentModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\AdminModel.cs" />
@@ -374,14 +378,11 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.css.map" />
-    <Content Include="Scripts\controller\conversations.controller.js" />
+    <Content Include="Scripts\controller\discussions.controller.js" />
     <Content Include="Scripts\controller\users.controller.js" />
     <Content Include="Scripts\controller\departments.controller.js" />
     <Content Include="Scripts\controller\tab.controller.js" />
     <Content Include="Scripts\factory\chattyservice.factory.js" />
-    <Content Include="Scripts\directive\numbersOnly.directive.js" />
-    <Content Include="Scripts\directive\onBlur.directive.js" />
-    <Content Include="Scripts\directive\onBlurEnter.directive.js" />
     <Content Include="Scripts\directive\onEnter.directive.js" />
     <Content Include="Scripts\jquery-2.1.1.min.js" />
     <Content Include="Scripts\jquery.signalR-2.1.0.js" />
@@ -392,6 +393,8 @@
     <Content Include="Scripts\libs\html5.js" />
     <Content Include="Scripts\jquery.jsonp.js" />
     <Content Include="Scripts\json2.js" />
+    <Content Include="Scripts\model\message.model.js" />
+    <Content Include="Scripts\model\discussion.model.js" />
     <Content Include="Scripts\model\department.model.js" />
     <Content Include="Scripts\model\user.model.js" />
     <Content Include="Scripts\_references.js" />
@@ -418,7 +421,7 @@
     <Content Include="Views\Auth\Index.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Admin\_UsersAdmin.cshtml" />
-    <Content Include="Views\Admin\_ConversationsAdmin.cshtml" />
+    <Content Include="Views\Admin\_DiscussionsAdmin.cshtml" />
     <Content Include="Views\Admin\_DepartmentsAdmin.cshtml" />
   </ItemGroup>
   <ItemGroup>

@@ -10,7 +10,7 @@
                 else if (n == 1)
                     $rootScope.$broadcast('initDepartments');
                 else if (n == 2)
-                    $rootScope.$broadcast('initConversations');
+                    $rootScope.$broadcast('initDiscussions');
             }
         };
 

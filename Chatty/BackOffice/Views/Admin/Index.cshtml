@@ -14,7 +14,7 @@
                 <ul>
                     <li class="{{getTabClass(0)}}"><a href="#" ng-click="setTab(0)" class="users" title="Users"></a></li>
                     <li class="{{getTabClass(1)}}"><a href="#" ng-click="setTab(1)" class="departments" title="Departments"></a></li>
-                    <li class="{{getTabClass(2)}}"><a href="#" ng-click="setTab(2)" class="discussions" title="Conversations"></a></li>
+                    <li class="{{getTabClass(2)}}"><a href="#" ng-click="setTab(2)" class="discussions" title="Discussions"></a></li>
                   </ul>
                 <div class="logout">
                     @using (Html.BeginForm("LogOff", "Auth", FormMethod.Post, new { id = "logoutForm" }))
@@ -34,7 +34,7 @@
                 @Html.Partial("_DepartmentsAdmin")
             </div>
             <div class="tab_content {{getTabClass(2)}}">
-                @Html.Partial("_ConversationsAdmin")
+                @Html.Partial("_DiscussionsAdmin")
             </div>
             </div>
         </section>
@@ -45,17 +45,16 @@
     <script src="@Url.Content("~/Scripts/app.js")"></script>
     <script src="@Url.Content("~/Scripts/model/user.model.js")"></script>
     <script src="@Url.Content("~/Scripts/model/department.model.js")"></script>
+    <script src="@Url.Content("~/Scripts/model/discussion.model.js")"></script>
+    <script src="@Url.Content("~/Scripts/model/message.model.js")"></script>
 
     <script src="@Url.Content("~/Scripts/factory/chattyservice.factory.js")"></script>
     <script src="@Url.Content("~/Scripts/controller/tab.controller.js")"></script>
     <script src="@Url.Content("~/Scripts/controller/admin.controller.js")"></script>
-    <script src="@Url.Content("~/Scripts/controller/conversations.controller.js")"></script>
+    <script src="@Url.Content("~/Scripts/controller/discussions.controller.js")"></script>
     <script src="@Url.Content("~/Scripts/controller/departments.controller.js")"></script>
     <script src="@Url.Content("~/Scripts/controller/users.controller.js")"></script>
-    <script src="@Url.Content("~/Scripts/directive/numbersOnly.directive.js")"></script>
-    <script src="@Url.Content("~/Scripts/directive/onBlur.directive.js")"></script>
     <script src="@Url.Content("~/Scripts/directive/onEnter.directive.js")"></script>
-    <script src="@Url.Content("~/Scripts/directive/onBlurEnter.directive.js")"></script>
 
     <script type="text/javascript">
         $(document).ready(function () {

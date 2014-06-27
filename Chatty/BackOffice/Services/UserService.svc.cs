@@ -10,6 +10,8 @@ namespace BackOffice.Services
 {
     public class UserService : Utils.BaseService<int, Dbo.User, DataAccess.UserDao>, Contracts.UserContract 
     {
+        private GroupUserService groupUserService { get { return (GroupUserService)Startup.container.Resolve(typeof(GroupUserService), "GroupUserService"); } }
+
         [WebGet(UriTemplate = "EditUser/{adminId}/{token}/{userId}/{userEmail}/{userFirstName}/{userLastName}/{job}/{departmentId}/{isBanned}",
              ResponseFormat = WebMessageFormat.Json)]
         public UserModel EditUser(string adminId, string token, string userId, string userEmail, string userFirstName, string userLastName, string job,
@@ -91,6 +93,30 @@ namespace BackOffice.Services
                 PrevPage = ipage - 1,
             };
 
+        }
+
+        public IList<UserModel> GetUsersByUserFromIdAndGroupId(int userId, int groupId)
+        {
+            HashSet<Dbo.User> map = new HashSet<Dbo.User>();
+            Dbo.User user = this.GetById(userId);
+            map.Add(user);
+            var usersFromGroup = groupUserService.SearchFor(gu => gu.GroupId == groupId)
+                    .Select(gu => this.GetById(gu.UserId)).ToList();
+            foreach (var u in usersFromGroup)
+                map.Add(u);
+
+            return map.Select(u => new UserModel
+                {
+                    Id = u.Id,
+                    isEnable = u.isEnable,
+                    Lastname = u.Lastname,
+                    Firstname = u.Firstname,
+                    Username = u.Username,
+                    Email = u.Email,
+                    ConnexionDate = u.ConnexionDate.ToString(),
+                    Job = u.Job,
+                    DepartmentId = u.DepartmentId
+                }).ToList();
         }
     }
 }
