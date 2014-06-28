@@ -9,7 +9,7 @@
              d:DesignHeight="400" d:DesignWidth="250">
 
     <StackPanel Margin="8" VerticalAlignment="Center">
-        
+
         <Grid Margin="0 8">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto"/>
@@ -84,36 +84,7 @@
                     <ImageBrush ImageSource="/Assets/Images/password-icon.png"/>
                 </Rectangle.OpacityMask>
             </Rectangle>
-            <toolkit:WatermarkTextBox Grid.Column="1" Margin="8 0 0 0"
-                                  Text="{Binding Path=Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                <toolkit:WatermarkTextBox.Watermark>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="Password..." Margin="4,0,0,0"
-                 Foreground="#f18158"/>
-                    </StackPanel>
-                </toolkit:WatermarkTextBox.Watermark>
-            </toolkit:WatermarkTextBox>
-        </Grid>
-
-        <Grid Margin="0 8">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="auto"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <Rectangle Width="20" Height="20" Fill="#f18158">
-                <Rectangle.OpacityMask>
-                    <ImageBrush ImageSource="/Assets/Images/password-icon.png"/>
-                </Rectangle.OpacityMask>
-            </Rectangle>
-            <toolkit:WatermarkTextBox Grid.Column="1" Margin="8 0 0 0"
-                                  Text="{Binding Path=Password2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                <toolkit:WatermarkTextBox.Watermark>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="Confirm Password..." Margin="4,0,0,0"
-                 Foreground="#f18158"/>
-                    </StackPanel>
-                </toolkit:WatermarkTextBox.Watermark>
-            </toolkit:WatermarkTextBox>
+            <PasswordBox x:Name="pass" Grid.Column="1" Margin="8 0 0 0"/>
         </Grid>
 
         <Grid Margin="0 8">
@@ -147,7 +118,7 @@
                     <ImageBrush ImageSource="/Assets/Images/department-icon.png"/>
                 </Rectangle.OpacityMask>
             </Rectangle>
-            
+
             <ComboBox Grid.Column="1" Margin="8 0 0 0" ItemsSource="{Binding Departments}" SelectedItem="{Binding Department}">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
@@ -187,7 +158,8 @@
             </Grid.ColumnDefinitions>
 
             <Button Content="Go back" Command="{Binding Path=GoBackCommand}"/>
-            <Button Content="Sign Up" Command="{Binding Path=SignUpCommand}" Grid.Column="2"/>
+            <Button Content="Sign Up" Command="{Binding Path=SignUpCommand}" Grid.Column="2"
+                    CommandParameter="{Binding ElementName=pass}" />
         </Grid>
     </StackPanel>
 

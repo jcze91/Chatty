@@ -7,6 +7,7 @@ using System.Windows.Media.Imaging;
 using Chatty.Utils;
 using System;
 using Microsoft.Practices.ServiceLocation;
+using System.Windows.Controls;
 
 namespace Chatty.ViewModel
 {
@@ -31,12 +32,12 @@ namespace Chatty.ViewModel
             set { SetField(ref username, value, "Username"); }
         }
 
-        private string password;
-        public string Password
-        {
-            get { return password; }
-            set { SetField(ref password, value, "Password"); }
-        }
+        //private string password;
+        //public string Password
+        //{
+        //    get { return password; }
+        //    set { SetField(ref password, value, "Password"); }
+        //}
 
         private bool isLogging = false;
         /// <summary>
@@ -60,10 +61,11 @@ namespace Chatty.ViewModel
             get
             {
                 if (_loginCommand == null)
-                    _loginCommand = new RelayCommand(() => Login(), () => canLog);
+                    _loginCommand = new RelayCommand<object>(Login, canLog);
                 return _loginCommand;
             }
         }
+
 
         private ICommand _createCommand;
         public ICommand CreateCommand
@@ -76,11 +78,20 @@ namespace Chatty.ViewModel
             }
         }
 
-        private bool canLog { get { return !isLogging && !string.IsNullOrWhiteSpace(username) && !string.IsNullOrWhiteSpace(password); } }
+        private bool canLog(object parameter)
+        {
+            var passwordBox = parameter as PasswordBox;
+            if (passwordBox == null) return false;
+            var password = passwordBox.Password;
+            return !isLogging && !string.IsNullOrWhiteSpace(username) && !string.IsNullOrWhiteSpace(password);
+        }
 
-        async private void Login()
+        async private void Login(object parameter)
         {
             isLogging = true;
+            var passwordBox = parameter as PasswordBox;
+            if (passwordBox == null) return;
+            var password = passwordBox.Password;
             var res = await MainViewModel.Proxy.Invoke<int>("Login", new object[] { username, password.sha1() });
             isLogging = false;
             OnLogInfo(new LoginEventArgs() { UserId = res, Username = username, Logged = res != -1 });
@@ -90,7 +101,7 @@ namespace Chatty.ViewModel
         {
             Debug.WriteLine(name + " : " + message);
         }
-        
+
 
 
 

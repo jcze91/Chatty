@@ -12,6 +12,7 @@ using System.Windows.Media.Imaging;
 using System.IO;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.Windows.Controls;
 
 namespace Chatty.ViewModel
 {
@@ -36,20 +37,6 @@ namespace Chatty.ViewModel
         {
             get { return lastname; }
             set { SetField(ref lastname, value, "Lastname"); }
-        }
-
-        private string password;
-        public string Password
-        {
-            get { return password; }
-            set { SetField(ref password, value, "Password"); }
-        }
-
-        private string password2;
-        public string Password2
-        {
-            get { return password2; }
-            set { SetField(ref password2, value, "Password2"); }
         }
 
         private string email;
@@ -99,7 +86,7 @@ namespace Chatty.ViewModel
             get
             {
                 if (_signUpCommand == null)
-                    _signUpCommand = new RelayCommand(() => SignUp(), () => CanSignIn());
+                    _signUpCommand = new RelayCommand<object>(SignUp, CanSignIn);
                 return _signUpCommand;
             }
         }
@@ -135,8 +122,12 @@ namespace Chatty.ViewModel
             }
         }
 
-        async private void SignUp()
+        async private void SignUp(object parameter)
         {
+            var passwordBox = parameter as PasswordBox;
+            if (passwordBox == null) return;
+            var password = passwordBox.Password;
+
             isSigningUp = true;
 
             string base64 = "";
@@ -221,16 +212,18 @@ namespace Chatty.ViewModel
             return !isSigningUp;
         }
 
-        private bool CanSignIn()
+        private bool CanSignIn(object parameter)
         {
+            var passwordBox = parameter as PasswordBox;
+            if (passwordBox == null) return false;
+            var password = passwordBox.Password;
+
             return !isSigningUp
                 && !string.IsNullOrWhiteSpace(username)
                 && !string.IsNullOrWhiteSpace(firstname)
                 && !string.IsNullOrWhiteSpace(lastname)
                 && !string.IsNullOrWhiteSpace(password)
-                && !string.IsNullOrWhiteSpace(password2)
-                && !string.IsNullOrWhiteSpace(email)
-                && password == password2;
+                && !string.IsNullOrWhiteSpace(email);
         }
 
         public event EventHandler SignUpped;

@@ -27,6 +27,7 @@
         <cnv:BoolToColorConverter x:Key="BoolToColor"/>
         <cnv:BinaryImageConverter x:Key="BinaryImage"/>
         <cnv:BoolToVisibilityConverter x:Key="BoolToVisibility"/>
+        <cnv:MyMultiConverter x:Key="MyMultiConverter"/>
 
         <DataTemplate x:Key="UserTemplate">
             <Grid>

@@ -102,6 +102,7 @@
     <Compile Include="Helpers\BoolToColorConverter.cs" />
     <Compile Include="Helpers\BinaryImageConverter.cs" />
     <Compile Include="Helpers\BoolToVisibilityConverter.cs" />
+    <Compile Include="Helpers\MyMultipleConverter.cs" />
     <Compile Include="Utils\BaseEntity.cs" />
     <Compile Include="Utils\BaseModel.cs" />
     <Compile Include="Utils\BaseNotify.cs" />

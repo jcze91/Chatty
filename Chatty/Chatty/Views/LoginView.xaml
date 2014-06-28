@@ -55,15 +55,7 @@
                     <ImageBrush ImageSource="/Assets/Images/password-icon.png"/>
                 </Rectangle.OpacityMask>
             </Rectangle>
-            <toolkit:WatermarkTextBox Grid.Column="1" Margin="8 0 0 0"
-                                  Text="{Binding Path=Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                <toolkit:WatermarkTextBox.Watermark>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="Password..." Margin="4,0,0,0"
-                 Foreground="#f18158"/>
-                    </StackPanel>
-                </toolkit:WatermarkTextBox.Watermark>
-            </toolkit:WatermarkTextBox>
+            <PasswordBox Grid.Column="1" Margin="8 0 0 0" x:Name="passBox"/>
         </Grid>
 
 
@@ -71,6 +63,6 @@
             Content="Sign in" Command="{Binding Path=CreateCommand}" />
 
         <Button Grid.Column="2" Grid.Row="6" Margin="4 8"
-            Content="Log in" Command="{Binding Path=LogInCommand}" />
+            Content="Log in" Command="{Binding Path=LogInCommand}" CommandParameter="{Binding ElementName=passBox}" />
     </Grid>
 </UserControl>
