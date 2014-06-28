@@ -9,18 +9,22 @@ namespace Chatty.Helpers
     {
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            if (value != null && value is string)
+            try
             {
-                string base64String = value.ToString();
-                byte[] binaryData = System.Convert.FromBase64String(base64String);
+                if (value != null && value is string)
+                {
+                    string base64String = value.ToString();
+                    byte[] binaryData = System.Convert.FromBase64String(base64String);
 
-                BitmapImage bi = new BitmapImage();
-                bi.BeginInit();
-                bi.StreamSource = new MemoryStream(binaryData);
-                bi.EndInit();
+                    BitmapImage bi = new BitmapImage();
+                    bi.BeginInit();
+                    bi.StreamSource = new MemoryStream(binaryData);
+                    bi.EndInit();
 
-                return bi;
+                    return bi;
+                }
             }
+            catch { }
 
             return null;
         }

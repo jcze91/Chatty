@@ -6,6 +6,24 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="Chatty.MainWindow"
         Title="MainWindow" Height="400" Width="250"
        >
+
+    <Window.Resources>
+        <Storyboard x:Key="Shake" RepeatBehavior ="00:00:01" SpeedRatio ="15">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty ="Left">
+                <SplineDoubleKeyFrame KeyTime ="00:00:00.1000000" Value ="-10"/>
+                <SplineDoubleKeyFrame KeyTime ="00:00:00.3000000" Value ="0"/>
+                <SplineDoubleKeyFrame KeyTime ="00:00:00.5000000" Value ="10"/>
+                <SplineDoubleKeyFrame KeyTime ="00:00:00.7000000" Value ="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty ="Top">
+                <SplineDoubleKeyFrame KeyTime ="00:00:00.1000000" Value ="-10"/>
+                <SplineDoubleKeyFrame KeyTime ="00:00:00.3000000" Value ="-10"/>
+                <SplineDoubleKeyFrame KeyTime ="00:00:00.5000000" Value ="10"/>
+                <SplineDoubleKeyFrame KeyTime ="00:00:00.7000000" Value ="10"/>
+                <SplineDoubleKeyFrame KeyTime ="00:00:00.9000000" Value ="0"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+    </Window.Resources>
     <!--WindowStyle="None"
         AllowsTransparency="True"
         ResizeMode="CanResizeWithGrip"-->

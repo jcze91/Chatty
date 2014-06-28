@@ -1,19 +1,9 @@
 ﻿using Chatty.ViewModel;
+using GalaSoft.MvvmLight.Ioc;
 using Microsoft.Practices.ServiceLocation;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using System.Windows.Media.Animation;
 
 namespace Chatty
 {
@@ -22,6 +12,7 @@ namespace Chatty
     /// </summary>
     public partial class MainWindow : Window
     {
+        ViewModel.MainViewModel viewModel;
         public MainWindow()
         {
             InitializeComponent();
@@ -31,7 +22,9 @@ namespace Chatty
 
         void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            DataContext = new ViewModel.MainViewModel();
+            viewModel = new ViewModel.MainViewModel();
+            DataContext = viewModel;
+            SimpleIoc.Default.Register<MainViewModel>(test);
 
             var login = ServiceLocator.Current.GetInstance<ViewModel.LoginViewModel>();
             login.Logged += Logged;
@@ -40,6 +33,23 @@ namespace Chatty
             var signUp = ServiceLocator.Current.GetInstance<ViewModel.SignUpViewModel>();
             signUp.GoBack += signUp_GoBack;
             signUp.SignUpped += signUp_SignUpped;
+
+            (DataContext as MainViewModel).OnWizz += MainWindow_OnWizz;
+        }
+
+        private MainViewModel test()
+        {
+            return viewModel;
+        }
+
+        void MainWindow_OnWizz(object sender, EventArgs e)
+        {
+            App.Current.Dispatcher.BeginInvoke((Action)(() =>
+            {
+                Storyboard sb = this.FindResource("Shake") as Storyboard;
+                Storyboard.SetTarget(sb, this);
+                sb.Begin();
+            }));
         }
 
         void signUp_SignUpped(object sender, EventArgs e)

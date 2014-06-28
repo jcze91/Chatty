@@ -45,7 +45,7 @@ namespace Chatty.ViewModel
             SimpleIoc.Default.Register<LoginViewModel>();
             SimpleIoc.Default.Register<SignUpViewModel>();
             SimpleIoc.Default.Register<ChatViewModel>();
-            SimpleIoc.Default.Register<MainViewModel>();
+            //SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<InviteViewModel>();
             SimpleIoc.Default.Register<NewGroupViewModel>();
             SimpleIoc.Default.Register<AddUserViewModel>();

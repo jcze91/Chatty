@@ -46,7 +46,7 @@ namespace Chatty.ViewModel
         async private void SendMessage()
         {
             var chatViewModel = ServiceLocator.Current.GetInstance<ChatViewModel>();
-            await MainViewModel.Proxy.Invoke("Execute", new object[] { new string[] { "invitation-insert", chatViewModel.userId.ToString(), User.Id.ToString(), "Add me " } });
+            await MainViewModel.Proxy.Invoke("Execute", new object[] { new string[] { "invitation-insert", chatViewModel.userId.ToString(), User.Id.ToString(), Content } });
             OnClose(EventArgs.Empty);
         }
 

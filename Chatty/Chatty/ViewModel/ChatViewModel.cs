@@ -1,9 +1,9 @@
 ﻿using GalaSoft.MvvmLight.Command;
+using Microsoft.Practices.ServiceLocation;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 using System.Linq;
 using System.Windows.Input;
 
@@ -123,6 +123,17 @@ namespace Chatty.ViewModel
             }
         }
 
+        private ICommand _wizzCommand;
+        public ICommand WizzCommand
+        {
+            get
+            {
+                if (_wizzCommand == null)
+                    _wizzCommand = new RelayCommand(Wizz);
+                return _wizzCommand;
+            }
+        }
+
         private bool messagingEnable = false;
         public bool MessagingEnable
         {
@@ -172,6 +183,14 @@ namespace Chatty.ViewModel
             }
         }
 
+        async private void Wizz()
+        {
+            if (SelectedContact != null)
+                await MainViewModel.Proxy.Invoke<Dbo.Discussion>("Execute", new object[] { new string[] { "wizz", SelectedContact.Id.ToString() } });
+            if (SelectedGroup != null)
+                foreach (var user in GroupUsers)
+                    await MainViewModel.Proxy.Invoke<Dbo.Discussion>("Execute", new object[] { new string[] { "wizz", user.Id.ToString() } });
+        }
 
         private void NewGroup()
         {
@@ -235,6 +254,7 @@ namespace Chatty.ViewModel
 
         async public void Callback(string[] args, dynamic result)
         {
+            if (result == null) return;
             var data = result.ToString();
             string cmd = args[0];
 
@@ -268,9 +288,10 @@ namespace Chatty.ViewModel
                     var newContact = await MainViewModel.Proxy.Invoke<Dbo.User>("Execute", new object[] { new string[] { "user-id", item.ContactId.ToString() } });
                     await App.Current.Dispatcher.BeginInvoke((Action)(() =>
                     {
+                        var i = Users.SingleOrDefault(x => x.Id == newContact.Id);
                         Contacts.Add(newContact);
-                        Users.Remove(newContact);
-                    }));
+                        Users.Remove(i);
+                    }), System.Windows.Threading.DispatcherPriority.Send);
                 }
             }
             else if (cmd == "message-insert")
@@ -283,7 +304,7 @@ namespace Chatty.ViewModel
             }
             else if (cmd == "discussion-insert")
             {
-                Dbo.Discussion item= JsonConvert.DeserializeObject<Dbo.Discussion>(data);
+                Dbo.Discussion item = JsonConvert.DeserializeObject<Dbo.Discussion>(data);
                 if (SelectedGroup != null && SelectedGroup.Id == item.GroupId)
                     await App.Current.Dispatcher.BeginInvoke((Action)(() =>
                             Discussions.Add(item)
@@ -309,6 +330,10 @@ namespace Chatty.ViewModel
                     ));
                 }
             }
+            else if (cmd == "wizz" && userId == int.Parse(args[1]))
+            {
+                ServiceLocator.Current.GetInstance<MainViewModel>().Wizz(EventArgs.Empty);
+            }
         }
 
 
@@ -319,9 +344,10 @@ namespace Chatty.ViewModel
             Reset(true, false, "Contact");
 
             var list = await MainViewModel.Proxy.Invoke<IEnumerable<Dbo.Message>>("Execute", new object[] { new string[] { "message-getByContact", userId.ToString(), selectedContact.Id.ToString() } });
-            await App.Current.Dispatcher.BeginInvoke((Action)(() =>
-                Messages = new ObservableCollection<Dbo.Message>(list)
-            ));
+            if (list != null)
+                await App.Current.Dispatcher.BeginInvoke((Action)(() =>
+                    Messages = new ObservableCollection<Dbo.Message>(list)
+                ));
         }
 
         async internal void OnGroupChanged()

@@ -68,16 +68,12 @@ namespace BackOffice.Hubs
         {
             var result = runtime.Invoke(args);
 
+            if (args[0] == "wizz") result = "";
+
             /**
-             * FAIL
+             * BROADCAST TO ALL CLIENTS
              */
-            if (result == null || result is bool && !((bool)result))
-                Clients.Caller.OnError(args);
-            /**
-             * SUCCESS
-             */
-            else
-                Clients.All.Callback(args, result);
+            Clients.All.Callback(args, result);
 
             return result;
         }

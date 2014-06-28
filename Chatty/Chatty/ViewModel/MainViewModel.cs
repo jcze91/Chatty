@@ -23,5 +23,13 @@ namespace Chatty.ViewModel
             Proxy.On<string[], dynamic>("Callback", (args, res) => Chat.Callback(args, res));
             hubConnection.Start().Wait();
         }
+
+        public event EventHandler OnWizz;
+        public virtual void Wizz(EventArgs e)
+        {
+            EventHandler handler = OnWizz;
+            if (handler != null)
+                handler(this, e);
+        }
     }
 }
