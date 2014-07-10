@@ -35,7 +35,8 @@ namespace BackOffice.DataAccess
             else if (order == 2)
                 query = query.OrderByDescending(x => x.Username);
 
-            return query.Skip(pageSize * page).Take(pageSize).ToList();
+            var result = query.Skip(pageSize * page).Take(pageSize).ToList();
+            return result;
         }
         public int GetFilteredUsersCount(int page, int pageSize, int order, string filter)
         {
@@ -50,7 +51,8 @@ namespace BackOffice.DataAccess
             else if (order == 2)
                 query = query.OrderByDescending(x => x.Username);
 
-            return query.Count();
+            int result = query.ToList().Count;
+            return result;
         }
     }
 }

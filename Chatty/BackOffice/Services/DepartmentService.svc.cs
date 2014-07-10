@@ -76,7 +76,7 @@ namespace BackOffice.Services
             int.TryParse(order, out iorder);
 
             var admin = userService.GetById(id);
-            if (admin.Token != token)
+            if (admin == null || admin.Token != token)
                 return null;
 
             IList<DepartmentModel> list = this.dao.GetFilteredDepartments(ipage, ipageSize, iorder, filter)

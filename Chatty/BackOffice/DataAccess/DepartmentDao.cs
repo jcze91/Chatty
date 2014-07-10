@@ -19,7 +19,8 @@ namespace BackOffice.DataAccess
             else if (order == 2)
                 query = query.OrderByDescending(x => x.Name);
 
-            return query.Skip(pageSize * page).Take(pageSize).ToList();
+            var result = query.Skip(pageSize * page).Take(pageSize).ToList();
+            return result;
         }
         public int GetFilteredDepartmentsCount(int page, int pageSize, int order, string filter)
         {
@@ -35,7 +36,8 @@ namespace BackOffice.DataAccess
             else if (order == 2)
                 query = query.OrderByDescending(x => x.Name);
 
-            return query.Count();
+            int result = query.Count();
+            return result;
         }
     }
 }

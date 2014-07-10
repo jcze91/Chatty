@@ -8,7 +8,7 @@ using BackOffice.Models;
 
 namespace BackOffice.Services
 {
-    public class UserService : Utils.BaseService<int, Dbo.User, DataAccess.UserDao>, Contracts.UserContract 
+    public class UserService : Utils.BaseService<int, Dbo.User, DataAccess.UserDao>, Contracts.UserContract
     {
         private GroupUserService groupUserService { get { return (GroupUserService)Startup.container.Resolve(typeof(GroupUserService), "GroupUserService"); } }
 
@@ -67,7 +67,7 @@ namespace BackOffice.Services
             int.TryParse(order, out iorder);
 
             var admin = this.GetById(id);
-            if (admin.Token != token)
+            if (admin == null || admin.Token != token)
                 return null;
 
             IList<UserModel> usersList = this.dao.GetFilteredUsers(ipage, ipageSize, iorder, filter)
